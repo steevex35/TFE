@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MeetUworld</string>
+    <string name="action_settings">Settings</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="connection">Connexion</string>
+    <string name="logo">Logo_APP</string>
+    <string name="inscription">inscrivez-vous</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="homePage">Page Home</string>
+    <string name="title_activity_inscription_page">inscriptionPage</string>
+    <string name="inscriptionPage">Inscription</string>
+    <string name="nomUtilisateur">Nom d\'utilisateur</string>
+    <string name="inscriptionPage_confirmer">Confirmer</string>
+
+    <style name="DefaultButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#979797</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:shadowColor">#f9f9f9</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <string name="title_activity_connection_page">ConnectionPage</string>
+
+
+</resources>

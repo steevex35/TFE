@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#B0BEC5"
+    tools:context="com.obisteeves.meetuworld.PageAndroid.inscriptionPage">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        >
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:hint="@string/email"
+            android:textColorHint="#FFFFFF"
+            android:drawableLeft="@drawable/email"/>
+        <EditText
+            android:id="@+id/UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"
+            android:padding="10dp"
+            android:hint="@string/nomUtilisateur"
+            android:textColorHint="#FFFFFF"
+            android:drawableLeft="@drawable/user"/>
+        <EditText
+            android:id="@+id/pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"
+            android:padding="10dp"
+            android:hint="@string/password"
+            android:textColorHint="#FFFFFF"
+            android:password="true"
+            android:drawableLeft="@drawable/password"/>
+        <Button
+
+            android:id="@+id/boutonInscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="4dp"
+
+            android:text="@string/inscriptionPage_confirmer"
+            style="@style/DefaultButtonText"
+            android:background="@drawable/button_default_bg"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
