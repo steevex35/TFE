@@ -6,16 +6,34 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.Utilities;
 
-public class ConnectionPage extends Activity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Observable;
+import java.util.Observer;
+
+public class ConnectionPage extends Activity implements Observer{
+
+    private EditText fEmail, fMdp;
+    private TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_page);
+
+        fEmail=(EditText) findViewById(R.id.email);
+        fEmail.setText("steevex35@hotmail.com");
+        fMdp = (EditText) findViewById(R.id.pwd);
+        fMdp.setText("test1234");
+        error = (TextView) findViewById(R.id.error);
     }
 
 
@@ -24,6 +42,7 @@ public class ConnectionPage extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_connection_page, menu);
         return true;
+
     }
 
     @Override
@@ -41,6 +60,50 @@ public class ConnectionPage extends Activity {
         return super.onOptionsItemSelected(item);
     }
     public void connection(View view){
-        Utilities.enter(HomePage.class, this);
+        error.setText("");
+        connect(fEmail.getText().toString(), fMdp.getText().toString());
+        //Utilities.enter(HomePage.class, this);
+    }
+
+    private void connect (String email, String mdp){
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+
+
+        String address= getResources().getString(R.string.serveurAdd)+ getResources().getString(R.string.connexionAdd);
+        net.setUrl(address);
+        net.addParam("email",email);
+        net.addParam("mdp",mdp);
+
+        net.send();
+
+    }
+
+    public void update(Observable observable,final Object msg) {
+        if(msg==null) return ;
+
+        if(msg.toString().equals(NetworkRequestAdapter.NO_ERROR)){
+            Utilities.enter(HomePage.class, this);
+            initAdvertTypesTable(observable);
+        }
+        else
+            error.setText(msg.toString());
+    }
+
+    private void initAdvertTypesTable(final Observable observable){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Utilities.fillAdvertTable((JSONObject) ((NetworkRequestAdapter)observable).getResult().get("types"));
+                    Utilities.fillErrorsTable((JSONObject) ((NetworkRequestAdapter)observable).getResult().get("errors"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        t.start();
+
     }
 }

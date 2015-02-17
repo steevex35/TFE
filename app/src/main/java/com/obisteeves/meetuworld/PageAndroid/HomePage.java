@@ -10,7 +10,7 @@ import android.view.Window;
 import com.obisteeves.meetuworld.R;
 
 
-public class HomePage extends Activity {
+public class HomePage extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

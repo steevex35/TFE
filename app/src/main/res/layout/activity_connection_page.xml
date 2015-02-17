@@ -17,17 +17,18 @@
         >
 
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:padding="10dp"
         android:hint="@string/email"
         android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:drawableLeft="@drawable/email"/>
     <EditText
-        android:id="@+id/etPass"
+        android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -35,6 +36,7 @@
         android:padding="10dp"
         android:hint="@string/password"
         android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:password="true"
         android:drawableLeft="@drawable/password"/>
     <Button
@@ -48,6 +50,16 @@
         style="@style/DefaultButtonText"
         android:background="@drawable/button_default_bg"
         />
+
+     <TextView
+         android:layout_marginTop="10dp"
+         android:id="@+id/error"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:textSize="12sp"
+         android:textStyle="bold"
+         android:layout_gravity="center"
+         android:textColor="#FF0000"/>
 </LinearLayout>
 
 

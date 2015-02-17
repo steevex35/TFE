@@ -44,6 +44,10 @@
             android:name=".PageAndroid.ConnectionPage"
             android:label="@string/title_activity_connection_page" >
         </activity>
+        <activity
+            android:name=".PageAndroid.profil_Page"
+            android:label="@string/title_activity_profil__page" >
+        </activity>
     </application>
 
 </manifest>

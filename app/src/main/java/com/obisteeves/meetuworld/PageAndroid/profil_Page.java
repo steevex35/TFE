@@ -1,49 +1,26 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 
 import com.obisteeves.meetuworld.R;
-import com.obisteeves.meetuworld.Utils.Utilities;
 
-
-public class MainActivity extends Activity {
-
-
-
+public class profil_Page extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
-
-
-        setContentView(R.layout.activity_main);
-
-
-
-
+        setContentView(R.layout.activity_profil__page);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
+        getMenuInflater().inflate(R.menu.menu_profil__page, menu);
         return true;
-
     }
 
     @Override
@@ -60,10 +37,4 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void connectionPage(View view){
-        Utilities.enter(ConnectionPage.class,this);
-    }
-
-    public void inscription(View view){Utilities.enter(inscriptionPage.class,this);}
 }
