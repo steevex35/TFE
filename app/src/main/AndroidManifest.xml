@@ -29,11 +29,14 @@
         </activity>
         <activity
             android:name=".PageAndroid.HomePage"
-            android:label="@string/title_activity_home_page" >
+            android:label="@string/title_activity_home_page"
+            android:parentActivityName="com.obisteeves.meetuworld.PageAndroid.ConnectionPage">
         </activity>
         <activity
             android:name=".PageAndroid.inscriptionPage"
-            android:label="@string/title_activity_inscription_page" >
+            android:label="@string/title_activity_inscription_page"
+            android:parentActivityName="com.obisteeves.meetuworld.PageAndroid.MainActivity">
+
         </activity>
 
         <meta-data
@@ -42,7 +45,8 @@
 
         <activity
             android:name=".PageAndroid.ConnectionPage"
-            android:label="@string/title_activity_connection_page" >
+            android:label="@string/title_activity_connection_page"
+            android:parentActivityName="com.obisteeves.meetuworld.PageAndroid.MainActivity">
         </activity>
         <activity
             android:name=".PageAndroid.profil_Page"

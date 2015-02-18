@@ -1,6 +1,8 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +21,7 @@ import org.json.JSONObject;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ConnectionPage extends Activity implements Observer{
+public class ConnectionPage extends ActionBarActivity implements Observer{
 
     private EditText fEmail, fMdp;
     private TextView error;
@@ -28,6 +30,12 @@ public class ConnectionPage extends Activity implements Observer{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_page);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setTitle("Connexion");
+
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
 
         fEmail=(EditText) findViewById(R.id.email);
         fEmail.setText("steevex35@hotmail.com");
