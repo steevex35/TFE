@@ -1,5 +1,6 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +15,7 @@ import com.obisteeves.meetuworld.R;
 
 public class HomePage extends ActionBarActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,6 +27,7 @@ public class HomePage extends ActionBarActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         setTitle("Home");
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
+
     }
 
 

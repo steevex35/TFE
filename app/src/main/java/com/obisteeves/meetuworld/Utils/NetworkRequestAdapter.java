@@ -47,7 +47,7 @@ public class NetworkRequestAdapter extends Observable{
     public static final int WAITING = 1;
     public static final int FINISH = 2;
 
-    public static final int OK = 23;
+    public static final int OK  = 23;
 
     /**
      * Erreur, réponse correcte impossible

@@ -10,25 +10,6 @@
     android:orientation="vertical"
     tools:context="com.obisteeves.meetuworld.PageAndroid.HomePage">
 
-   <RelativeLayout
-       android:id="@+id/mainContent"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-   </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/drawerPane"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:gravity="start">
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/profileBox"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/material_blue_grey_800"
-        android:padding="8dp" >
-        </RelativeLayout>
 
 </RelativeLayout>
