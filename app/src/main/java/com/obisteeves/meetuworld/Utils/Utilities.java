@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.SparseArray;
 
+import com.obisteeves.meetuworld.PageAndroid.ConnectionPage;
 import com.obisteeves.meetuworld.R;
 
 import org.json.JSONArray;
@@ -107,7 +108,10 @@ public class Utilities {
                 .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        
                         dialog.dismiss();
+
                     }
                 })
                 .show();

@@ -91,8 +91,9 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         if(msg==null) return ;
 
         if(msg.toString().equals(NetworkRequestAdapter.NO_ERROR)){
-            Utilities.enter(HomePage.class, this);
-            initAdvertTypesTable(observable);
+           Utilities.enter(HomePage.class, this);
+           initAdvertTypesTable(observable);
+
         }
         else
             error.setText(msg.toString());
