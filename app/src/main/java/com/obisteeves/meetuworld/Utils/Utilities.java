@@ -3,6 +3,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.util.SparseArray;
 
 import com.obisteeves.meetuworld.PageAndroid.ConnectionPage;
@@ -109,7 +110,7 @@ public class Utilities {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        
+
                         dialog.dismiss();
 
                     }

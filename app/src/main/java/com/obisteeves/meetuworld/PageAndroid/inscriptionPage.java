@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,9 +48,9 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         emailConf= (EditText) findViewById(R.id.emailConfirmation);
         emailConf.setText("steeve35@hotmail.com");
         pwd= (EditText) findViewById(R.id.pwd);
-       pwd.setText("steevex35@hotmail.com");
+       pwd.setText("test1");
         pwdConf=(EditText) findViewById(R.id.pwdConfirmation);
-       pwdConf.setText("steevex35@hotmail.com");
+       pwdConf.setText("test1");
         error = (TextView) findViewById(R.id.error);
 
     }
@@ -126,7 +127,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
                     ,this);
 
             //Utilities.enter(ConnectionPage.class, this);
-           //initAdvertTypesTable(observable);
+            initAdvertTypesTable(observable);
         }
         else
             error.setText(data.toString());
