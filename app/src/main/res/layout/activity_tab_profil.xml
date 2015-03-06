@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:coontext="com.obisteeves.meetuworld.Tabs.TabProfil">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_account_circle_grey600_48dp"
+            android:layout_weight="0.5"/>
+
+        <View
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#BF360C" />
+
+
+
+    <TextView
+        android:id="@+id/nom"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profil_page_nom"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/button_material_dark"
+        />
+
+    <TextView
+        android:id="@+id/prenom"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profil_page_prenom"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/button_material_dark"
+        />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profil_page_email"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textColor="@color/button_material_dark" />
+
+        <TextView
+            android:id="@+id/profil_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp" />
+
+
+
+        <ViewSwitcher
+            android:id="@+id/my_switcher6"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profil_page_editVille"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"
+                android:textColor="@color/button_material_dark" />
+
+            <EditText
+                android:id="@+id/hidden_edit_ville"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/profil_page_editVille"
+                android:inputType="text" >
+
+            </EditText>
+
+        </ViewSwitcher>
+
+        <ViewSwitcher
+            android:id="@+id/my_switcher8"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profil_page_pays"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"
+                android:textColor="@color/button_material_dark" />
+
+            <EditText
+                android:id="@+id/hidden_edit_pays"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/profil_page_pays"
+                android:inputType="text" >
+            </EditText>
+
+        </ViewSwitcher>
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#FF0000" />
+
+    </LinearLayout>
+</ScrollView>

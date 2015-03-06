@@ -30,13 +30,12 @@
         <activity
             android:name=".PageAndroid.HomePage"
             android:label="@string/title_activity_home_page"
-            android:parentActivityName="com.obisteeves.meetuworld.PageAndroid.ConnectionPage">
+            android:parentActivityName=".PageAndroid.ConnectionPage" >
         </activity>
         <activity
             android:name=".PageAndroid.inscriptionPage"
             android:label="@string/title_activity_inscription_page"
-            android:parentActivityName="com.obisteeves.meetuworld.PageAndroid.MainActivity">
-
+            android:parentActivityName=".PageAndroid.MainActivity" >
         </activity>
 
         <meta-data
@@ -46,11 +45,23 @@
         <activity
             android:name=".PageAndroid.ConnectionPage"
             android:label="@string/title_activity_connection_page"
-            android:parentActivityName="com.obisteeves.meetuworld.PageAndroid.MainActivity">
+            android:parentActivityName=".PageAndroid.MainActivity" >
         </activity>
         <activity
-            android:name=".PageAndroid.profil_Page"
-            android:label="@string/title_activity_profil__page" >
+            android:name=".PageAndroid.HomePAge"
+            android:label="@string/title_activity_home_page" >
+        </activity>
+        <activity
+            android:name=".Tabs.TabProfil"
+            android:label="@string/title_activity_tab_profil" >
+        </activity>
+        <activity
+            android:name=".Tabs.TabHome"
+            android:label="@string/title_activity_tab_home" >
+        </activity>
+        <activity
+            android:name=".Tabs.TabNewTravel"
+            android:label="@string/title_activity_tab_new_travel" >
         </activity>
     </application>
 

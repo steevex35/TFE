@@ -1,13 +1,10 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.SystemClock;
+
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,8 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Tabs.SlidingTabLayout;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.Utilities;
+import com.obisteeves.meetuworld.Utils.ViewPagerAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,31 +28,27 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         EditText nomUti,email,emailConf,pwd,pwdConf;
         TextView error;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_page);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle("Inscription");
-
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
-
-
         nomUti=(EditText) findViewById(R.id.userName);
-       nomUti.setText("steevex35");
+        nomUti.setText("steevex35");
         email= (EditText) findViewById(R.id.email);
         email.setText("steeve35@hotmail.com");
         emailConf= (EditText) findViewById(R.id.emailConfirmation);
         emailConf.setText("steeve35@hotmail.com");
         pwd= (EditText) findViewById(R.id.pwd);
-       pwd.setText("test1");
+        pwd.setText("test1");
         pwdConf=(EditText) findViewById(R.id.pwdConfirmation);
-       pwdConf.setText("test1");
+         pwdConf.setText("test1");
         error = (TextView) findViewById(R.id.error);
 
     }
+
+
 
 
     @Override

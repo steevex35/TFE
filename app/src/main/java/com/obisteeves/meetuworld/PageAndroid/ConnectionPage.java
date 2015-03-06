@@ -31,16 +31,16 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_page);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle("Connexion");
+        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+       // actionBar.setDisplayHomeAsUpEnabled(true);
+        //setTitle("Connexion");
 
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
+        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
 
         fEmail=(EditText) findViewById(R.id.email);
-        fEmail.setText("steevex35@hotmail.com");
+        fEmail.setText("steeve35@hotmail.com");
         fMdp = (EditText) findViewById(R.id.pwd);
-        fMdp.setText("test1234");
+        fMdp.setText("test1");
         error = (TextView) findViewById(R.id.error);
     }
 

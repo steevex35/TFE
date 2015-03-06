@@ -41,6 +41,18 @@
     <string name="title_activity_profil__page">profil_Page</string>
     <string name="adDialog_valid">inscription</string>
     <string name="adDialog_message">Inscription bien reçue</string>
+    <string name="profil_page_nom">Nom :</string>
+    <string name="profil_page_prenom">Prenom :</string>
+    <string name="profil_page_email">Email :</string>
+    <string name="title_activity_tab_profil">TabProfil</string>
+    <string name="profil_page_editVille">Ville</string>
+    <string name="profil_page_pays">Pays :</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_tab_home">TabHome</string>
+    <string name="title_activity_tab_new_travel">TabNewTravel</string>
+
+
 
 
 
