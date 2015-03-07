@@ -36,17 +36,26 @@
     <string name="serveurAdd">http://www.l4h.be</string>
     <string name="connexionAdd">/TFE/android/connexion.php</string>
     <string name="pageInscription">/TFE/android/pageInscription.php</string>
+    <string name="pageProfil">/TFE/android/profil.php</string>
     <string name="connection_error">Erreur de connexion</string>
     <string name="waiting_message">Chargement</string>
     <string name="title_activity_profil__page">profil_Page</string>
     <string name="adDialog_valid">inscription</string>
     <string name="adDialog_message">Inscription bien reçue</string>
-    <string name="profil_page_nom">Nom :</string>
-    <string name="profil_page_prenom">Prenom :</string>
+
     <string name="profil_page_email">Email :</string>
     <string name="title_activity_tab_profil">TabProfil</string>
-    <string name="profil_page_editVille">Ville</string>
+
+    <string name="profil_page_nom">Nom :</string>
+    <string name="profil_page_prenom">Prenom :</string>
+    <string name="profil_page_editVille">Entrez Votre Ville</string>
+    <string name="profil_page_ediPays">Entrez Votre Pays</string>
+    <string name="profil_page_editNom">Entrez votre Nom</string>
+    <string name="profil_page_editPrenom">Entrez votre Prenom</string>
     <string name="profil_page_pays">Pays :</string>
+    <string name="profil_page_ville">Ville :</string>
+    <string name="profil_page_bouton">Modifier informations</string>
+    <string name="profil_page_sendNewProfil">Envoyer</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_tab_home">TabHome</string>

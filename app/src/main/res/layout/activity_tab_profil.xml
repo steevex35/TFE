@@ -23,38 +23,77 @@
         <View
             android:layout_marginTop="25dp"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="#BF360C" />
 
 
+        <TextView
+            android:id="@+id/textViewprofil_nom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textColor="@color/button_material_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/profil_page_nom"/>
 
-    <TextView
-        android:id="@+id/nom"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profil_page_nom"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/button_material_dark"
-        />
+        <ViewSwitcher
+            android:id="@+id/my_switcher1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/prenom"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profil_page_prenom"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/button_material_dark"
-        />
+            <TextView
+                android:id="@+id/profil_nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/hidden_edit_nom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/profil_page_editNom"
+                >
+            </EditText>
+        </ViewSwitcher>
+
+
+        <TextView
+            android:id="@+id/prenom"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profil_page_prenom"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/button_material_dark"
+            />
+
+        <ViewSwitcher
+            android:id="@+id/my_switcher2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/profil_Prenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/hidden_edit_prenom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/profil_page_editPrenom" >
+            </EditText>
+
+        </ViewSwitcher>
+
+
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:text="@string/profil_page_email"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -67,22 +106,26 @@
             android:layout_height="wrap_content"
             android:textSize="13sp" />
 
-
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profil_page_ville"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textColor="@color/button_material_dark" />
 
         <ViewSwitcher
-            android:id="@+id/my_switcher6"
+            android:id="@+id/my_switcher3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_marginLeft="10dp"
+                android:id="@+id/Profil_Ville"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profil_page_editVille"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold"
-                android:textColor="@color/button_material_dark" />
+                android:layout_height="wrap_content" />
+
 
             <EditText
                 android:id="@+id/hidden_edit_ville"
@@ -95,27 +138,34 @@
 
         </ViewSwitcher>
 
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profil_page_pays"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textColor="@color/button_material_dark" />
+
         <ViewSwitcher
-            android:id="@+id/my_switcher8"
+            android:id="@+id/my_switcher4"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-
             <TextView
-                android:id="@+id/textView4"
-                android:layout_marginLeft="10dp"
+                android:id="@+id/profil_pays"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profil_page_pays"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold"
-                android:textColor="@color/button_material_dark" />
+                android:layout_height="wrap_content"/>
+
 
             <EditText
                 android:id="@+id/hidden_edit_pays"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/profil_page_pays"
+                android:hint="@string/profil_page_ediPays"
                 android:inputType="text" >
             </EditText>
 
@@ -127,6 +177,33 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="#FF0000" />
+
+        <ViewSwitcher
+            android:id="@+id/my_switcher5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <Button
+                android:id="@+id/modifier_profil"
+                android:layout_marginLeft="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:background="@drawable/button_default_bg"
+                android:text="@string/profil_page_bouton" />
+
+            <Button
+                android:id="@+id/envoyer_modifier_profil"
+                android:layout_marginLeft="90dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_default_bg"
+                android:text="@string/profil_page_sendNewProfil" />
+
+        </ViewSwitcher>
 
     </LinearLayout>
 </ScrollView>
