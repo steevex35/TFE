@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.obisteeves.meetuworld.PageAndroid.inscriptionPage;
+import com.obisteeves.meetuworld.PageAndroid.modifierProfil;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.Utilities;
@@ -28,14 +29,22 @@ import java.util.Observer;
  */
 public class TabProfil extends Fragment implements Observer {
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.activity_tab_profil,container,false);
 
         afficheProfil(v);
 
-        changeView(v);
+        Button boutonAlter =(Button) v.findViewById(R.id.modifier_profil);
+        boutonAlter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //page de modif du profil
+                Intent intent = new Intent(getActivity(), modifierProfil.class);
+                startActivity(intent);
+            }
+        });
 
         return v;
 
@@ -61,32 +70,17 @@ public class TabProfil extends Fragment implements Observer {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         if (data.toString().equals("" + NetworkRequestAdapter.OK)) {
 
-           // try {
-               // ((TextView) getActivity().findViewById(R.id.profil_Prenom)).setText(resultat.getResult().get("prenom").toString());
-               // ((EditText) getActivity().findViewById(R.id.hidden_edit_prenom)).setText(resultat.getResult().get("prenom").toString());
-                //((TextView) getActivity().findViewById(R.id.profil_nom)).setText(resultat.getResult().get("nom").toString());
-               // ((EditText) getActivity().findViewById(R.id.hidden_edit_nom)).setText(resultat.getResult().get("nom").toString());
-                //((TextView) this.getActivity().findViewById(R.id.profil_Email)).setText("coucou steeves ts con");
-            //TextView t = (TextView) this.getActivity().findViewById(R.id.profil_Email);
-            //t.setText("Text coucou Display");
-
-
-            //} catch (JSONException e) {
-               // e.printStackTrace();
-           // }
-
-          /*  try {
-
+           try {
+               ((TextView) getActivity().findViewById(R.id.profil_Prenom)).setText(resultat.getResult().get("prenom").toString());
+               ((TextView) getActivity().findViewById(R.id.profil_nom)).setText(resultat.getResult().get("nom").toString());
+               ((TextView) this.getActivity().findViewById(R.id.profil_Email)).setText("coucou steeves ts con");
                ((TextView) getActivity().findViewById(R.id.Profil_Ville)).setText(resultat.getResult().get("ville").toString());
-                ((EditText) getActivity().findViewById(R.id.hidden_edit_ville)).setText(resultat.getResult().get("ville").toString());
-
                ((TextView) getActivity().findViewById(R.id.profil_pays)).setText(resultat.getResult().get("pays").toString());
-               ((EditText) getActivity().findViewById(R.id.hidden_edit_pays)).setText(resultat.getResult().get("pays").toString());
-
+                 TextView t = (TextView) this.getActivity().findViewById(R.id.profil_Email);
+                 t.setText("Text coucou Display");
             } catch (JSONException e) {
                 e.printStackTrace();
-            }*/
-
+            }
         }
 
     }
@@ -98,37 +92,4 @@ public class TabProfil extends Fragment implements Observer {
 
 
 
-    private void changeView(View v){
-        Button boutonAlter =(Button) v.findViewById(R.id.modifier_profil);
-        Button boutonSend = (Button) v.findViewById(R.id.envoyer_modifier_profil);
-
-        final EditText fnom = (EditText) v.findViewById(R.id.hidden_edit_nom);
-        final EditText fprenom = (EditText) v.findViewById(R.id.hidden_edit_prenom);
-        final EditText fville = (EditText) v.findViewById(R.id.hidden_edit_ville);
-        final EditText fpays = (EditText) v.findViewById(R.id.hidden_edit_pays);
-
-        final ViewSwitcher switcher1 = (ViewSwitcher) v.findViewById(R.id.my_switcher1);
-        final ViewSwitcher switcher2 = (ViewSwitcher) v.findViewById(R.id.my_switcher2);
-        final ViewSwitcher switcher3 = (ViewSwitcher) v.findViewById(R.id.my_switcher3);
-        final ViewSwitcher switcher4 = (ViewSwitcher) v.findViewById(R.id.my_switcher4);
-        final ViewSwitcher switcher5 = (ViewSwitcher) v.findViewById(R.id.my_switcher5);
-
-        boutonAlter.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                /*switcher1.showNext();
-                switcher2.showNext();
-                switcher3.showNext();
-                switcher4.showNext();
-                switcher5.showNext();*/
-                //page de modif du profil
-                Intent intent = new Intent(getActivity(), inscriptionPage.class);
-                startActivity(intent);
-            }
-        });
-
-
-    }
 }

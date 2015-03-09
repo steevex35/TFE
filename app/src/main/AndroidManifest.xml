@@ -30,8 +30,7 @@
         <activity
             android:name=".PageAndroid.HomePage"
             android:label="@string/title_activity_home_page"
-            android:parentActivityName=".PageAndroid.ConnectionPage"
-            >
+            android:parentActivityName=".PageAndroid.ConnectionPage" >
         </activity>
         <activity
             android:name=".PageAndroid.inscriptionPage"
@@ -63,6 +62,11 @@
         <activity
             android:name=".Tabs.TabNewTravel"
             android:label="@string/title_activity_tab_new_travel" >
+        </activity>
+        <activity
+            android:name=".PageAndroid.modifierProfil"
+            android:label="@string/title_activity_modifier_profil"
+            android:parentActivityName=".PageAndroid.HomePage" >
         </activity>
     </application>
 

@@ -4,125 +4,113 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:background="@color/ColorPrimary"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-
-   >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="match_parent"/>
 
-        />
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/ColorPrimary"
+            tools:context="com.obisteeves.meetuworld.PageAndroid.inscriptionPage">
 
-    <ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/ColorPrimary"
-    tools:context="com.obisteeves.meetuworld.PageAndroid.inscriptionPage"
-    >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true">
 
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="-2dp"
+                android:padding="10dp"
+                android:hint="@string/nomUtilisateur"
+                android:textSize="14dp"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/user"/>
 
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:hint="@string/email"
+                android:textSize="14dp"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/email"/>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-
-        >
-
-
-
-        <EditText
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginTop="-2dp"
-            android:padding="10dp"
-            android:hint="@string/nomUtilisateur"
-            android:textSize="14dp"
-            android:textColorHint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:drawableLeft="@drawable/user"/>
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:hint="@string/email"
-            android:textSize="14dp"
-            android:textColorHint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:drawableLeft="@drawable/email"/>
-
-        <EditText
-            android:id="@+id/emailConfirmation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:textSize="14dp"
-            android:hint="@string/emailConfirmation"
-            android:textColorHint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:drawableLeft="@drawable/email"/>
+            <EditText
+                android:id="@+id/emailConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:hint="@string/emailConfirmation"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/email"/>
 
 
-        <EditText
-            android:id="@+id/pwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:textSize="14dp"
-            android:hint="@string/password"
-            android:textColorHint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:password="true"
-            android:drawableLeft="@drawable/password"/>
+            <EditText
+                android:id="@+id/pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:hint="@string/password"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:password="true"
+                android:drawableLeft="@drawable/password"/>
 
-        <EditText
-            android:id="@+id/pwdConfirmation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:textSize="14dp"
-            android:hint="@string/passwordConfirmation"
-            android:textColorHint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:password="true"
-            android:drawableLeft="@drawable/password"/>
+            <EditText
+                android:id="@+id/pwdConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:hint="@string/passwordConfirmation"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:password="true"
+                android:drawableLeft="@drawable/password"/>
 
-        <TextView
-            android:id="@+id/error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textColor="#FF0000"/>
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="#FF0000"/>
 
 
-        <Button
-            android:id="@+id/boutonInscription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="4dp"
-            android:text="@string/inscriptionPage_confirmer"
-            style="@style/DefaultButtonText"
-            android:background="@drawable/button_default_bg"
-            android:onClick="envoyerInscription"
-            />
-    </LinearLayout>
-
-</ScrollView>
-
+            <Button
+                android:id="@+id/boutonInscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="4dp"
+                android:text="@string/inscriptionPage_confirmer"
+                style="@style/DefaultButtonText"
+                android:background="@drawable/button_default_bg"
+                android:onClick="envoyerInscription"/>
+            </LinearLayout>
+        </ScrollView>
 </LinearLayout>

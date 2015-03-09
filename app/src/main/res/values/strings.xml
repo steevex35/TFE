@@ -60,6 +60,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_tab_home">TabHome</string>
     <string name="title_activity_tab_new_travel">TabNewTravel</string>
+    <string name="title_activity_modifier_profil">modifierProfil</string>
 
 
 
