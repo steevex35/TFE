@@ -16,7 +16,7 @@
             android:id="@+id/imageView1"
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:src="@drawable/ic_account_circle_grey600_48dp"
             android:layout_weight="0.5"/>
 
@@ -24,7 +24,7 @@
             android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#BF360C" />
+            android:background="#FFAB00" />
 
 
         <TextView
@@ -104,6 +104,7 @@
             android:id="@+id/profil_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/ColorPrimary"
             android:textSize="13sp" />
 
         <TextView
@@ -204,6 +205,8 @@
                 android:text="@string/profil_page_sendNewProfil" />
 
         </ViewSwitcher>
+
+
 
     </LinearLayout>
 </ScrollView>

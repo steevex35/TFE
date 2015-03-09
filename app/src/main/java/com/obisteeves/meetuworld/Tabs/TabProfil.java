@@ -1,5 +1,7 @@
 package com.obisteeves.meetuworld.Tabs;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,8 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import com.obisteeves.meetuworld.PageAndroid.inscriptionPage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.Utilities;
 
 import org.json.JSONException;
 
@@ -22,17 +26,14 @@ import java.util.Observer;
 /**
  * Created by hp1 on 21-01-2015.
  */
-public class TabProfil extends Fragment {
-
-
-
-
-
+public class TabProfil extends Fragment implements Observer {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.activity_tab_profil,container,false);
+
+        afficheProfil(v);
 
         changeView(v);
 
@@ -40,42 +41,13 @@ public class TabProfil extends Fragment {
 
     }
 
-    public void afficheProfil(final View v){
-
-        NetworkRequestAdapter net = new NetworkRequestAdapter(getActivity());
-        net.addObserver(new Observer() {
-            @Override
-            public void update(Observable observable, Object data) {
-                NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-                if (data.toString().equals("" + NetworkRequestAdapter.OK)) {
-
-                    try {
-                        ((TextView) v.findViewById(R.id.profil_Prenom)).setText(resultat.getResult().get("prenom").toString());
-                        ((EditText) v.findViewById(R.id.hidden_edit_prenom)).setText(resultat.getResult().get("prenom").toString());
-                        ((TextView) v.findViewById(R.id.profil_nom)).setText(resultat.getResult().get("nom").toString());
-                        ((EditText) v.findViewById(R.id.hidden_edit_nom)).setText(resultat.getResult().get("nom").toString());
-                        ((TextView) v.findViewById(R.id.profil_Email)).setText(resultat.getResult().get("email").toString());
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-
-                        ((TextView) v.findViewById(R.id.Profil_Ville)).setText(resultat.getResult().get("ville").toString());
-                        ((EditText) v.findViewById(R.id.hidden_edit_ville)).setText(resultat.getResult().get("ville").toString());
-
-                        ((TextView) v.findViewById(R.id.profil_pays)).setText(resultat.getResult().get("pays").toString());
-                        ((EditText) v.findViewById(R.id.hidden_edit_pays)).setText(resultat.getResult().get("pays").toString());
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        });
+    public void afficheProfil(View v) {
+        //TextView t = (TextView) v.findViewById(R.id.profil_Email);
+        // t.setText("Text to Display");
+        TextView t = (TextView) v.findViewById(R.id.profil_Email);
+        t.setText("Text yoo Display");
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
+        net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.pageProfil);
         net.setUrl(address);
@@ -83,6 +55,43 @@ public class TabProfil extends Fragment {
 
 
     }
+
+
+    public void update(Observable observable, Object data) {
+        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
+        if (data.toString().equals("" + NetworkRequestAdapter.OK)) {
+
+           // try {
+               // ((TextView) getActivity().findViewById(R.id.profil_Prenom)).setText(resultat.getResult().get("prenom").toString());
+               // ((EditText) getActivity().findViewById(R.id.hidden_edit_prenom)).setText(resultat.getResult().get("prenom").toString());
+                //((TextView) getActivity().findViewById(R.id.profil_nom)).setText(resultat.getResult().get("nom").toString());
+               // ((EditText) getActivity().findViewById(R.id.hidden_edit_nom)).setText(resultat.getResult().get("nom").toString());
+                //((TextView) this.getActivity().findViewById(R.id.profil_Email)).setText("coucou steeves ts con");
+            //TextView t = (TextView) this.getActivity().findViewById(R.id.profil_Email);
+            //t.setText("Text coucou Display");
+
+
+            //} catch (JSONException e) {
+               // e.printStackTrace();
+           // }
+
+          /*  try {
+
+               ((TextView) getActivity().findViewById(R.id.Profil_Ville)).setText(resultat.getResult().get("ville").toString());
+                ((EditText) getActivity().findViewById(R.id.hidden_edit_ville)).setText(resultat.getResult().get("ville").toString());
+
+               ((TextView) getActivity().findViewById(R.id.profil_pays)).setText(resultat.getResult().get("pays").toString());
+               ((EditText) getActivity().findViewById(R.id.hidden_edit_pays)).setText(resultat.getResult().get("pays").toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }*/
+
+        }
+
+    }
+
+
 
 
 
@@ -109,11 +118,14 @@ public class TabProfil extends Fragment {
             @Override
             public void onClick(View v) {
 
-                switcher1.showNext();
+                /*switcher1.showNext();
                 switcher2.showNext();
                 switcher3.showNext();
                 switcher4.showNext();
-                switcher5.showNext();
+                switcher5.showNext();*/
+                //page de modif du profil
+                Intent intent = new Intent(getActivity(), inscriptionPage.class);
+                startActivity(intent);
             }
         });
 

@@ -1,7 +1,9 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 
-import android.support.v4.view.ViewPager;
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
-import com.obisteeves.meetuworld.Tabs.SlidingTabLayout;
+
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.Utilities;
-import com.obisteeves.meetuworld.Utils.ViewPagerAdapter;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,12 +29,14 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
 
         EditText nomUti,email,emailConf,pwd,pwdConf;
         TextView error;
+         Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_page);
+        iniActionBar();
 
         nomUti=(EditText) findViewById(R.id.userName);
         nomUti.setText("steevex35");
@@ -43,7 +47,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         pwd= (EditText) findViewById(R.id.pwd);
         pwd.setText("test1");
         pwdConf=(EditText) findViewById(R.id.pwdConfirmation);
-         pwdConf.setText("test1");
+        pwdConf.setText("test1");
         error = (TextView) findViewById(R.id.error);
 
     }
@@ -55,9 +59,15 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_inscription_page, menu);
-
-
         return true;
+    }
+
+    private void iniActionBar(){
+        toolbar = (Toolbar)findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Inscription");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
     }
 
     @Override

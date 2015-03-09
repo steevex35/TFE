@@ -34,6 +34,7 @@ public class HomePage extends ActionBarActivity {
         titles = new CharSequence[]{"Home", "Profil", "Voyage"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Meet u World");
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager)findViewById(R.id.pager);
         pager.setAdapter(adapter);

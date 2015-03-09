@@ -1,8 +1,11 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,17 +26,14 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
 
     private EditText fEmail, fMdp;
     private TextView error;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_page);
+        iniActionBar();
 
-        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-       // actionBar.setDisplayHomeAsUpEnabled(true);
-        //setTitle("Connexion");
-
-        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
 
         fEmail=(EditText) findViewById(R.id.email);
         fEmail.setText("steeve35@hotmail.com");
@@ -49,6 +49,17 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         getMenuInflater().inflate(R.menu.menu_connection_page, menu);
         return true;
 
+    }
+
+    /**
+     * permmet d'afficher l'actionBar android
+     */
+    private void iniActionBar(){
+        toolbar = (Toolbar)findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Connexion");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
     }
 
     @Override
