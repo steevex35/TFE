@@ -51,10 +51,6 @@ public class TabProfil extends Fragment implements Observer {
     }
 
     public void afficheProfil(View v) {
-        //TextView t = (TextView) v.findViewById(R.id.profil_Email);
-        // t.setText("Text to Display");
-        TextView t = (TextView) v.findViewById(R.id.profil_Email);
-        t.setText("Text yoo Display");
         NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
@@ -65,19 +61,25 @@ public class TabProfil extends Fragment implements Observer {
 
     }
 
+    /**
+     *
+     * @param observable
+     * @param data
+     */
 
     public void update(Observable observable, Object data) {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-        if (data.toString().equals("" + NetworkRequestAdapter.OK)) {
+
+        String netReq = String.valueOf(NetworkRequestAdapter.OK);
+
+        if (data.toString().equals(netReq)) {
 
            try {
                ((TextView) getActivity().findViewById(R.id.profil_Prenom)).setText(resultat.getResult().get("prenom").toString());
                ((TextView) getActivity().findViewById(R.id.profil_nom)).setText(resultat.getResult().get("nom").toString());
-               ((TextView) this.getActivity().findViewById(R.id.profil_Email)).setText("coucou steeves ts con");
+               ((TextView) getActivity().findViewById(R.id.profil_Email)).setText(resultat.getResult().get("email").toString());
                ((TextView) getActivity().findViewById(R.id.Profil_Ville)).setText(resultat.getResult().get("ville").toString());
                ((TextView) getActivity().findViewById(R.id.profil_pays)).setText(resultat.getResult().get("pays").toString());
-                 TextView t = (TextView) this.getActivity().findViewById(R.id.profil_Email);
-                 t.setText("Text coucou Display");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

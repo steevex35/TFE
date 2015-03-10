@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
+import org.json.JSONException;
+
+import java.util.Observable;
 import java.util.Observer;
 
-public class modifierProfil extends ActionBarActivity {
+public class modifierProfil extends ActionBarActivity implements Observer {
 
     Toolbar toolbar;
 
@@ -21,6 +28,7 @@ public class modifierProfil extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifier_profil);
         iniActionBar();
+        afficheProfil();
     }
 
 
@@ -56,4 +64,33 @@ public class modifierProfil extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private void afficheProfil() {
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.pageProfil);
+        net.setUrl(address);
+        net.send();
+
+
+    }
+    public void update(Observable observable, Object data) {
+        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
+        String netReq = String.valueOf(NetworkRequestAdapter.OK);
+        if (data.toString().equals(netReq)) {
+
+            try {
+                ((EditText) findViewById(R.id.hidden_edit_prenom)).setText(resultat.getResult().get("prenom").toString());
+                ((EditText) findViewById(R.id.hidden_edit_nom)).setText(resultat.getResult().get("nom").toString());
+                ((EditText) findViewById(R.id.hidden_edit_ville)).setText(resultat.getResult().get("ville").toString());
+                ((EditText) findViewById(R.id.hidden_edit_pays)).setText(resultat.getResult().get("pays").toString());
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }
