@@ -99,7 +99,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.pageModifierProfil);
         net.setUrl(address);
-        net.send();
 
         if(testStringInscription(nom, prenom, ville, pays)==true) {
             net.addParam("nom", nom);
