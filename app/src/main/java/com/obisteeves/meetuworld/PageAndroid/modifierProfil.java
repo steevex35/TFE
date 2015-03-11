@@ -19,16 +19,28 @@ import org.json.JSONException;
 import java.util.Observable;
 import java.util.Observer;
 
+import static com.obisteeves.meetuworld.PageAndroid.inscriptionPage.testStringInscription;
+
+
 public class modifierProfil extends ActionBarActivity implements Observer {
 
     Toolbar toolbar;
+    EditText nom,prenom,ville,pays;
+    TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifier_profil);
+
+
         iniActionBar();
         afficheProfil();
+        nom=(EditText) findViewById(R.id.hidden_edit_nom);
+        prenom=(EditText) findViewById(R.id.hidden_edit_prenom);
+        ville=(EditText) findViewById(R.id.hidden_edit_ville);
+        pays=(EditText) findViewById(R.id.hidden_edit_pays);
+        error = (TextView) findViewById(R.id.error);
     }
 
 
@@ -61,7 +73,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
     private void afficheProfil() {
@@ -74,18 +85,43 @@ public class modifierProfil extends ActionBarActivity implements Observer {
 
 
     }
+
+    public void envoyerNouveauProfil(View view){
+        error.setText("");
+
+        nouveauProfil(nom.getText().toString(),prenom.getText().toString(),
+                ville.getText().toString(),pays.getText().toString());
+    }
+
+    private void nouveauProfil(String nom,String prenom, String ville, String pays){
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.pageModifierProfil);
+        net.setUrl(address);
+        net.send();
+
+        if(testStringInscription(nom, prenom, ville, pays)==true) {
+            net.addParam("nom", nom);
+            net.addParam("prenom", prenom);
+            net.addParam("ville", ville);
+            net.addParam("pays", pays);
+            net.send();
+        } else
+            ((TextView)findViewById(R.id.error)).setText("Un ou plusieurs champs sont vides");
+
+
+
+    }
     public void update(Observable observable, Object data) {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
         if (data.toString().equals(netReq)) {
-
             try {
                 ((EditText) findViewById(R.id.hidden_edit_prenom)).setText(resultat.getResult().get("prenom").toString());
                 ((EditText) findViewById(R.id.hidden_edit_nom)).setText(resultat.getResult().get("nom").toString());
                 ((EditText) findViewById(R.id.hidden_edit_ville)).setText(resultat.getResult().get("ville").toString());
                 ((EditText) findViewById(R.id.hidden_edit_pays)).setText(resultat.getResult().get("pays").toString());
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

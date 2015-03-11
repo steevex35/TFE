@@ -37,6 +37,7 @@
     <string name="connexionAdd">/TFE/android/connexion.php</string>
     <string name="pageInscription">/TFE/android/pageInscription.php</string>
     <string name="pageProfil">/TFE/android/profil.php</string>
+    <string name="pageModifierProfil">/TFE/android/modifierProfil.php</string>
     <string name="connection_error">Erreur de connexion</string>
     <string name="waiting_message">Chargement</string>
     <string name="title_activity_profil__page">profil_Page</string>

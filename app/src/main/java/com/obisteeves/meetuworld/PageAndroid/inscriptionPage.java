@@ -101,6 +101,13 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         }else
             return false;
     }
+    public static boolean testStringInscription(String data1,String data2,String data3, String data4){
+        if(data1 != null && !data1.isEmpty()&&(data2!=null && !data2.isEmpty())&&
+                (data3!=null && !data3.isEmpty())&&(data4!=null && !data4.isEmpty())){
+            return true;
+        }else
+            return false;
+    }
 
     private void envoyerDataInscription(String userName, String email,String emailConf,
                                     String pwd, String pwdConf){
@@ -120,7 +127,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
 
             net.send();
         } else
-            ((TextView)findViewById(R.id.error)).setText("Un ou plusieurs sont vides");
+            ((TextView)findViewById(R.id.error)).setText("Un ou plusieurs champs sont vides");
     }
 
     public void update(Observable observable,final Object data){

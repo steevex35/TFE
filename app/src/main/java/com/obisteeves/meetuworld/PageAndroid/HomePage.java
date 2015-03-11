@@ -31,7 +31,7 @@ public class HomePage extends ActionBarActivity {
     private void ini(){
         // Set the Settings of the tabs
         nbTabs = 3;
-        titles = new CharSequence[]{"Home", "Profil", "Voyage"};
+        titles = new CharSequence[]{"Home","Voyage","Profil"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Meet u World");

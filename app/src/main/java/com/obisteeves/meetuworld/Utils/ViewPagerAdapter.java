@@ -38,11 +38,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 TabHome tabHome = new TabHome();
                 return tabHome;
             case 1:
-                TabProfil tabProfil = new TabProfil();
-                return tabProfil;
-            case 2:
                 TabNewTravel tabNewTravel = new TabNewTravel();
                 return tabNewTravel;
+            case 2:
+                TabProfil tabProfil = new TabProfil();
+                return tabProfil;
+
         }
 
         return null;
