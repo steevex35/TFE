@@ -26,15 +26,27 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:layout_centerInParent="true">
-
             <EditText
-                android:id="@+id/userName"
+                android:id="@+id/nom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_marginTop="-2dp"
                 android:padding="10dp"
                 android:hint="@string/nomUtilisateur"
+                android:textSize="14dp"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/user"/>
+
+            <EditText
+                android:id="@+id/prenom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="-2dp"
+                android:padding="10dp"
+                android:hint="@string/prenomUtilisateur"
                 android:textSize="14dp"
                 android:textColorHint="#FFFFFF"
                 android:textColor="#FFFFFF"

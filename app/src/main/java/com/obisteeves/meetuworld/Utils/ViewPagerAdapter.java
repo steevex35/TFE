@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.obisteeves.meetuworld.Tabs.TabHome;
-import com.obisteeves.meetuworld.Tabs.TabNewTravel;
 import com.obisteeves.meetuworld.Tabs.TabProfil;
+import com.obisteeves.meetuworld.Tabs.TabTravel;
 
 /**
  * Created by hp1 on 21-01-2015.
@@ -38,8 +38,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 TabHome tabHome = new TabHome();
                 return tabHome;
             case 1:
-                TabNewTravel tabNewTravel = new TabNewTravel();
-                return tabNewTravel;
+                TabTravel tabTravel = new TabTravel();
+                return tabTravel;
             case 2:
                 TabProfil tabProfil = new TabProfil();
                 return tabProfil;

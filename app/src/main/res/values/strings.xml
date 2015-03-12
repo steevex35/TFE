@@ -14,7 +14,8 @@
     <string name="homePage">Page Home</string>
     <string name="title_activity_inscription_page">inscriptionPage</string>
     <string name="inscriptionPage">Inscription</string>
-    <string name="nomUtilisateur">Nom d\'utilisateur</string>
+    <string name="nomUtilisateur">Nom </string>
+    <string name="prenomUtilisateur">Prenom</string>
     <string name="inscriptionPage_confirmer">Confirmer</string>
 
     <style name="DefaultButtonText">

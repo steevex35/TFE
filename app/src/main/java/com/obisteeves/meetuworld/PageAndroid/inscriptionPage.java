@@ -27,7 +27,7 @@ import java.util.Observer;
 
 public class inscriptionPage extends ActionBarActivity implements Observer{
 
-        EditText nomUti,email,emailConf,pwd,pwdConf;
+        EditText nom,prenom,email,emailConf,pwd,pwdConf;
         TextView error;
          Toolbar toolbar;
 
@@ -38,8 +38,10 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         setContentView(R.layout.activity_inscription_page);
         iniActionBar();
 
-        nomUti=(EditText) findViewById(R.id.userName);
-        nomUti.setText("steevex35");
+        nom=(EditText) findViewById(R.id.nom);
+        nom.setText("Obiang Ndam");
+        prenom=(EditText) findViewById(R.id.prenom);
+        prenom.setText("steeves");
         email= (EditText) findViewById(R.id.email);
         email.setText("steeve35@hotmail.com");
         emailConf= (EditText) findViewById(R.id.emailConfirmation);
@@ -88,15 +90,15 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
     public void envoyerInscription(View view){
         error.setText("");
 
-        envoyerDataInscription(nomUti.getText().toString(),email.getText().toString(),
+        envoyerDataInscription(nom.getText().toString(),prenom.getText().toString(),email.getText().toString(),
                 emailConf.getText().toString(),pwd.getText().toString(),
                 pwdConf.getText().toString());
     }
     //fonction de test des  valeurs des String
-    public boolean testStringInscription(String data1,String data2,String data3, String data4, String data5){
+    public boolean testStringInscription(String data1,String data2,String data3, String data4, String data5, String data6){
         if(data1 != null && !data1.isEmpty()&&(data2!=null && !data2.isEmpty())&&
                 (data3!=null && !data3.isEmpty())&&(data4!=null && !data4.isEmpty())&&
-                (data5!=null && !data5.isEmpty())){
+                (data5!=null && !data5.isEmpty())&&(data6!=null && !data6.isEmpty())){
             return true;
         }else
             return false;
@@ -109,7 +111,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
             return false;
     }
 
-    private void envoyerDataInscription(String userName, String email,String emailConf,
+    private void envoyerDataInscription(String nom,String prenom, String email,String emailConf,
                                     String pwd, String pwdConf){
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
@@ -118,8 +120,9 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         net.setUrl(address);
 
         //tester les valeurs à envoyer au serveur
-        if(testStringInscription(userName,email,emailConf,pwd,pwdConf)==true) {
-            net.addParam("userName", userName);
+        if(testStringInscription(nom,prenom,email,emailConf,pwd,pwdConf)==true) {
+            net.addParam("nom", nom);
+            net.addParam("prenom", prenom);
             net.addParam("email", email);
             net.addParam("emailConf", emailConf);
             net.addParam("pwd", pwd);
