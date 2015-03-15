@@ -85,7 +85,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
 
 
     }
-
+    //rajouter dialog pour confirmer l'envoie du formulaire
     public void envoyerNouveauProfil(View view){
         error.setText("");
 

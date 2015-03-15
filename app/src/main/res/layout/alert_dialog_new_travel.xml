@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:padding="15dip">
+
+    <TextView
+        android:id="@+id/pays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pays:"
+        android:paddingBottom="10dip" />
+
+    <EditText
+        android:id="@+id/EditText1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pays"  />
+
+
+    <TextView
+        android:id="@+id/ville"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ville:"
+        android:paddingBottom="10dip" />
+
+    <EditText
+        android:id="@+id/EditText2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ville"  />
+
+    <TextView
+        android:id="@+id/dateA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date d'arrivée"
+        android:paddingBottom="10dip" />
+
+
+
+
+    <TextView
+        android:id="@+id/dateD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date de départ"
+        android:paddingBottom="10dip" />
+
+
+
+
+</LinearLayout>
+    </ScrollView>
