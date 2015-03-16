@@ -1,8 +1,6 @@
 package com.obisteeves.meetuworld.Tabs;
 
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +10,7 @@ import android.view.ViewGroup;
 
 import android.widget.ImageButton;
 
+import com.obisteeves.meetuworld.PageAndroid.addTravel;
 import com.obisteeves.meetuworld.R;
 
 /**
@@ -30,26 +29,9 @@ public class TabTravel extends Fragment {
 
             @Override
             public void onClick(View v) {
-                //page de modif du profil
-               // Intent intent = new Intent(getActivity(), modifierProfil.class);
-                //startActivity(intent);
-                LayoutInflater factory = LayoutInflater.from(getActivity());
-                final View alertDialogView = factory.inflate(R.layout.alert_dialog_new_travel, null);
-                AlertDialog ad = new AlertDialog.Builder(getActivity()).create();
-                ad.setCancelable(false);
-                ad.setTitle("Nouveau voyage");
-                //ad.setMessage("");
-                ad.setView(alertDialogView);
-                ad.setButton(getActivity().getString(R.string.ok_text), new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                ad.show();
-
-
+               Intent intent = new Intent(getActivity(),addTravel.class);
+                startActivity(intent);
             }
         });
 

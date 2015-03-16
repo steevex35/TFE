@@ -59,11 +59,18 @@
     <string name="profil_page_bouton">Modifier informations</string>
     <string name="profil_page_sendNewProfil">Envoyer</string>
 
+    <string name="addTravel_page_dateArrive">Date d\'Arrivée :</string>
+    <string name="addTravel_page_dateDepart">Date de départ :</string>
+    <string name="addTravel_page_Edit_dateA">MM/JJ/AAAA</string>
+    <string name="addTravel_page_Edit_dateD">MM/JJ/AAAA</string>
+
     <string name="hello_world">Hello world!</string>
-    <string name="ok_text">ok</string>
+    <string name="oui_text">Oui</string>
+    <string name="non_text">Non</string>
     <string name="title_activity_tab_home">TabHome</string>
     <string name="title_activity_tab_new_travel">TabNewTravel</string>
     <string name="title_activity_modifier_profil">modifierProfil</string>
+    <string name="title_activity_add_travel">addTravel</string>
 
 
 

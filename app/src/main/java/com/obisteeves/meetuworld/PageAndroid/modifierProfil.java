@@ -1,10 +1,13 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,11 +92,34 @@ public class modifierProfil extends ActionBarActivity implements Observer {
     public void envoyerNouveauProfil(View view){
         error.setText("");
 
-        nouveauProfil(nom.getText().toString(),prenom.getText().toString(),
-                ville.getText().toString(),pays.getText().toString());
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        nouveauProfil(nom.getText().toString(),prenom.getText().toString(),
+                                ville.getText().toString(),pays.getText().toString());
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        dialog.cancel();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("êtes-vous sûre d'envoyer ces informations ?").setTitle("!! Avertissement !!").setPositiveButton("Oui", dialogClickListener)
+                .setNegativeButton("Non", dialogClickListener).show();
+
+
     }
 
     private void nouveauProfil(String nom,String prenom, String ville, String pays){
+
+
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)

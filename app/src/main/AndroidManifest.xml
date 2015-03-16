@@ -68,6 +68,11 @@
             android:label="@string/title_activity_modifier_profil"
             android:parentActivityName=".PageAndroid.HomePage" >
         </activity>
+        <activity
+            android:name=".PageAndroid.addTravel"
+            android:label="@string/title_activity_add_travel"
+            android:parentActivityName=".PageAndroid.HomePage">
+        </activity>
     </application>
 
 </manifest>
