@@ -101,6 +101,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                         //Yes button clicked
                         nouveauProfil(nom.getText().toString(),prenom.getText().toString(),
                                 ville.getText().toString(),pays.getText().toString());
+
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:

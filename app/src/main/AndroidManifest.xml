@@ -35,7 +35,8 @@
         <activity
             android:name=".PageAndroid.inscriptionPage"
             android:label="@string/title_activity_inscription_page"
-            android:parentActivityName=".PageAndroid.MainActivity" >
+            android:parentActivityName=".PageAndroid.MainActivity"
+            android:windowSoftInputMode="stateHidden">
         </activity>
 
         <meta-data
@@ -45,7 +46,8 @@
         <activity
             android:name=".PageAndroid.ConnectionPage"
             android:label="@string/title_activity_connection_page"
-            android:parentActivityName=".PageAndroid.MainActivity" >
+            android:parentActivityName=".PageAndroid.MainActivity"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".PageAndroid.HomePAge"
@@ -66,12 +68,14 @@
         <activity
             android:name=".PageAndroid.modifierProfil"
             android:label="@string/title_activity_modifier_profil"
-            android:parentActivityName=".PageAndroid.HomePage" >
+            android:parentActivityName=".PageAndroid.HomePage"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".PageAndroid.addTravel"
             android:label="@string/title_activity_add_travel"
-            android:parentActivityName=".PageAndroid.HomePage">
+            android:parentActivityName=".PageAndroid.HomePage"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

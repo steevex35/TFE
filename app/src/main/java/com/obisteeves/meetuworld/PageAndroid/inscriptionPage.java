@@ -4,6 +4,7 @@ package com.obisteeves.meetuworld.PageAndroid;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -98,7 +99,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
                         //Yes button clicked
-                        envoyerDataInscription(nom.getText().toString(),prenom.getText().toString(),email.getText().toString(),
+                       envoyerDataInscription(nom.getText().toString(),prenom.getText().toString(),email.getText().toString(),
                                 emailConf.getText().toString(),pwd.getText().toString(),
                                 pwdConf.getText().toString());
 
@@ -107,6 +108,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
                     case DialogInterface.BUTTON_NEGATIVE:
                         //No button clicked
                         dialog.cancel();
+
                         break;
                 }
             }
@@ -135,7 +137,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
             return false;
     }
 
-    private void envoyerDataInscription(String nom,String prenom, String email,String emailConf,
+    private boolean  envoyerDataInscription(String nom,String prenom, String email,String emailConf,
                                     String pwd, String pwdConf){
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
@@ -153,16 +155,34 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
             net.addParam("pwdConf", pwdConf);
 
             net.send();
+            return true;
         } else
             ((TextView)findViewById(R.id.error)).setText("Un ou plusieurs champs sont vides");
+        return false;
     }
 
     public void update(Observable observable,final Object data){
         if(data==null) return ;
         if(data.toString().equals(NetworkRequestAdapter.NO_ERROR)){
 
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //Yes button clicked
+                            Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
+                            startActivity(myIntent);
+                            break;
 
-            //Utilities.enter(ConnectionPage.class, this);
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Inscription Confirmée").setTitle("!! Avertissement !!").setPositiveButton("Continuer", dialogClickListener).show();
+
+
             initAdvertTypesTable(observable);
         }
         else
