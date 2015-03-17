@@ -42,8 +42,7 @@
     <string name="connection_error">Erreur de connexion</string>
     <string name="waiting_message">Chargement</string>
     <string name="title_activity_profil__page">profil_Page</string>
-    <string name="adDialog_valid">inscription</string>
-    <string name="adDialog_message">Inscription bien reçue</string>
+
 
     <string name="profil_page_email">Email :</string>
     <string name="title_activity_tab_profil">TabProfil</string>
@@ -67,6 +66,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="oui_text">Oui</string>
     <string name="non_text">Non</string>
+    <string name="enregistrer_text">Enregistrer</string>
     <string name="title_activity_tab_home">TabHome</string>
     <string name="title_activity_tab_new_travel">TabNewTravel</string>
     <string name="title_activity_modifier_profil">modifierProfil</string>

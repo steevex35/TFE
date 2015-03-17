@@ -2,6 +2,8 @@ package com.obisteeves.meetuworld.PageAndroid;
 
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -90,9 +92,31 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
     public void envoyerInscription(View view){
         error.setText("");
 
-        envoyerDataInscription(nom.getText().toString(),prenom.getText().toString(),email.getText().toString(),
-                emailConf.getText().toString(),pwd.getText().toString(),
-                pwdConf.getText().toString());
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        envoyerDataInscription(nom.getText().toString(),prenom.getText().toString(),email.getText().toString(),
+                                emailConf.getText().toString(),pwd.getText().toString(),
+                                pwdConf.getText().toString());
+
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        dialog.cancel();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Validez-vous ces informations ?").setTitle("!! Confirmation !!").setPositiveButton("Oui", dialogClickListener)
+                .setNegativeButton("Non", dialogClickListener).show();
+
+
     }
     //fonction de test des  valeurs des String
     public boolean testStringInscription(String data1,String data2,String data3, String data4, String data5, String data6){
@@ -137,9 +161,6 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         if(data==null) return ;
         if(data.toString().equals(NetworkRequestAdapter.NO_ERROR)){
 
-            Utilities.agreed( R.string.adDialog_valid
-                    , R.string.adDialog_message
-                    ,this);
 
             //Utilities.enter(ConnectionPage.class, this);
             initAdvertTypesTable(observable);

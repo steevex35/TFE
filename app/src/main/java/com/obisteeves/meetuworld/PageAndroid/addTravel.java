@@ -28,6 +28,7 @@ public class addTravel extends ActionBarActivity  {
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Rajouter un voyage");
+        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
     }
