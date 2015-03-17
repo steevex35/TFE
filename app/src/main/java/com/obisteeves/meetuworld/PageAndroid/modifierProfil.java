@@ -2,6 +2,7 @@ package com.obisteeves.meetuworld.PageAndroid;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Tabs.TabProfil;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
 import org.json.JSONException;
@@ -101,6 +103,9 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                         //Yes button clicked
                         nouveauProfil(nom.getText().toString(),prenom.getText().toString(),
                                 ville.getText().toString(),pays.getText().toString());
+
+                        //Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
+                        startActivity(new Intent(getApplicationContext(),HomePage.class));
 
                         break;
 
