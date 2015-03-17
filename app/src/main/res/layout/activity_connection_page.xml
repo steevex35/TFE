@@ -38,6 +38,8 @@
                         android:textColorHint="#FFFFFF"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:drawableLeft="@drawable/email"/>
                     <EditText
                         android:id="@+id/pwd"
@@ -51,6 +53,8 @@
                         android:textColorHint="#FFFFFF"
                         android:textColor="#FFFFFF"
                         android:password="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:drawableLeft="@drawable/password"/>
 
                     <TextView
@@ -68,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_margin="4dp"
+                        android:layout_margin="30dp"
                         android:text="@string/connection"
                         android:onClick="connection"
                         style="@style/DefaultButtonText"

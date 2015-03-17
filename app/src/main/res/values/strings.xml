@@ -62,6 +62,7 @@
     <string name="addTravel_page_dateDepart">Date de départ :</string>
     <string name="addTravel_page_Edit_dateA">MM/JJ/AAAA</string>
     <string name="addTravel_page_Edit_dateD">MM/JJ/AAAA</string>
+    <string name="addTravel_page_poi">POI :</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="oui_text">Oui</string>

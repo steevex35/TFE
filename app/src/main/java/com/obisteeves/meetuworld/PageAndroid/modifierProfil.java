@@ -55,6 +55,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Modifier votre profil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
     }
 

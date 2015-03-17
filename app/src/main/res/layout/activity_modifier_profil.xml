@@ -33,6 +33,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:textColorHint="@color/ColorPrimary"
                     android:hint="@string/profil_page_editNom"/>
 
@@ -42,6 +44,8 @@
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/ColorPrimary"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:hint="@string/profil_page_editPrenom" />
 
 
@@ -52,7 +56,9 @@
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/ColorPrimary"
                     android:hint="@string/profil_page_editVille"
-                    android:inputType="text"/> >
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:inputType="text"/>
 
 
                 <EditText
@@ -61,6 +67,8 @@
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/ColorPrimary"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:hint="@string/profil_page_ediPays"
                     android:inputType="text" />
 

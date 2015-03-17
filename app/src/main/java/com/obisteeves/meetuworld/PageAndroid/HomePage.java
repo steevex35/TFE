@@ -1,6 +1,7 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class HomePage extends ActionBarActivity {
         titles = new CharSequence[]{"Home","U Travel","Profil"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
         getSupportActionBar().setTitle("Meet u World");
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager)findViewById(R.id.pager);
