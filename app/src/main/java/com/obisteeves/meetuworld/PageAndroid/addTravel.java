@@ -11,52 +11,71 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.DatePickerFragment;
+import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
-public class addTravel extends ActionBarActivity  {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
+
+public class addTravel extends ActionBarActivity implements Observer {
     Toolbar toolbar;
     EditText textIn;
     Button buttonAdd;
     LinearLayout container;
+    Spinner spinner;
+
+    private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_travel);
         iniActionBar();
-        textIn = (EditText)findViewById(R.id.textin);
-        buttonAdd = (Button)findViewById(R.id.add);
-        container = (LinearLayout)findViewById(R.id.container);
+        textIn = (EditText) findViewById(R.id.textin);
+        buttonAdd = (Button) findViewById(R.id.add);
+        container = (LinearLayout) findViewById(R.id.container);
 
-        buttonAdd.setOnClickListener(new View.OnClickListener(){
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
                 LayoutInflater layoutInflater =
                         (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addView = layoutInflater.inflate(R.layout.row, null);
-                TextView textOut = (TextView)addView.findViewById(R.id.textout);
+                TextView textOut = (TextView) addView.findViewById(R.id.textout);
                 textOut.setText(textIn.getText().toString());
-                Button buttonRemove = (Button)addView.findViewById(R.id.remove);
-                buttonRemove.setOnClickListener(new View.OnClickListener(){
+                Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                buttonRemove.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        ((LinearLayout)addView.getParent()).removeView(addView);
-                    }});
+                        ((LinearLayout) addView.getParent()).removeView(addView);
+                    }
+                });
 
                 container.addView(addView);
-            }});
+            }
+        });
+
+        listPays();
     }
 
-    private void iniActionBar(){
-        toolbar = (Toolbar)findViewById(R.id.tool_bar);
+    private void iniActionBar() {
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Rajouter un voyage");
         toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
@@ -88,20 +107,70 @@ public class addTravel extends ActionBarActivity  {
     }
 
     public void showDatePickerDialog(View v) {
-        TextView dateA=((TextView)findViewById(R.id.DateArrivee));
+        TextView dateA = ((TextView) findViewById(R.id.DateArrivee));
         DialogFragment newFragment = new DatePickerFragment(dateA);
         newFragment.show(getFragmentManager(), "datePicker");
         //fdateExp=date;
     }
+
     public void showDatePickerDialog2(View v) {
 
-        TextView dateD=((TextView)findViewById(R.id.DateDepart));
+        TextView dateD = ((TextView) findViewById(R.id.DateDepart));
         DialogFragment newFragment2 = new DatePickerFragment(dateD);
         newFragment2.show(getFragmentManager(), "datePicker");
         //fdateExp=date;
     }
 
+    public void listPays() {
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.listPays);
+        net.setUrl(address);
+        net.send();
 
+    }
+
+    /**
+     * @param observable
+     * @param data
+     */
+
+    public void update(Observable observable, Object data) {
+        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
+
+        String netReq = String.valueOf(NetworkRequestAdapter.OK);
+
+        if (!data.toString().equals(netReq)) {
+
+            try {
+                JSONArray Pays =  resultat.getResult().getJSONArray("pays");
+                String[] spinnerArray = new String[Pays.length()];
+
+                //((TextView) findViewById(R.id.error)).setText(Pays.toString());
+                for (int i = 0; i < Pays.length(); i++) {
+                    JSONObject json = Pays.getJSONObject(i);
+                    String pays = json.getString("pays");
+                    String id = json.getString("id");
+                    spinnerMap.put(pays,id);
+                    spinnerArray[i] = pays;
+                }
+                spinner = (Spinner) findViewById(R.id.listPays);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            }
+        }
 
 
 }
+
