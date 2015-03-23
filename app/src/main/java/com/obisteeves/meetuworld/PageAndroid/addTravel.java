@@ -141,7 +141,7 @@ public class addTravel extends ActionBarActivity implements Observer {
 
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
 
-        if (!data.toString().equals(netReq)) {
+        if (data.toString().equals(netReq)) {
 
             try {
                 JSONArray Pays =  resultat.getResult().getJSONArray("pays");
