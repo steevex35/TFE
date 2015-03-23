@@ -9,12 +9,14 @@
         android:layout_height="40dp"
         android:layout_margin="20dp"
         android:background="@drawable/button_default_bg"
-
         android:text="-"/>
     <TextView
         android:id="@+id/textout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="@color/ColorPrimary"
+        android:textStyle="bold"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@id/remove"/>
 </RelativeLayout>

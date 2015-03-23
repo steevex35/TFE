@@ -1,7 +1,10 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -53,25 +56,52 @@ public class addTravel extends ActionBarActivity implements Observer {
 
             @Override
             public void onClick(View arg0) {
-                LayoutInflater layoutInflater =
-                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View addView = layoutInflater.inflate(R.layout.row, null);
-                TextView textOut = (TextView) addView.findViewById(R.id.textout);
-                textOut.setText(textIn.getText().toString());
-                Button buttonRemove = (Button) addView.findViewById(R.id.remove);
-                buttonRemove.setOnClickListener(new View.OnClickListener() {
+                if (!textIn.getText().toString().isEmpty()) {
 
-                    @Override
-                    public void onClick(View v) {
-                        ((LinearLayout) addView.getParent()).removeView(addView);
-                    }
-                });
+                    LayoutInflater layoutInflater =
+                            (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View addView = layoutInflater.inflate(R.layout.row, null);
+                    final TextView textOut = (TextView) addView.findViewById(R.id.textout);
+                    textOut.setText(textIn.getText().toString());
+                    Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                    buttonRemove.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                container.addView(addView);
+                            ((LinearLayout) addView.getParent()).removeView(addView);
+
+
+                        }
+                    });
+
+                    container.addView(addView);
+                }else {
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    //Yes button clicked
+                                    dialog.cancel();
+                                    break;
+
+                            }
+                        }
+                    };
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(addTravel.this);
+                    builder.setMessage("Champs POI vide").setTitle("!! Avertissement !!")
+                            .setPositiveButton("OK", dialogClickListener).show();
+                }
+
+                //((EditText) findViewById(R.id.textin)).setText("Zone vide");
             }
+
         });
 
         listPays();
+
+
     }
 
     private void iniActionBar() {
