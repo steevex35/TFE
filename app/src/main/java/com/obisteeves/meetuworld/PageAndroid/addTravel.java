@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.Utilities;
 import com.obisteeves.meetuworld.Utils.DatePickerFragment;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
@@ -34,9 +35,11 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
+
 public class addTravel extends ActionBarActivity implements Observer {
     Toolbar toolbar;
-    EditText textIn;
+    EditText textIn,ville;
     Button buttonAdd;
     LinearLayout container;
     Spinner spinner;
@@ -48,6 +51,8 @@ public class addTravel extends ActionBarActivity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_travel);
         iniActionBar();
+
+        ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
         buttonAdd = (Button) findViewById(R.id.add);
         container = (LinearLayout) findViewById(R.id.container);
@@ -56,7 +61,7 @@ public class addTravel extends ActionBarActivity implements Observer {
 
             @Override
             public void onClick(View arg0) {
-                if (!textIn.getText().toString().isEmpty()) {
+                if (valeurString(textIn.getText().toString(),addTravel.this)==true) {
 
                     LayoutInflater layoutInflater =
                             (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -75,29 +80,16 @@ public class addTravel extends ActionBarActivity implements Observer {
                     });
 
                     container.addView(addView);
-                }else {
-                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
-                                case DialogInterface.BUTTON_POSITIVE:
-                                    //Yes button clicked
-                                    dialog.cancel();
-                                    break;
 
-                            }
-                        }
-                    };
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(addTravel.this);
-                    builder.setMessage("Champs POI vide").setTitle("!! Avertissement !!")
-                            .setPositiveButton("OK", dialogClickListener).show();
                 }
 
                 //((EditText) findViewById(R.id.textin)).setText("Zone vide");
             }
 
         });
+
+
+
 
         listPays();
 
@@ -200,6 +192,8 @@ public class addTravel extends ActionBarActivity implements Observer {
 
             }
         }
+
+
 
 
 }

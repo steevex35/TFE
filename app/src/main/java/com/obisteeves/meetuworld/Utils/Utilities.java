@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Created by Steeves on 07-02-15.
@@ -145,6 +146,33 @@ public class Utilities {
             e.printStackTrace();
         }
     }
+
+    public static boolean valeurString(String data,Activity classe) {
+        if (data != null && !data.isEmpty())
+            return true;
+        else {
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //Yes button clicked
+                            dialog.cancel();
+                            break;
+
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(classe);
+            builder.setMessage("Champs vide").setTitle("!! Avertissement !!")
+                    .setPositiveButton("Retour", dialogClickListener).show();
+            return false;
+        }
+
+
+    }
+
 
 
 }
