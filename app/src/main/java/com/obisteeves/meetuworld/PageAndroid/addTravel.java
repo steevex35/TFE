@@ -50,7 +50,8 @@ public class addTravel extends ActionBarActivity implements Observer {
     private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_travel);
         iniActionBar();
@@ -61,59 +62,12 @@ public class addTravel extends ActionBarActivity implements Observer {
         buttonAdd = (Button) findViewById(R.id.add);
         container = (LinearLayout) findViewById(R.id.container);
 
-
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                if (valeurString(textIn.getText().toString(),addTravel.this)==true) {
-
-                    boolean element = tabPoi.contains(textIn.getText().toString());
-                    if (element == true) {
-                        String titre,message,bouton;
-                        message="POi déjà présent";
-                        titre="Avertissement";
-                        bouton="Retour";
-                        dialogPerso(message,titre,bouton,addTravel.this);
-
-                    } else {
-                           LayoutInflater layoutInflater =
-                           (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                           final View addView = layoutInflater.inflate(R.layout.row, null);
-                           final TextView textOut = (TextView) addView.findViewById(R.id.textout);
-                           textOut.setText(textIn.getText().toString());
-
-                           Button buttonRemove = (Button) addView.findViewById(R.id.remove);
-                           buttonRemove.setOnClickListener(new View.OnClickListener()
-                           {
-                                @Override
-                                 public void onClick(View v)
-                                {
-                                    ((LinearLayout) addView.getParent()).removeView(addView);
-                                    tabPoi.remove(getPosition(tabPoi, textOut.getText().toString()));
-                                }
-                           });
-                           container.addView(addView);
-                           tabPoi.add(textIn.getText().toString());
-                    }
-                }
-                //System.out.println("Count: " + tabPoi.size());
-                //System.out.println(tabPoi);
-                //((EditText) findViewById(R.id.textin)).setText("Zone vide");
-            }
-
-        });
-
-
-
-
-        listPays();
-
-
+        ListDynamicPoi();
+        ListPays();
     }
 
-    private void iniActionBar() {
+    private void iniActionBar()
+    {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Rajouter un voyage");
@@ -131,43 +85,46 @@ public class addTravel extends ActionBarActivity implements Observer {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void showDatePickerDialog(View v) {
+    public void showDatePickerDialog(View v)
+    {
         TextView dateA = ((TextView) findViewById(R.id.DateArrivee));
         DialogFragment newFragment = new DatePickerFragment(dateA);
         newFragment.show(getFragmentManager(), "datePicker");
         fdateA=dateA;
     }
 
-    public void showDatePickerDialog2(View v) {
-
+    public void showDatePickerDialog2(View v)
+    {
         TextView dateD = ((TextView) findViewById(R.id.DateDepart));
         DialogFragment newFragment2 = new DatePickerFragment(dateD);
         newFragment2.show(getFragmentManager(), "datePicker");
         fdateD=dateD;
     }
 
-    public void listPays() {
+    public void ListPays()
+    {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.listPays);
         net.setUrl(address);
         net.send();
-
     }
 
     /**
@@ -175,19 +132,19 @@ public class addTravel extends ActionBarActivity implements Observer {
      * @param data
      */
 
-    public void update(Observable observable, Object data) {
+    public void update(Observable observable, Object data)
+    {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
+        if (data.toString().equals(netReq))
+        {
 
-        if (data.toString().equals(netReq)) {
-
-            try {
+            try
+            {
                 JSONArray Pays =  resultat.getResult().getJSONArray("pays");
                 String[] spinnerArray = new String[Pays.length()];
-
-                //((TextView) findViewById(R.id.error)).setText(Pays.toString());
-                for (int i = 0; i < Pays.length(); i++) {
+                for (int i = 0; i < Pays.length(); i++)
+                {
                     JSONObject json = Pays.getJSONObject(i);
                     String pays = json.getString("pays");
                     String id = json.getString("id");
@@ -201,15 +158,62 @@ public class addTravel extends ActionBarActivity implements Observer {
                 selectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
 
 
-            } catch (JSONException e) {
+            }
+            catch (JSONException e)
+            {
                 e.printStackTrace();
             }
 
-
-
-
-            }
         }
+    }
+
+    private void ListDynamicPoi()
+    {
+        buttonAdd.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View arg0) {
+
+                if (valeurString(textIn.getText().toString(),addTravel.this)==true) {
+
+                    boolean element = tabPoi.contains(textIn.getText().toString());
+                    if (element == true) {
+                        String titre,message,bouton;
+                        message="POi déjà présent";
+                        titre="Avertissement";
+                        bouton="Retour";
+                        dialogPerso(message,titre,bouton,addTravel.this);
+
+                    } else {
+                        LayoutInflater layoutInflater =
+                                (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        final View addView = layoutInflater.inflate(R.layout.row, null);
+                        final TextView textOut = (TextView) addView.findViewById(R.id.textout);
+                        textOut.setText(textIn.getText().toString());
+
+                        Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                        buttonRemove.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                ((LinearLayout) addView.getParent()).removeView(addView);
+                                tabPoi.remove(getPosition(tabPoi, textOut.getText().toString()));
+                            }
+                        });
+                        container.addView(addView);
+                        tabPoi.add(textIn.getText().toString());
+                    }
+                }
+                //System.out.println("Count: " + tabPoi.size());
+                //System.out.println(tabPoi);
+                //((EditText) findViewById(R.id.textin)).setText("Zone vide");
+            }
+
+        });
+
+    }
 
 
 
