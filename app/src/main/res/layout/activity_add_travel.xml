@@ -162,7 +162,7 @@
                 android:text="@string/enregistrer_text"
                 style="@style/DefaultButtonText"
                 android:background="@drawable/button_default_bg"
-                android:onClick="envoyerInscription"/>
+                android:onClick="EnvoyerVoyage"/>
 
 
 

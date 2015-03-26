@@ -39,10 +39,10 @@ import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
 
 public class addTravel extends ActionBarActivity implements Observer {
     Toolbar toolbar;
-    String selectionPays;
+    String idSelectionPays;
     TextView fdateA, fdateD;
     EditText textIn,ville;
-    Button buttonAdd;
+    Button buttonAdd, buttonEnvoyerVovaye;
     LinearLayout container;
     Spinner spinner;
 
@@ -60,10 +60,13 @@ public class addTravel extends ActionBarActivity implements Observer {
         ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
         buttonAdd = (Button) findViewById(R.id.add);
+        buttonEnvoyerVovaye=(Button)findViewById(R.id.boutonAddTravel);
         container = (LinearLayout) findViewById(R.id.container);
 
         ListDynamicPoi();
         ListPays();
+        EnvoyerVoyage();
+
     }
 
     private void iniActionBar()
@@ -125,6 +128,7 @@ public class addTravel extends ActionBarActivity implements Observer {
                 + getResources().getString(R.string.listPays);
         net.setUrl(address);
         net.send();
+
     }
 
     /**
@@ -155,7 +159,6 @@ public class addTravel extends ActionBarActivity implements Observer {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
-                selectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
 
             }
             catch (JSONException e)
@@ -205,16 +208,28 @@ public class addTravel extends ActionBarActivity implements Observer {
                         tabPoi.add(textIn.getText().toString());
                     }
                 }
-                //System.out.println("Count: " + tabPoi.size());
-                //System.out.println(tabPoi);
-                //((EditText) findViewById(R.id.textin)).setText("Zone vide");
             }
 
         });
 
     }
 
+    private void EnvoyerVoyage()
+    {
+       buttonEnvoyerVovaye.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                valeurString(ville.getText().toString(),addTravel.this);
+                idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
+                ((TextView)findViewById(R.id.error)).setText(idSelectionPays+
+                        fdateA.getText().toString()+fdateD.getText().toString()+tabPoi+ville.getText().toString());
+            }
 
+        });
+
+    }
 
 
 }
