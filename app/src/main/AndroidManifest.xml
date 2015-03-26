@@ -30,11 +30,13 @@
         <activity
             android:name=".PageAndroid.HomePage"
             android:label="@string/title_activity_home_page"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".PageAndroid.ConnectionPage" >
         </activity>
         <activity
             android:name=".PageAndroid.inscriptionPage"
             android:label="@string/title_activity_inscription_page"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".PageAndroid.MainActivity"
             android:windowSoftInputMode="stateHidden">
         </activity>
@@ -46,35 +48,42 @@
         <activity
             android:name=".PageAndroid.ConnectionPage"
             android:label="@string/title_activity_connection_page"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".PageAndroid.MainActivity"
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".PageAndroid.HomePAge"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_home_page" >
         </activity>
         <activity
             android:name=".Tabs.TabProfil"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_tab_profil" >
         </activity>
         <activity
             android:name=".Tabs.TabHome"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_tab_home" >
         </activity>
         <activity
             android:name=".Tabs.TabNewTravel"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_tab_new_travel" >
         </activity>
         <activity
             android:name=".PageAndroid.modifierProfil"
             android:label="@string/title_activity_modifier_profil"
             android:parentActivityName=".PageAndroid.HomePage"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".PageAndroid.addTravel"
             android:label="@string/title_activity_add_travel"
             android:parentActivityName=".PageAndroid.HomePage"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden">
         </activity>
     </application>

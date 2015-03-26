@@ -157,7 +157,6 @@ public class addTravel extends ActionBarActivity implements Observer {
                 spinner.setAdapter(adapter);
                 selectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
 
-
             }
             catch (JSONException e)
             {
