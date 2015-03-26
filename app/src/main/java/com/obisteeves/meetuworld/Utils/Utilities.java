@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
@@ -169,6 +170,34 @@ public class Utilities {
                     .setPositiveButton("Retour", dialogClickListener).show();
             return false;
         }
+
+
+    }
+
+ public static int getPosition(ArrayList tab,String element){
+     return tab.indexOf(element);
+ }
+
+
+    public static void dialogPerso(String message , String titre ,String nomBoutton,Activity classe) {
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //Yes button clicked
+                            dialog.cancel();
+                            break;
+
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(classe);
+            builder.setMessage(message).setTitle(titre)
+                    .setPositiveButton(nomBoutton, dialogClickListener).show();
+
 
 
     }

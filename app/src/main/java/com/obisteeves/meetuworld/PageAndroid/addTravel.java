@@ -1,10 +1,8 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
-import android.app.AlertDialog;
+
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -23,7 +21,6 @@ import android.widget.TextView;
 
 
 import com.obisteeves.meetuworld.R;
-import com.obisteeves.meetuworld.Utils.Utilities;
 import com.obisteeves.meetuworld.Utils.DatePickerFragment;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
@@ -31,19 +28,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
+import static com.obisteeves.meetuworld.Utils.Utilities.getPosition;
 import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
 
 public class addTravel extends ActionBarActivity implements Observer {
     Toolbar toolbar;
+    String selectionPays;
+    TextView fdateA, fdateD;
     EditText textIn,ville;
     Button buttonAdd;
     LinearLayout container;
     Spinner spinner;
 
+    private ArrayList<String> tabPoi = new ArrayList<String>();
     private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
 
     @Override
@@ -51,38 +54,52 @@ public class addTravel extends ActionBarActivity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_travel);
         iniActionBar();
-
+        fdateA= (TextView)findViewById(R.id.DateArrivee);
+        fdateD=(TextView) findViewById(R.id.DateDepart);
         ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
         buttonAdd = (Button) findViewById(R.id.add);
         container = (LinearLayout) findViewById(R.id.container);
 
+
         buttonAdd.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
+
                 if (valeurString(textIn.getText().toString(),addTravel.this)==true) {
 
-                    LayoutInflater layoutInflater =
-                            (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    final View addView = layoutInflater.inflate(R.layout.row, null);
-                    final TextView textOut = (TextView) addView.findViewById(R.id.textout);
-                    textOut.setText(textIn.getText().toString());
-                    Button buttonRemove = (Button) addView.findViewById(R.id.remove);
-                    buttonRemove.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    boolean element = tabPoi.contains(textIn.getText().toString());
+                    if (element == true) {
+                        String titre,message,bouton;
+                        message="POi déjà présent";
+                        titre="Avertissement";
+                        bouton="Retour";
+                        dialogPerso(message,titre,bouton,addTravel.this);
 
-                            ((LinearLayout) addView.getParent()).removeView(addView);
+                    } else {
+                           LayoutInflater layoutInflater =
+                           (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                           final View addView = layoutInflater.inflate(R.layout.row, null);
+                           final TextView textOut = (TextView) addView.findViewById(R.id.textout);
+                           textOut.setText(textIn.getText().toString());
 
-
-                        }
-                    });
-
-                    container.addView(addView);
-
+                           Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                           buttonRemove.setOnClickListener(new View.OnClickListener()
+                           {
+                                @Override
+                                 public void onClick(View v)
+                                {
+                                    ((LinearLayout) addView.getParent()).removeView(addView);
+                                    tabPoi.remove(getPosition(tabPoi, textOut.getText().toString()));
+                                }
+                           });
+                           container.addView(addView);
+                           tabPoi.add(textIn.getText().toString());
+                    }
                 }
-
+                //System.out.println("Count: " + tabPoi.size());
+                //System.out.println(tabPoi);
                 //((EditText) findViewById(R.id.textin)).setText("Zone vide");
             }
 
@@ -132,7 +149,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         TextView dateA = ((TextView) findViewById(R.id.DateArrivee));
         DialogFragment newFragment = new DatePickerFragment(dateA);
         newFragment.show(getFragmentManager(), "datePicker");
-        //fdateExp=date;
+        fdateA=dateA;
     }
 
     public void showDatePickerDialog2(View v) {
@@ -140,7 +157,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         TextView dateD = ((TextView) findViewById(R.id.DateDepart));
         DialogFragment newFragment2 = new DatePickerFragment(dateD);
         newFragment2.show(getFragmentManager(), "datePicker");
-        //fdateExp=date;
+        fdateD=dateD;
     }
 
     public void listPays() {
@@ -181,6 +198,7 @@ public class addTravel extends ActionBarActivity implements Observer {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
+                selectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
 
 
             } catch (JSONException e) {
