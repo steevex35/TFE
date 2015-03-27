@@ -81,7 +81,6 @@ public class addTravel extends ActionBarActivity implements Observer {
 
                 EnvoyerVoyage(idSelectionPays,ville.getText().toString(),fdateA.getText().toString(),
                 fdateD.getText().toString(),tabPoi.toString());
-
                 //((TextView)findViewById(R.id.error)).setText(tabPoi.toString());
             }
 
@@ -191,9 +190,6 @@ public class addTravel extends ActionBarActivity implements Observer {
             {
                 e.printStackTrace();
             }
-
-            error.setText(data.toString());
-
         }
 
 
