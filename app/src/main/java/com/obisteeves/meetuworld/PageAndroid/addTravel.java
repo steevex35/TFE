@@ -1,8 +1,11 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -253,6 +256,23 @@ public class addTravel extends ActionBarActivity implements Observer {
         net.addParam("dateD",dateD);
         net.addParam("listPoi",listPoi);
         net.send();
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        Intent myIntent = new Intent(getApplicationContext(), HomePage.class);
+                        startActivity(myIntent);
+                        break;
+
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Votre voyage est bien  enregistré").setTitle("!! Avertissement !!").setPositiveButton("Continuer", dialogClickListener).show();
     }
 
 
