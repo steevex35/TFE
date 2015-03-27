@@ -35,12 +35,13 @@ import java.util.Observer;
 
 import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 import static com.obisteeves.meetuworld.Utils.Utilities.getPosition;
+import static com.obisteeves.meetuworld.Utils.Utilities.testString;
 import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
 
 public class addTravel extends ActionBarActivity implements Observer {
     Toolbar toolbar;
     String idSelectionPays;
-    TextView fdateA, fdateD;
+    TextView fdateA, fdateD,error;
     EditText textIn,ville;
     Button buttonAdd, buttonEnvoyerVovaye;
     LinearLayout container;
@@ -62,10 +63,31 @@ public class addTravel extends ActionBarActivity implements Observer {
         buttonAdd = (Button) findViewById(R.id.add);
         buttonEnvoyerVovaye=(Button)findViewById(R.id.boutonAddTravel);
         container = (LinearLayout) findViewById(R.id.container);
+        error=((TextView)findViewById(R.id.error));
 
         ListDynamicPoi();
         ListPays();
-        EnvoyerVoyage();
+        buttonEnvoyerVovaye.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
+                if(((testString(ville.getText().toString())&&testString(fdateA.getText().toString())&&testString(fdateD.getText().toString()))!=true))
+                    dialogPerso("veuillez remplir tous les champs","Avertissement","Retour",addTravel.this);
+                if(tabPoi.isEmpty())
+                    dialogPerso("veuillez rentrer des POi","Avertissement","Retour",addTravel.this);
+
+                EnvoyerVoyage(idSelectionPays,ville.getText().toString(),fdateA.getText().toString(),
+                fdateD.getText().toString(),tabPoi.toString());
+
+                //((TextView)findViewById(R.id.error)).setText(tabPoi.toString());
+            }
+
+        });
+
+
 
     }
 
@@ -140,8 +162,12 @@ public class addTravel extends ActionBarActivity implements Observer {
     {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
+
+
+
         if (data.toString().equals(netReq))
         {
+
 
             try
             {
@@ -166,7 +192,11 @@ public class addTravel extends ActionBarActivity implements Observer {
                 e.printStackTrace();
             }
 
+            error.setText(data.toString());
+
         }
+
+
     }
 
     private void ListDynamicPoi()
@@ -214,21 +244,19 @@ public class addTravel extends ActionBarActivity implements Observer {
 
     }
 
-    private void EnvoyerVoyage()
+    private void EnvoyerVoyage(String idPays, String ville, String dateA, String dateD,String listPoi)
     {
-       buttonEnvoyerVovaye.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                valeurString(ville.getText().toString(),addTravel.this);
-                idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
-                ((TextView)findViewById(R.id.error)).setText(idSelectionPays+
-                        fdateA.getText().toString()+fdateD.getText().toString()+tabPoi+ville.getText().toString());
-            }
-
-        });
-
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.pageAjouterVoyage);
+        net.setUrl(address);
+        net.addParam("idPays",idPays);
+        net.addParam("ville",ville);
+        net.addParam("dateA",dateA);
+        net.addParam("dateD",dateD);
+        net.addParam("listPoi",listPoi);
+        net.send();
     }
 
 

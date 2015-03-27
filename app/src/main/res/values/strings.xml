@@ -39,6 +39,7 @@
     <string name="pageInscription">/TFE/android/pageInscription.php</string>
     <string name="pageProfil">/TFE/android/profil.php</string>
     <string name="pageModifierProfil">/TFE/android/modifierProfil.php</string>
+    <string name="pageAjouterVoyage">/TFE/android/Outils/ajouterVoyage.php</string>
     <string name="listPays">/TFE/android/Outils/listPays.php</string>
     <string name="connection_error">Erreur de connexion</string>
     <string name="waiting_message">Chargement</string>

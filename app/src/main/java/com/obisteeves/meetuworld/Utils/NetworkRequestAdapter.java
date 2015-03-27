@@ -49,6 +49,7 @@ public class NetworkRequestAdapter extends Observable{
 
     public static final int OK  = 23;
 
+
     /**
      * Erreur, réponse correcte impossible
      */

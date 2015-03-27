@@ -173,8 +173,20 @@ public class Utilities {
 
 
     }
+    public static boolean testString(String data) {
+        if (data != null && !data.isEmpty())
+            return true;
+        else {
 
- public static int getPosition(ArrayList tab,String element){
+            return false;
+        }
+
+
+    }
+
+
+
+    public static int getPosition(ArrayList tab,String element){
      return tab.indexOf(element);
  }
 
