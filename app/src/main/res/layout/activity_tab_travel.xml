@@ -4,8 +4,14 @@
     android:layout_height="match_parent"
     tools:context="com.obisteeves.meetuworld.Tabs.TabTravel">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/voyageListView">
 
-    <FrameLayout
+        </ListView>
+
+     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -13,16 +19,17 @@
         android:layout_alignParentTop="true"
         android:id="@+id/frameLayout">
 
-        <TextView
-            android:id="@+id/TextAct1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:text="LIstVieuw des voyage de l'user"
-            android:textSize="25dp" />
+         <!--
+         <TextView
+              android:id="@+id/TextAct1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentStart="true"
+              android:layout_centerVertical="true"
+              android:layout_gravity="center"
+              android:text="LIstVieuw des voyage de l'user"
+              android:textSize="25dp" /> -->
 
         <ImageButton
             android:id="@+id/buttonAdd"

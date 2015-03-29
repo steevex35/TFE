@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.obisteeves.meetuworld.PageAndroid.addTravel;
 import com.obisteeves.meetuworld.R;
@@ -34,6 +37,12 @@ public class TabTravel extends Fragment {
                 startActivity(intent);
             }
         });
+
+        String[] voyages={"Gabon","Cameroun","Guinée-équatorial","Espagne"};
+        ListAdapter  voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,voyages);
+        ListView voyagesListView = (ListView) v.findViewById(R.id.voyageListView);
+        voyagesListView.setAdapter(voyagesAdapter);
+
 
         return v;
     }
