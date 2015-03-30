@@ -42,6 +42,7 @@
     <string name="pageAjouterVoyage">/TFE/android/ajouterVoyage.php</string>
     <string name="listPays">/TFE/android/Outils/listPays.php</string>
     <string name="listVoyageUser">/TFE/android/Outils/listVoyageUser.php</string>
+    <string name="listVoyages">/TFE/android/Outils/listVoyages.php</string>
     <string name="connection_error">Erreur de connexion</string>
     <string name="waiting_message">Chargement</string>
     <string name="title_activity_profil__page">profil_Page</string>
