@@ -35,7 +35,7 @@ public class TabTravel extends Fragment {
     }
 
     /**
-     * Bouton + qui permet d'ajouter un voyage
+     * Bouton + qui permet d'ajouter des voyages
      * @param v
      * @type View
      */
