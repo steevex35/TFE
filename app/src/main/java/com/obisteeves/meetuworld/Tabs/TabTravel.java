@@ -29,19 +29,41 @@ public class TabTravel extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_tab_travel, container, false);
+        ajouterVoyage(v);
+        listViewVoyage(v);
+        return v;
+    }
 
+    /**
+     * Bouton + qui permet d'ajouter un voyage
+     * @param v
+     * @type View
+     */
+
+    public void ajouterVoyage(View v){
         FAB= (ImageButton) v.findViewById(R.id.buttonAdd);
         FAB.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-               Intent intent = new Intent(getActivity(),addTravel.class);
+                Intent intent = new Intent(getActivity(),addTravel.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    /**
+     * listViewVoyage qui permet d'afficher les voyages de l'utilisateur dans une ListView
+     * @param v
+     * @type View
+     */
+
+    public  void listViewVoyage(View v){
+
         String[] voyages={"Gabon","Cameroun","Guinée-équatorial","Espagne"};
+
         ListAdapter  voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,voyages);
         ListView voyagesListView = (ListView) v.findViewById(R.id.voyageListView);
         voyagesListView.setAdapter(voyagesAdapter);
@@ -55,8 +77,6 @@ public class TabTravel extends Fragment {
                 }
         );
 
-
-        return v;
     }
 
 
