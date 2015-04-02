@@ -8,15 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
+
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
-import com.obisteeves.meetuworld.Utils.listViewPersoAdapter;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +65,6 @@ public class TabHome extends Fragment implements Observer{
             try
             {
                 JSONArray voyages =  resultat.getResult().getJSONArray("voyages");
-                String[] listvoyages = new String[voyages.length()];
 
                 for (int i = 0; i < voyages.length(); i++)
                 {
@@ -109,13 +107,6 @@ public class TabHome extends Fragment implements Observer{
         }
 
     }
-
-
-
-
-
-
-
 
 
 }
