@@ -2,12 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E0E0E0"
     tools:context="com.obisteeves.meetuworld.Tabs.TabTravel">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/voyageListViewHome">
+        android:id="@+id/voyageListViewHome"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:divider="#E0E0E0"
+        android:background="#FFFFFF"
+        android:dividerHeight="10.0sp">
 
     </ListView>
 

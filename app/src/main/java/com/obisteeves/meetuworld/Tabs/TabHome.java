@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.listViewPersoAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,13 +64,16 @@ public class TabHome extends Fragment implements Observer{
                 for (int i = 0; i < voyages.length(); i++)
                 {
                     JSONObject json = voyages.getJSONObject(i);
-                    String pays = json.getString("prenom");
+                    String nom = json.getString("nom");
+                    String prenom= json.getString("prenom");
+                    String pays=json.getString("pays");
+                    String ville=json.getString("ville");
                     String id = json.getString("id");
-                    listViewMap.put(pays,id);
-                    listvoyages[i] = pays;
+                    listViewMap.put(nom,id);
+                    listvoyages[i] = nom+" "+prenom;
                 }
 
-                ListAdapter voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,listvoyages);
+                ListAdapter voyagesAdapter = new listViewPersoAdapter(getActivity(),listvoyages);
                 ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewHome);
                 voyagesListView.setAdapter(voyagesAdapter);
                 voyagesListView.setOnItemClickListener(
