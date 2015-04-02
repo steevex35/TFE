@@ -1,6 +1,5 @@
 package com.obisteeves.meetuworld.Tabs;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -94,6 +93,11 @@ public class TabHome extends Fragment implements Observer{
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 dialogPerso("info sur le voyage","Information","retour",getActivity());
+                                //faire une new activity pour affichier les detail des voyages
+
+
+
+
                             }
                         }
                 );
