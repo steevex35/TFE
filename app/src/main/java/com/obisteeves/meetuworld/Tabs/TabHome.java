@@ -1,5 +1,6 @@
 package com.obisteeves.meetuworld.Tabs;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
@@ -19,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -30,7 +34,9 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
  */
 public class TabHome extends Fragment implements Observer{
 
-    private HashMap<String,String> listViewMap = new HashMap<String, String>();
+    private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
+    String [] fields = {"nom","pays","ville"};
+    int[] field_R_id = {R.id.nomUser,R.id.paysHome, R.id.villeHome};
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.activity_tab_home,container,false);
@@ -61,21 +67,30 @@ public class TabHome extends Fragment implements Observer{
             {
                 JSONArray voyages =  resultat.getResult().getJSONArray("voyages");
                 String[] listvoyages = new String[voyages.length()];
+
                 for (int i = 0; i < voyages.length(); i++)
                 {
+                    HashMap<String,String> listViewMap = new HashMap<String, String>();
                     JSONObject json = voyages.getJSONObject(i);
                     String nom = json.getString("nom");
                     String prenom= json.getString("prenom");
                     String pays=json.getString("pays");
                     String ville=json.getString("ville");
                     String id = json.getString("id");
-                    listViewMap.put(nom,id);
-                    listvoyages[i] = nom+" "+prenom;
+                    listViewMap.put("nom",nom+" "+prenom);
+                    listViewMap.put("pays",pays);
+                    listViewMap.put("ville",ville);
+                    listHashVoyage.add(listViewMap);
+
                 }
 
-                ListAdapter voyagesAdapter = new listViewPersoAdapter(getActivity(),listvoyages);
+
                 ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewHome);
+                SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(),listHashVoyage,R.layout.listview_persorow,fields,field_R_id);
+
                 voyagesListView.setAdapter(voyagesAdapter);
+
+                voyagesListView.setClickable(true);
                 voyagesListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
@@ -84,6 +99,7 @@ public class TabHome extends Fragment implements Observer{
                             }
                         }
                 );
+
 
             }
             catch (JSONException e)
