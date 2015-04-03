@@ -1,5 +1,6 @@
 package com.obisteeves.meetuworld.Tabs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,10 @@ import android.widget.AdapterView;
 
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 
+import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
@@ -33,8 +36,10 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 public class TabHome extends Fragment implements Observer{
 
     private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
-    String [] fields = {"nom","pays","ville"};
-    int[] field_R_id = {R.id.nomUser,R.id.paysHome, R.id.villeHome};
+    String idVoyage;
+    String [] fields = {"id","nom","pays","ville"};
+    int[] field_R_id = {R.id.idVoyage,R.id.nomUser,R.id.paysHome, R.id.villeHome};
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.activity_tab_home,container,false);
@@ -73,7 +78,8 @@ public class TabHome extends Fragment implements Observer{
                     String prenom= json.getString("prenom");
                     String pays=json.getString("pays");
                     String ville=json.getString("ville");
-                    String id = json.getString("id");
+                    idVoyage = json.getString("id");
+                    listViewMap.put("id",idVoyage);
                     listViewMap.put("nom",nom+" "+prenom);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
@@ -82,7 +88,7 @@ public class TabHome extends Fragment implements Observer{
                 }
 
 
-                ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewHome);
+                final ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewHome);
                 SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(),listHashVoyage,R.layout.listview_persorow,fields,field_R_id);
 
                 voyagesListView.setAdapter(voyagesAdapter);
@@ -92,8 +98,15 @@ public class TabHome extends Fragment implements Observer{
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                dialogPerso("info sur le voyage","Information","retour",getActivity());
-                                //faire une new activity pour affichier les detail des voyages
+                                TextView champId = (TextView) view.findViewById(R.id.idVoyage);
+                                String idVoyageToSend=champId.getText().toString();
+
+                              Intent intent = new Intent(getActivity(), infoVoyage.class);
+                               intent.putExtra("id_voyage", idVoyageToSend);
+                               startActivity(intent);
+
+
+
 
 
 

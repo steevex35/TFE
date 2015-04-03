@@ -4,6 +4,18 @@
     tools:context="com.obisteeves.meetuworld.PageAndroid.HomePage">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_apropos"
+        android:orderInCategory="2"
+        android:showAsAction="never"
+        android:title="À propos"/>
+    <item
+        android:id="@+id/action_deco"
+        android:orderInCategory="3"
+        android:showAsAction="never"
+        android:title="Déconnexion"/>
+
+
 
 
 </menu>

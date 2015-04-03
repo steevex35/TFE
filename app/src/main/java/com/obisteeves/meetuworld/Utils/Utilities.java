@@ -3,7 +3,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 
 import com.obisteeves.meetuworld.PageAndroid.ConnectionPage;
@@ -213,6 +216,8 @@ public class Utilities {
 
 
     }
+
+
 
 
 

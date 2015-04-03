@@ -44,6 +44,15 @@
         android:id="@+id/villeHome"
         android:paddingBottom="5dp"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Large Text"
+        android:id="@+id/idVoyage"
+       
+        android:paddingBottom="5dp"
+        />
 
 
 </LinearLayout>

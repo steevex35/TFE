@@ -29,16 +29,16 @@
         </activity>
         <activity
             android:name=".PageAndroid.HomePage"
-            android:label="@string/title_activity_home_page"
             android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_home_page"
             android:parentActivityName=".PageAndroid.ConnectionPage" >
         </activity>
         <activity
             android:name=".PageAndroid.inscriptionPage"
-            android:label="@string/title_activity_inscription_page"
             android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_inscription_page"
             android:parentActivityName=".PageAndroid.MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" >
         </activity>
 
         <meta-data
@@ -47,10 +47,10 @@
 
         <activity
             android:name=".PageAndroid.ConnectionPage"
-            android:label="@string/title_activity_connection_page"
             android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_connection_page"
             android:parentActivityName=".PageAndroid.MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name=".PageAndroid.HomePAge"
@@ -74,17 +74,24 @@
         </activity>
         <activity
             android:name=".PageAndroid.modifierProfil"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_modifier_profil"
             android:parentActivityName=".PageAndroid.HomePage"
-            android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name=".PageAndroid.addTravel"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_add_travel"
             android:parentActivityName=".PageAndroid.HomePage"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name=".PageAndroid.infoVoyage"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateHidden">
+            android:parentActivityName=".PageAndroid.HomePage"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/title_activity_info_voyage" >
         </activity>
     </application>
 
