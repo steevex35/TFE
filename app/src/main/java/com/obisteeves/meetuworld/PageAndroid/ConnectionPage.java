@@ -22,6 +22,8 @@ import org.json.JSONObject;
 import java.util.Observable;
 import java.util.Observer;
 
+import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
+
 public class ConnectionPage extends ActionBarActivity implements Observer{
 
     private EditText fEmail, fMdp;
@@ -105,7 +107,8 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
 
         }
         else
-            error.setText(msg.toString());
+            dialogPerso(msg.toString(),"Avertissement","retour",ConnectionPage.this);
+
     }
 
     private void initAdvertTypesTable(final Observable observable){

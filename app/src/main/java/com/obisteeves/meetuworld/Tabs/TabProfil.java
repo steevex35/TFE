@@ -57,8 +57,6 @@ public class TabProfil extends Fragment implements Observer {
                 + getResources().getString(R.string.pageProfil);
         net.setUrl(address);
         net.send();
-
-
     }
 
     /**
@@ -69,9 +67,7 @@ public class TabProfil extends Fragment implements Observer {
 
     public void update(Observable observable, Object data) {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
-
         if (data.toString().equals(netReq)) {
 
            try {

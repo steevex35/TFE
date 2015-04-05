@@ -231,7 +231,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
     public void update(Observable observable,final Object data){
 
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-        String netReq = String.valueOf(NetworkRequestAdapter.OK);
+        String netReq = String.valueOf(NetworkRequestAdapter.OKlistPays);
         String netReqInscription = String.valueOf(NetworkRequestAdapter.OKinscription);
 
         if (data.toString().equals(netReq))

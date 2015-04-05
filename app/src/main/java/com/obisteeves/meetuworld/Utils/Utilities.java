@@ -169,7 +169,7 @@ public class Utilities {
             };
 
             AlertDialog.Builder builder = new AlertDialog.Builder(classe);
-            builder.setMessage("Champs vide").setTitle("!! Avertissement !!")
+            builder.setMessage("Champs vide").setTitle("Avertissement")
                     .setPositiveButton("Retour", dialogClickListener).show();
             return false;
         }

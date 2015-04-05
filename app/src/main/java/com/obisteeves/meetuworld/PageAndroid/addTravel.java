@@ -163,14 +163,9 @@ public class addTravel extends ActionBarActivity implements Observer {
     public void update(Observable observable, Object data)
     {
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-        String netReq = String.valueOf(NetworkRequestAdapter.OK);
-
-
-
+        String netReq = String.valueOf(NetworkRequestAdapter.OKlistPays);
         if (data.toString().equals(netReq))
         {
-
-
             try
             {
                 JSONArray Pays =  resultat.getResult().getJSONArray("pays");
@@ -187,15 +182,12 @@ public class addTravel extends ActionBarActivity implements Observer {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
-
             }
             catch (JSONException e)
             {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     private void ListDynamicPoi()
@@ -272,7 +264,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Votre voyage est bien  enregistré").setTitle("!! Avertissement !!").setPositiveButton("Continuer", dialogClickListener).show();
+        builder.setMessage("Votre voyage est bien  enregistré").setTitle("Avertissement").setPositiveButton("Continuer", dialogClickListener).show();
     }
 
 
