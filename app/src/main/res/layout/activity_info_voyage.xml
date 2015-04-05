@@ -18,15 +18,78 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <LinearLayout
 
-        <TextView
-            android:id="@+id/errorInfo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textColor="#FF0000"/>
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#FFFFFF"
+            tools:context="com.obisteeves.meetuworld.PageAndroid.modifierProfil">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/avatarCompte"
+                android:src="@drawable/ic_account_box_grey600_48dp"
+                android:layout_margin="6dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/nomUser"
+                android:layout_marginTop="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Pays :"
+                    android:id="@+id/textView1"
+                    android:layout_marginTop="15dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Ville :"
+                    android:id="@+id/textView2"
+                    android:layout_marginTop="15dp" />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="#FF0000"/>
+
+
+
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

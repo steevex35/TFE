@@ -56,6 +56,57 @@
                 android:layout_marginRight="20dp"
                 android:drawableLeft="@drawable/user"/>
 
+
+
+
+                <TextView
+                    android:id="@+id/Dob"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:hint="Date de naissance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:layout_margin="20dp"
+                    android:onClick="showDatePickerDialog"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/textView2"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:hint="Pays :"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp" />
+
+                <Spinner
+                    android:id="@+id/listPaysInscription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+
+                    />
+                <EditText
+                    android:id="@+id/villeInscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:hint="Ville"
+                    android:textSize="14dp"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    />
+
+
+
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"

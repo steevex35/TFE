@@ -10,23 +10,30 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
-public class infoVoyage extends ActionBarActivity {
+import java.util.Observable;
+import java.util.Observer;
+
+public class infoVoyage extends ActionBarActivity implements Observer {
 
     Toolbar toolbar;
     TextView error;
+
+    String id_voyage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_voyage);
-        error = (TextView) findViewById(R.id.errorInfo);
+        error = (TextView) findViewById(R.id.error);
         iniActionBar();
 
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            String id_voyage = extras.getString("id_voyage");
-            error.setText(id_voyage);
+            id_voyage = extras.getString("id_voyage");
+            afficheVoyage(id_voyage);
+
 
         }
     }
@@ -61,5 +68,21 @@ public class infoVoyage extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
+    }
+
+    private void afficheVoyage(String id_voyage){
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.afficheVoyages);
+        net.setUrl(address);
+        net.addParam("id_voyage",id_voyage);
+        net.send();
+
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+
     }
 }
