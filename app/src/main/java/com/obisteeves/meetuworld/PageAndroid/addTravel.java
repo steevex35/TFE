@@ -49,7 +49,7 @@ public class addTravel extends ActionBarActivity implements Observer {
     Button buttonAdd, buttonEnvoyerVovaye;
     LinearLayout container;
     Spinner spinner;
-
+    TextView datePoi;
     private ArrayList<String> tabPoi = new ArrayList<String>();
     private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
 
@@ -63,6 +63,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         fdateD=(TextView) findViewById(R.id.DateDepart);
         ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
+        datePoi= (TextView) findViewById(R.id.datePoi);
         buttonAdd = (Button) findViewById(R.id.add);
         buttonEnvoyerVovaye=(Button)findViewById(R.id.boutonAddTravel);
         container = (LinearLayout) findViewById(R.id.container);
@@ -70,20 +71,18 @@ public class addTravel extends ActionBarActivity implements Observer {
 
         ListDynamicPoi();
         ListPays();
-        buttonEnvoyerVovaye.setOnClickListener(new View.OnClickListener()
-        {
+        buttonEnvoyerVovaye.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
-                if(((testString(ville.getText().toString())&&testString(fdateA.getText().toString())&&testString(fdateD.getText().toString()))!=true))
-                    dialogPerso("veuillez remplir tous les champs","Avertissement","Retour",addTravel.this);
-                if(tabPoi.isEmpty())
-                    dialogPerso("veuillez rentrer des POi","Avertissement","Retour",addTravel.this);
+                if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString()) && testString(fdateD.getText().toString())) != true))
+                    dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", addTravel.this);
+                if (tabPoi.isEmpty())
+                    dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", addTravel.this);
 
-                EnvoyerVoyage(idSelectionPays,ville.getText().toString(),fdateA.getText().toString(),
-                fdateD.getText().toString(),tabPoi.toString());
+                EnvoyerVoyage(idSelectionPays, ville.getText().toString(), fdateA.getText().toString(),
+                        fdateD.getText().toString(), tabPoi.toString());
             }
 
         });
@@ -142,6 +141,13 @@ public class addTravel extends ActionBarActivity implements Observer {
         newFragment2.show(getFragmentManager(), "datePicker");
         fdateD=dateD;
     }
+    public void showDatePickerDialog3(View v)
+    {
+        TextView date = ((TextView) findViewById(R.id.datePoi));
+        DialogFragment newFragment2 = new DatePickerFragment(date);
+        newFragment2.show(getFragmentManager(), "datePicker");
+        datePoi=date;
+    }
 
     public void ListPays()
     {
@@ -189,8 +195,55 @@ public class addTravel extends ActionBarActivity implements Observer {
         }
     }
 
+
+    public void showInputDialog() {
+
+        // get prompts.xml view
+        LayoutInflater layoutInflater = LayoutInflater.from(addTravel.this);
+        View promptView = layoutInflater.inflate(R.layout.dialog_poi, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(addTravel.this);
+        alertDialogBuilder.setView(promptView);
+
+        final EditText editText = (EditText) promptView.findViewById(R.id.edittext1);
+
+        // setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        textIn.setText(editText.getText());
+                    }
+                })
+                .setNegativeButton("Annuler",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
+
+
+
+
+
     private void ListDynamicPoi()
     {
+
+        textIn.setClickable(true);
+        textIn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                showInputDialog();
+            }
+        });
+
+
+
         buttonAdd.setOnClickListener(new View.OnClickListener()
         {
 

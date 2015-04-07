@@ -130,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:hint="rajouter un Poi"
+                    android:focusableInTouchMode="false"
                     android:layout_alignParentLeft="true"
                     android:layout_toLeftOf="@id/add"/>
             </RelativeLayout>
