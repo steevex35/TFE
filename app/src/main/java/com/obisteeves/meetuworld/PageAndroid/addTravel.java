@@ -61,9 +61,9 @@ public class addTravel extends ActionBarActivity implements Observer {
         iniActionBar();
         fdateA= (TextView)findViewById(R.id.DateArrivee);
         fdateD=(TextView) findViewById(R.id.DateDepart);
+        datePoi=(TextView) findViewById(R.id.datePoi);
         ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
-        datePoi= (TextView) findViewById(R.id.datePoi);
         buttonAdd = (Button) findViewById(R.id.add);
         buttonEnvoyerVovaye=(Button)findViewById(R.id.boutonAddTravel);
         container = (LinearLayout) findViewById(R.id.container);
@@ -76,13 +76,20 @@ public class addTravel extends ActionBarActivity implements Observer {
             public void onClick(View v) {
 
                 idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
-                if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString()) && testString(fdateD.getText().toString())) != true))
+                if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString())
+                        && testString(fdateD.getText().toString())) != true)) {
                     dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", addTravel.this);
-                if (tabPoi.isEmpty())
+                }else if (tabPoi.isEmpty()) {
                     dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", addTravel.this);
 
-                EnvoyerVoyage(idSelectionPays, ville.getText().toString(), fdateA.getText().toString(),
-                        fdateD.getText().toString(), tabPoi.toString());
+                }else {
+                    EnvoyerVoyage(idSelectionPays,
+                            ville.getText().toString(),
+                            fdateA.getText().toString(),
+                            fdateD.getText().toString(),
+                            tabPoi.toString());
+                }
+
             }
 
         });
@@ -143,11 +150,12 @@ public class addTravel extends ActionBarActivity implements Observer {
     }
     public void showDatePickerDialog3(View v)
     {
-        TextView date = ((TextView) findViewById(R.id.datePoi));
-        DialogFragment newFragment2 = new DatePickerFragment(date);
-        newFragment2.show(getFragmentManager(), "datePicker");
-        datePoi=date;
+        TextView datep = ((TextView) findViewById(R.id.datePoi));
+        DialogFragment newFragment3 = new DatePickerFragment(datep);
+        newFragment3.show(getFragmentManager(), "datePicker");
+        datePoi=datep;
     }
+
 
     public void ListPays()
     {
@@ -206,6 +214,9 @@ public class addTravel extends ActionBarActivity implements Observer {
 
         final EditText editText = (EditText) promptView.findViewById(R.id.edittext1);
 
+
+
+
         // setup a dialog window
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
@@ -232,7 +243,7 @@ public class addTravel extends ActionBarActivity implements Observer {
 
     private void ListDynamicPoi()
     {
-
+        /*
         textIn.setClickable(true);
         textIn.setOnClickListener(new View.OnClickListener(){
 
@@ -240,7 +251,7 @@ public class addTravel extends ActionBarActivity implements Observer {
             public void onClick(View v) {
                 showInputDialog();
             }
-        });
+        }); */
 
 
 

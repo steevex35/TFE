@@ -130,15 +130,35 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:hint="rajouter un Poi"
-                    android:focusableInTouchMode="false"
                     android:layout_alignParentLeft="true"
                     android:layout_toLeftOf="@id/add"/>
+                    <!-- android:focusableInTouchMode="false" -->
+
+
+            <RelativeLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/datePoi"
+                    android:clickable="true"
+                    android:hint="@string/addTravel_page_Edit_dateD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:onClick="showDatePickerDialog3"
+                    android:layout_marginLeft="10dp"/>
+
+                </RelativeLayout>
+
             </RelativeLayout>
             <LinearLayout
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
             </LinearLayout>
 
 
