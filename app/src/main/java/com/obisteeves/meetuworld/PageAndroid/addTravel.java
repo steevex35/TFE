@@ -289,7 +289,7 @@ public class addTravel extends ActionBarActivity implements Observer {
                             }
                         });
                         container.addView(addView);
-                        tabPoi.add(textIn.getText().toString());
+                        tabPoi.add(textIn.getText().toString()+" {"+datePoi.getText().toString()+"}");
                     }
                 }
             }
