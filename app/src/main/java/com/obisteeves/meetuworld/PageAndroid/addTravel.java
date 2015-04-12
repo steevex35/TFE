@@ -49,9 +49,9 @@ public class addTravel extends ActionBarActivity implements Observer {
     Button buttonAdd, buttonEnvoyerVovaye;
     LinearLayout container;
     Spinner spinner;
-    TextView datePoi;
     private ArrayList<String> tabPoi = new ArrayList<String>();
     private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -61,7 +61,6 @@ public class addTravel extends ActionBarActivity implements Observer {
         iniActionBar();
         fdateA= (TextView)findViewById(R.id.DateArrivee);
         fdateD=(TextView) findViewById(R.id.DateDepart);
-        datePoi=(TextView) findViewById(R.id.datePoi);
         ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
         buttonAdd = (Button) findViewById(R.id.add);
@@ -76,6 +75,8 @@ public class addTravel extends ActionBarActivity implements Observer {
             public void onClick(View v) {
 
                 idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
+                //System.out.println(tabPoi);
+
                 if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString())
                         && testString(fdateD.getText().toString())) != true)) {
                     dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", addTravel.this);
@@ -87,7 +88,10 @@ public class addTravel extends ActionBarActivity implements Observer {
                             ville.getText().toString(),
                             fdateA.getText().toString(),
                             fdateD.getText().toString(),
-                            tabPoi.toString());
+                            tabPoi.toString()
+
+                    );
+
                 }
 
             }
@@ -148,13 +152,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         newFragment2.show(getFragmentManager(), "datePicker");
         fdateD=dateD;
     }
-    public void showDatePickerDialog3(View v)
-    {
-        TextView datep = ((TextView) findViewById(R.id.datePoi));
-        DialogFragment newFragment3 = new DatePickerFragment(datep);
-        newFragment3.show(getFragmentManager(), "datePicker");
-        datePoi=datep;
-    }
+
 
 
     public void ListPays()
@@ -204,6 +202,7 @@ public class addTravel extends ActionBarActivity implements Observer {
     }
 
 
+    /*
     public void showInputDialog() {
 
         // get prompts.xml view
@@ -236,7 +235,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         alert.show();
     }
 
-
+    */
 
 
 
@@ -261,6 +260,7 @@ public class addTravel extends ActionBarActivity implements Observer {
             @Override
             public void onClick(View arg0) {
 
+
                 if (valeurString(textIn.getText().toString(),addTravel.this)==true) {
 
                     boolean element = tabPoi.contains(textIn.getText().toString());
@@ -279,17 +279,15 @@ public class addTravel extends ActionBarActivity implements Observer {
                         textOut.setText(textIn.getText().toString());
 
                         Button buttonRemove = (Button) addView.findViewById(R.id.remove);
-                        buttonRemove.setOnClickListener(new View.OnClickListener()
-                        {
+                        buttonRemove.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v)
-                            {
+                            public void onClick(View v) {
                                 ((LinearLayout) addView.getParent()).removeView(addView);
                                 tabPoi.remove(getPosition(tabPoi, textOut.getText().toString()));
                             }
                         });
                         container.addView(addView);
-                        tabPoi.add(textIn.getText().toString()+" {"+datePoi.getText().toString()+"}");
+                        tabPoi.add(textIn.getText().toString());
                     }
                 }
             }
@@ -305,7 +303,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.pageAjouterVoyage);
         net.setUrl(address);
-        net.addParam("idPays",idPays);
+        net.addParam("idPays", idPays);
         net.addParam("ville",ville);
         net.addParam("dateA",dateA);
         net.addParam("dateD",dateD);
