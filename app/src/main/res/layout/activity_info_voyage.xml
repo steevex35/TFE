@@ -94,6 +94,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp" />
 
+
     <ListView
         android:background="#FFFFFF"
         android:id="@+id/listViewPoi"
@@ -103,5 +104,6 @@
         android:layout_marginRight="10dp">
 
     </ListView>
+
 
 </LinearLayout>

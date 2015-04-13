@@ -107,26 +107,31 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         String netReq = String.valueOf(NetworkRequestAdapter.OKlistPoi);
         if (data.toString().equals(netReq))
         {
-            try
-            {
-                JSONArray voyages =  resultat.getResult().getJSONArray("poi");
+            try {
+                JSONArray voyages = resultat.getResult().getJSONArray("poi");
                 String[] listvoyages = new String[voyages.length()];
-                for (int i = 0; i < voyages.length(); i++)
-                {
+                for (int i = 0; i < voyages.length(); i++) {
                     JSONObject json = voyages.getJSONObject(i);
                     String pays = json.getString("nom");
                     String id = json.getString("id");
-                    listViewPoi.put(pays,id);
+                    listViewPoi.put(pays, id);
                     listvoyages[i] = pays;
                 }
 
-                ListAdapter voyagesAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,listvoyages);
-                ListView voyagesListView = (ListView) findViewById(R.id.listViewPoi);
-                voyagesListView.setAdapter(voyagesAdapter);
+                ListAdapter voyagesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listvoyages);
+                ListView poiListView = (ListView) findViewById(R.id.listViewPoi);
+                poiListView.setAdapter(voyagesAdapter);
 
+                poiListView.setOnItemClickListener(
+                        new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-            catch (JSONException e)
+                                dialogPerso("Devenir Guide","Information","retour",infoVoyage.this);
+                            }
+                        }
+                );
+            }catch (JSONException e)
             {
                 e.printStackTrace();
             }
