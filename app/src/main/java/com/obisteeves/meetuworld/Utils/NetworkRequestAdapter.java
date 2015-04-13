@@ -50,6 +50,7 @@ public class NetworkRequestAdapter extends Observable{
     public static final int OK  = 23;
     public static final int OKinscription = 24;
     public static final int OKlistPays = 25;
+    public static final int OKlistPoi = 26;
 
 
     /**

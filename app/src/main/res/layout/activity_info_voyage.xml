@@ -1,8 +1,10 @@
 <LinearLayout
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_centerInParent="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E0E0E0"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <include
@@ -11,18 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="#E0E0E0"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:orientation="horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -36,6 +32,9 @@
                 android:src="@drawable/ic_account_box_grey600_48dp"
                 android:layout_margin="6dp" />
 
+
+
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -44,52 +43,65 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:text="Nom utilisateur"
                 android:id="@+id/nomUser"
                 android:layout_marginTop="15dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Pays :"
-                    android:id="@+id/textView1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Pays"
+                    android:textStyle="bold"
+                    android:id="@+id/paysInfo"
+                    android:textColor="#000000"
                     android:layout_marginTop="15dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Ville :"
-                    android:id="@+id/textView2"
-                    android:layout_marginTop="15dp" />
-
-
-
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Ville"
+                    android:id="@+id/villeinfo"
+                    android:layout_marginBottom="15dp"
+                     />
+                <TextView
+                    android:id="@+id/error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textColor="#FF0000"/>
 
             </LinearLayout>
 
 
-
-
-
-
-
-
-
-
-
-            <TextView
-                android:id="@+id/error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="#FF0000"/>
-
-
-
         </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Lieu d'intérêts"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
+        android:id="@+id/textView3"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp" />
+
+    <ListView
+        android:background="#FFFFFF"
+        android:id="@+id/listViewPoi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+    </ListView>
+
 </LinearLayout>

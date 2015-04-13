@@ -98,11 +98,21 @@ public class TabHome extends Fragment implements Observer{
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                TextView champId = (TextView) view.findViewById(R.id.idVoyage);
-                                String idVoyageToSend=champId.getText().toString();
+                                TextView Id = (TextView) view.findViewById(R.id.idVoyage);
+                                TextView Nom = (TextView) view.findViewById(R.id.nomUser);
+                                TextView Pays = (TextView) view.findViewById(R.id.paysHome);
+                                TextView Ville= (TextView) view.findViewById(R.id.villeHome);
+
+                                String idVoyageToSend=Id.getText().toString();
+                                String nomUserToSend=Nom.getText().toString();
+                                String paysUserTosend=Pays.getText().toString();
+                                String villeUserTosend=Ville.getText().toString();
 
                               Intent intent = new Intent(getActivity(), infoVoyage.class);
                                intent.putExtra("id_voyage", idVoyageToSend);
+                                intent.putExtra("nom_user", nomUserToSend);
+                                intent.putExtra("pays_user", paysUserTosend);
+                                intent.putExtra("ville_user", villeUserTosend);
                                startActivity(intent);
 
 

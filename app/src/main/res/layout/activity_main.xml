@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Meet you World"
+        android:hint="Meet your world"
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="@color/abc_search_url_text_normal"/>
