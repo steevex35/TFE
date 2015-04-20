@@ -1,5 +1,8 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -32,7 +35,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     Toolbar toolbar;
     TextView error;
 
-    String id_voyage,nom, pays,ville;
+    String id_voyage,nom, pays,ville,dateA,dateD;
 
     private HashMap<String,String> listViewPoi = new HashMap<String, String>();
     @Override
@@ -49,12 +52,17 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             nom=extras.getString("nom_user");
             pays=extras.getString("pays_user");
             ville=extras.getString("ville_user");
+            dateA=extras.getString("dateA");
+            dateD=extras.getString("dateD");
             afficheVoyage(id_voyage);
             ((TextView) findViewById(R.id.nomUser)).setText(nom);
             ((TextView) findViewById(R.id.paysInfo)).setText(pays);
             ((TextView) findViewById(R.id.villeinfo)).setText(ville);
+            ((TextView) findViewById(R.id.dateArriveInfo)).setText(dateA);
+            ((TextView) findViewById(R.id.dateDepartInfo)).setText(dateD);
 
-        }
+        }else
+        dialogPerso("yoo","error","error",infoVoyage.this);
     }
 
 
@@ -126,8 +134,31 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                //condition pour juste ouvrir ce dialog si l'utilisateur en cours n'est pas le créateur du voyage
+                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                dialog.cancel();
+                                                break;
+                                            case DialogInterface.BUTTON_POSITIVE:
+                                                //Yes button clicked
+                                                break;
 
-                                dialogPerso("Devenir Guide","Information","retour",infoVoyage.this);
+                                        }
+                                    }
+                                };
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
+                                builder.setMessage("Devenir l'accompagnateur pour ce lieu ? ")
+                                        .setTitle("Info")
+                                        .setNegativeButton("Non", dialogClickListener)
+                                        .setPositiveButton("Oui", dialogClickListener)
+                                        .show();
+
+
+                                //ouvrir un autre dialog pour modifier ou supprimer un POi
                             }
                         }
                 );

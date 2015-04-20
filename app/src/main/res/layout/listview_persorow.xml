@@ -50,7 +50,25 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Large Text"
         android:id="@+id/idVoyage"
-       
+        android:visibility="gone"
+        android:paddingBottom="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Large Text"
+        android:id="@+id/dateArrivee"
+        android:visibility="gone"
+        android:paddingBottom="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Large Text"
+        android:id="@+id/dateDepart"
+        android:visibility="gone"
         android:paddingBottom="5dp"
         />
 

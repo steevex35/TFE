@@ -118,7 +118,8 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("êtes-vous sûre d'envoyer ces informations ?").setTitle("!! Avertissement !!").setPositiveButton("Oui", dialogClickListener)
+        builder.setMessage("êtes-vous sûre d'envoyer ces informations ?").setTitle("!! Avertissement !!")
+                .setPositiveButton("Oui", dialogClickListener)
                 .setNegativeButton("Non", dialogClickListener).show();
 
 

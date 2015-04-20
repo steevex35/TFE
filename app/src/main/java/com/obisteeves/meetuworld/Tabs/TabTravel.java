@@ -13,9 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.obisteeves.meetuworld.PageAndroid.addTravel;
+import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
@@ -105,11 +107,21 @@ public class TabTravel extends Fragment implements Observer{
                 ListAdapter  voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,listvoyages);
                 ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListView);
                 voyagesListView.setAdapter(voyagesAdapter);
+                voyagesListView.setClickable(true);
                 voyagesListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                dialogPerso("info sur le voyage","Information","retour",getActivity());
+
+
+
+
+
+
+                                Intent intent = new Intent(getActivity(), infoVoyage.class);
+                                intent.putExtra("id_voyage", id);
+
+                                startActivity(intent);
                             }
                         }
                 );

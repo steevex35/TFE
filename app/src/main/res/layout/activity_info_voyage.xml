@@ -67,6 +67,27 @@
                     android:id="@+id/villeinfo"
                     android:layout_marginBottom="15dp"
                      />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="  Date d'arrivée"
+                    android:id="@+id/dateArriveInfo"
+                    android:textColor="#558B2F"
+                    android:textStyle="bold"
+                    android:drawableLeft="@drawable/airport_arrival"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="  Date de depart"
+                    android:textStyle="bold"
+                    android:textColor="#D32F2F"
+                    android:id="@+id/dateDepartInfo"
+                    android:drawableLeft="@drawable/airport_depart"
+                    />
                 <TextView
                     android:id="@+id/error"
                     android:layout_width="match_parent"

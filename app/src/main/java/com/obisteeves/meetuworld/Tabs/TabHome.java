@@ -37,8 +37,8 @@ public class TabHome extends Fragment implements Observer{
 
     private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
     String idVoyage;
-    String [] fields = {"id","nom","pays","ville"};
-    int[] field_R_id = {R.id.idVoyage,R.id.nomUser,R.id.paysHome, R.id.villeHome};
+    String [] fields = {"id","nom","pays","ville","date_arrivee","date_depart"};
+    int[] field_R_id = {R.id.idVoyage,R.id.nomUser,R.id.paysHome, R.id.villeHome,R.id.dateArrivee,R.id.dateDepart};
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,11 +78,15 @@ public class TabHome extends Fragment implements Observer{
                     String prenom= json.getString("prenom");
                     String pays=json.getString("pays");
                     String ville=json.getString("ville");
+                    String dateA=json.getString("date_arrivee");
+                    String dateD=json.getString("date_depart");
                     idVoyage = json.getString("id");
                     listViewMap.put("id",idVoyage);
                     listViewMap.put("nom",nom+" "+prenom);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
+                    listViewMap.put("date_arrivee",dateA);
+                    listViewMap.put("date_depart",dateD);
                     listHashVoyage.add(listViewMap);
 
                 }
@@ -102,17 +106,23 @@ public class TabHome extends Fragment implements Observer{
                                 TextView Nom = (TextView) view.findViewById(R.id.nomUser);
                                 TextView Pays = (TextView) view.findViewById(R.id.paysHome);
                                 TextView Ville= (TextView) view.findViewById(R.id.villeHome);
+                                TextView dateA=(TextView) view.findViewById(R.id.dateArrivee);
+                                TextView dateD=(TextView) view.findViewById(R.id.dateDepart);
 
                                 String idVoyageToSend=Id.getText().toString();
                                 String nomUserToSend=Nom.getText().toString();
                                 String paysUserTosend=Pays.getText().toString();
                                 String villeUserTosend=Ville.getText().toString();
+                                String dateATosend=dateA.getText().toString();
+                                String dateDTosend=dateD.getText().toString();
 
                               Intent intent = new Intent(getActivity(), infoVoyage.class);
                                intent.putExtra("id_voyage", idVoyageToSend);
                                 intent.putExtra("nom_user", nomUserToSend);
                                 intent.putExtra("pays_user", paysUserTosend);
                                 intent.putExtra("ville_user", villeUserTosend);
+                                intent.putExtra("dateA",dateATosend);
+                                intent.putExtra("dateD",dateDTosend);
                                startActivity(intent);
 
 
