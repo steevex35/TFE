@@ -35,7 +35,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     Toolbar toolbar;
     TextView error;
 
-    String id_voyage,nom, pays,ville,dateA,dateD;
+    String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
 
     private HashMap<String,String> listViewPoi = new HashMap<String, String>();
     @Override
@@ -61,8 +61,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             ((TextView) findViewById(R.id.dateArriveInfo)).setText(dateA);
             ((TextView) findViewById(R.id.dateDepartInfo)).setText(dateD);
 
+
         }else
-        dialogPerso("yoo","error","error",infoVoyage.this);
+        dialogPerso("error","error","error",infoVoyage.this);
     }
 
 
@@ -122,6 +123,8 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                     JSONObject json = voyages.getJSONObject(i);
                     String pays = json.getString("nom");
                     String id = json.getString("id");
+                    id_current=json.getString("id_current");
+                    id_auteur=json.getString("id_auteur");
                     listViewPoi.put(pays, id);
                     listvoyages[i] = pays;
                 }
@@ -129,6 +132,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 ListAdapter voyagesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listvoyages);
                 ListView poiListView = (ListView) findViewById(R.id.listViewPoi);
                 poiListView.setAdapter(voyagesAdapter);
+                if(id_current==id_auteur){
+                    ((TextView) findViewById(R.id.errorInfo)).setText("Bosse");
+                }
 
                 poiListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {

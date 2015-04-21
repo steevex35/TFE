@@ -89,10 +89,9 @@
                     android:drawableLeft="@drawable/airport_depart"
                     />
                 <TextView
-                    android:id="@+id/error"
+                    android:id="@+id/errorInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textColor="#FF0000"/>
