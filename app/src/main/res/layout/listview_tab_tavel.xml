@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="15dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/paysTravel"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="Départ dans : "/>
+         <TextView
+             android:id="@+id/jourRestant"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="10 j (ex)"
+             android:layout_marginLeft="10dp"
+             android:layout_marginBottom="2dp"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Large Text"
+            android:id="@+id/dateArriveeTravel"
+            android:visibility="gone"
+            android:paddingBottom="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Large Text"
+            android:id="@+id/dateDepartTravel"
+            android:visibility="gone"
+            android:paddingBottom="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Large Text"
+            android:id="@+id/villeTravel"
+            android:visibility="gone"
+            android:paddingBottom="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:id="@+id/idVoyageTravel"
+            android:paddingBottom="5dp"
+            android:visibility="gone"
+            />
+        </LinearLayout>

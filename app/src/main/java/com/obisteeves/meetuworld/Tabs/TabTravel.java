@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 
@@ -26,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -38,7 +40,10 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 public class TabTravel extends Fragment implements Observer{
 
     ImageButton FAB;
-    private HashMap<String,String> listViewMap = new HashMap<String, String>();
+    String idVoyage;
+    String [] fields = {"id","pays","ville","date_arrivee","date_depart"};
+    int[] field_R_id = {R.id.idVoyageTravel,R.id.paysTravel,R.id.villeTravel,R.id.dateArriveeTravel,R.id.dateDepartTravel};
+    private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,30 +102,52 @@ public class TabTravel extends Fragment implements Observer{
                 String[] listvoyages = new String[voyages.length()];
                 for (int i = 0; i < voyages.length(); i++)
                 {
+                    HashMap<String,String> listViewMap = new HashMap<String, String>();
                     JSONObject json = voyages.getJSONObject(i);
                     String pays = json.getString("pays");
-                    String id = json.getString("id");
-                    listViewMap.put(pays,id);
-                    listvoyages[i] = pays;
+                    String ville= json.getString("ville");
+                    idVoyage = json.getString("id");
+                    String dateA=json.getString("date_arrivee");
+                    String dateD=json.getString("date_depart");
+
+                    listViewMap.put("id",idVoyage);
+                    listViewMap.put("pays",pays);
+                    listViewMap.put("ville",ville);
+                    listViewMap.put("date_arrivee",dateA);
+                    listViewMap.put("date_depart",dateD);
+                    listHashVoyage.add(listViewMap);
                 }
 
-                ListAdapter  voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,listvoyages);
                 ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListView);
+                //ListAdapter  voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,listvoyages);
+                SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(),listHashVoyage,R.layout.listview_tab_tavel,fields,field_R_id);
                 voyagesListView.setAdapter(voyagesAdapter);
+
                 voyagesListView.setClickable(true);
                 voyagesListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TextView Id = (TextView) view.findViewById(R.id.idVoyageTravel);
+                                TextView Pays = (TextView) view.findViewById(R.id.paysTravel);
+                                TextView Ville= (TextView) view.findViewById(R.id.villeTravel);
+                                TextView dateA=(TextView) view.findViewById(R.id.dateArriveeTravel);
+                                TextView dateD=(TextView) view.findViewById(R.id.dateDepartTravel);
 
 
-
-
+                                String idVoyageToSend=Id.getText().toString();
+                                String paysUserTosend=Pays.getText().toString();
+                                String villeUserTosend=Ville.getText().toString();
+                                String dateATosend=dateA.getText().toString();
+                                String dateDTosend=dateD.getText().toString();
 
 
                                 Intent intent = new Intent(getActivity(), infoVoyage.class);
-                                intent.putExtra("id_voyage", id);
-
+                                intent.putExtra("id_voyage", idVoyageToSend);
+                                intent.putExtra("pays_user", paysUserTosend);
+                                intent.putExtra("ville_user", villeUserTosend);
+                                intent.putExtra("dateA",dateATosend);
+                                intent.putExtra("dateD",dateDTosend);
                                 startActivity(intent);
                             }
                         }

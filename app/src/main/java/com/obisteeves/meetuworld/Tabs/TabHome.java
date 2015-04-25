@@ -81,6 +81,8 @@ public class TabHome extends Fragment implements Observer{
                     String dateA=json.getString("date_arrivee");
                     String dateD=json.getString("date_depart");
                     idVoyage = json.getString("id");
+
+
                     listViewMap.put("id",idVoyage);
                     listViewMap.put("nom",nom+" "+prenom);
                     listViewMap.put("pays",pays);

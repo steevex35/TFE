@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,9 +34,10 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 public class infoVoyage extends ActionBarActivity implements Observer {
 
     Toolbar toolbar;
-    TextView error;
+    TextView error,nomUser;
 
     String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
+    ImageView img;
 
     private HashMap<String,String> listViewPoi = new HashMap<String, String>();
     @Override
@@ -44,6 +46,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         setContentView(R.layout.activity_info_voyage);
         error = (TextView) findViewById(R.id.error);
         iniActionBar();
+        img = (ImageView)findViewById(R.id.avatarCompte);
+        nomUser=(TextView)findViewById(R.id.nomUser);
+
 
         Bundle extras = getIntent().getExtras();
 
@@ -132,8 +137,11 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 ListAdapter voyagesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listvoyages);
                 ListView poiListView = (ListView) findViewById(R.id.listViewPoi);
                 poiListView.setAdapter(voyagesAdapter);
-                if(id_current==id_auteur){
-                    ((TextView) findViewById(R.id.errorInfo)).setText("Bosse");
+
+                if(id_current.equals(id_auteur)){
+                    img.setVisibility(View.INVISIBLE);
+                    nomUser.setVisibility(View.GONE);
+
                 }
 
                 poiListView.setOnItemClickListener(
