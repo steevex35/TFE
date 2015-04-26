@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="wrap_content"
@@ -88,6 +89,15 @@
                     android:id="@+id/dateDepartInfo"
                     android:drawableLeft="@drawable/airport_depart"
                     />
+                <Button
+                    android:id="@+id/boutonModifVoyage"
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/pencil"
+                    android:text="   Editer"
+                    android:layout_gravity="left|bottom"/>
+
                 <TextView
                     android:id="@+id/errorInfo"
                     android:layout_width="match_parent"
@@ -97,7 +107,6 @@
                     android:textColor="#FF0000"/>
 
             </LinearLayout>
-
 
         </LinearLayout>
     <TextView
@@ -124,6 +133,7 @@
         android:layout_marginRight="10dp">
 
     </ListView>
+
 
 
 </LinearLayout>

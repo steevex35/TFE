@@ -94,7 +94,7 @@ public class HomePage extends ActionBarActivity {
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(" Vous validez votre déconnexion ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener)
+                builder.setMessage(" Voulez-vous quitter ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener)
                         .setNegativeButton("Non", dialogClickListener).show();
                 return true;
 

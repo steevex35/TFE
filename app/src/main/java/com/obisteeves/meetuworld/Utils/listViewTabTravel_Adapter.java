@@ -32,12 +32,14 @@ public class listViewTabTravel_Adapter extends ArrayAdapter<String> {
         TextView ville = (TextView) listviewPerso.findViewById(R.id.villeTravel);
         TextView dateA = (TextView) listviewPerso.findViewById(R.id.dateArriveeTravel);
         TextView dateD = (TextView) listviewPerso.findViewById(R.id.dateDepartTravel);
+        TextView jRestant= (TextView) listviewPerso.findViewById(R.id.jourRestant);
 
 
         pays.setText(voyagesItem);
         ville.setText(voyagesItem);
         dateA.setText(voyagesItem);
         dateD.setText(voyagesItem);
+        jRestant.setText(voyagesItem);
         return listviewPerso;
 
     }

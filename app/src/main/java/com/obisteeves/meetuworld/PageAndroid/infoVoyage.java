@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -38,6 +40,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
     String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
     ImageView img;
+    Button boutonModif;
 
     private HashMap<String,String> listViewPoi = new HashMap<String, String>();
     @Override
@@ -47,7 +50,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         error = (TextView) findViewById(R.id.error);
         iniActionBar();
         img = (ImageView)findViewById(R.id.avatarCompte);
+        boutonModif=(Button) findViewById(R.id.boutonModifVoyage);
         nomUser=(TextView)findViewById(R.id.nomUser);
+
+        img.setVisibility(View.INVISIBLE);
+        nomUser.setVisibility(View.GONE);
+        boutonModif.setVisibility(View.GONE);
 
 
         Bundle extras = getIntent().getExtras();
@@ -139,43 +147,77 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 poiListView.setAdapter(voyagesAdapter);
 
                 if(id_current.equals(id_auteur)){
-                    img.setVisibility(View.INVISIBLE);
-                    nomUser.setVisibility(View.GONE);
+
+                    boutonModif.setVisibility(View.VISIBLE);
+                    poiListView.setOnItemClickListener(
+                            new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case DialogInterface.BUTTON_NEGATIVE:
+                                                    dialog.cancel();
+                                                    break;
+                                                case DialogInterface.BUTTON_POSITIVE:
+                                                    //Yes button clicked
+                                                    break;
+
+                                            }
+                                        }
+                                    };
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
+                                    builder.setMessage("Modifier le Point POI")
+                                            .setTitle("Info")
+                                            .setNegativeButton("Non", dialogClickListener)
+                                            .setPositiveButton("Oui", dialogClickListener)
+                                            .show();
+                                    //ouvrir un autre dialog pour modifier ou supprimer un POi
+                                }
+                            }
+                    );
 
                 }
+                if (!id_current.equals(id_auteur)) {
 
-                poiListView.setOnItemClickListener(
-                        new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                //condition pour juste ouvrir ce dialog si l'utilisateur en cours n'est pas le créateur du voyage
-                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        switch (which) {
-                                            case DialogInterface.BUTTON_NEGATIVE:
-                                                dialog.cancel();
-                                                break;
-                                            case DialogInterface.BUTTON_POSITIVE:
-                                                //Yes button clicked
-                                                break;
+                    img.setVisibility(View.VISIBLE);
+                    nomUser.setVisibility(View.VISIBLE);
 
+                    poiListView.setOnItemClickListener(
+                            new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    //condition pour juste ouvrir ce dialog si l'utilisateur en cours n'est pas le créateur du voyage
+                                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case DialogInterface.BUTTON_NEGATIVE:
+                                                    dialog.cancel();
+                                                    break;
+                                                case DialogInterface.BUTTON_POSITIVE:
+                                                    //Yes button clicked
+                                                    break;
+
+                                            }
                                         }
-                                    }
-                                };
+                                    };
 
-                                AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
-                                builder.setMessage("Devenir l'accompagnateur pour ce lieu ? ")
-                                        .setTitle("Info")
-                                        .setNegativeButton("Non", dialogClickListener)
-                                        .setPositiveButton("Oui", dialogClickListener)
-                                        .show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
+                                    builder.setMessage("Devenir l'accompagnateur pour ce lieu ? ")
+                                            .setTitle("Info")
+                                            .setNegativeButton("Non", dialogClickListener)
+                                            .setPositiveButton("Oui", dialogClickListener)
+                                            .show();
 
 
-                                //ouvrir un autre dialog pour modifier ou supprimer un POi
+                                    //ouvrir un autre dialog pour modifier ou supprimer un POi
+                                }
                             }
-                        }
-                );
+                    );
+                }
             }catch (JSONException e)
             {
                 e.printStackTrace();

@@ -26,6 +26,7 @@ import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,8 +42,8 @@ public class TabTravel extends Fragment implements Observer{
 
     ImageButton FAB;
     String idVoyage;
-    String [] fields = {"id","pays","ville","date_arrivee","date_depart"};
-    int[] field_R_id = {R.id.idVoyageTravel,R.id.paysTravel,R.id.villeTravel,R.id.dateArriveeTravel,R.id.dateDepartTravel};
+    String [] fields = {"id","pays","ville","date_arrivee","date_depart","jRestant"};
+    int[] field_R_id = {R.id.idVoyageTravel,R.id.paysTravel,R.id.villeTravel,R.id.dateArriveeTravel,R.id.dateDepartTravel,R.id.jourRestant};
     private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
 
     @Override
@@ -115,11 +116,12 @@ public class TabTravel extends Fragment implements Observer{
                     listViewMap.put("ville",ville);
                     listViewMap.put("date_arrivee",dateA);
                     listViewMap.put("date_depart",dateD);
+                    listViewMap.put("jRestant","Départ dans : ");
                     listHashVoyage.add(listViewMap);
+
                 }
 
                 ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListView);
-                //ListAdapter  voyagesAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_expandable_list_item_1,listvoyages);
                 SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(),listHashVoyage,R.layout.listview_tab_tavel,fields,field_R_id);
                 voyagesListView.setAdapter(voyagesAdapter);
 
