@@ -12,26 +12,40 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Meet your world"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="@color/abc_search_url_text_normal"/>
 
+
+
+        <ImageView
+            android:layout_marginTop="25dp"
+            android:id="@+id/avatarCompte"
+            android:layout_width="320dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="320dp"
+            android:src="@drawable/logo2"
+            />
+    <!--
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meet your world"
+            android:hint="Meet your world"
+            android:textSize="25dp"
+            android:layout_marginLeft="80dp"
+            android:textStyle="bold"
+            android:textColor="#E65100"/>
+    -->
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="330dp"
         android:background="@drawable/linearlayout_bg"
         android:padding="10dp"
        >
 
-        <Button
 
+        <Button
             android:id="@+id/btnConnection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
