@@ -19,7 +19,7 @@
             android:layout_marginTop="25dp"
             android:id="@+id/avatarCompte"
             android:layout_width="320dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="320dp"
             android:src="@drawable/logo2"
             />
