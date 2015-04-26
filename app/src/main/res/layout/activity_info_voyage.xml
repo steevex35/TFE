@@ -95,7 +95,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/pencil"
+                    android:textSize="10sp"
                     android:text="   Editer"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="left|bottom"/>
+                <Button
+                    android:id="@+id/boutonMap"
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:drawableLeft="@drawable/map"
+                    android:text="   Voir L'itinéraire"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_gravity="left|bottom"/>
 
                 <TextView
