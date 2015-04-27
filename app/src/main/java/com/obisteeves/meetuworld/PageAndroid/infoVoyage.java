@@ -38,7 +38,7 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 public class infoVoyage extends ActionBarActivity implements Observer {
 
     Toolbar toolbar;
-    TextView error,nomUser;
+    TextView error,nomUser,idItemPoi,nomPoi;
 
     String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
     ImageView img;
@@ -56,6 +56,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         iniActionBar();
         img = (ImageView)findViewById(R.id.avatarCompte);
         boutonModif=(Button) findViewById(R.id.boutonModifVoyage);
+
         nomUser=(TextView)findViewById(R.id.nomUser);
 
         img.setVisibility(View.INVISIBLE);
@@ -151,43 +152,14 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 }
 
                 ListView poiListView = (ListView) findViewById(R.id.listViewPoi);
-                SimpleAdapter poiAdapter = new SimpleAdapter(this,listHashPoi,R.layout.listview_poi,fields,field_R_id);
+                SimpleAdapter poiAdapter = new SimpleAdapter(infoVoyage.this,listHashPoi,R.layout.listview_poi,fields,field_R_id);
                 poiListView.setAdapter(poiAdapter);
 
-
+                poiListView.setClickable(true);
                 if(id_current.equals(id_auteur)){
-
                     boutonModif.setVisibility(View.VISIBLE);
-                    poiListView.setOnItemClickListener(
-                            new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            switch (which) {
-                                                case DialogInterface.BUTTON_NEGATIVE:
-                                                    dialog.cancel();
-                                                    break;
-                                                case DialogInterface.BUTTON_POSITIVE:
-                                                    //Yes button clicked
-                                                    break;
-
-                                            }
-                                        }
-                                    };
-
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
-                                    builder.setMessage("Modifier le Point POI")
-                                            .setTitle("Info")
-                                            .setNegativeButton("Non", dialogClickListener)
-                                            .setPositiveButton("Oui", dialogClickListener)
-                                            .show();
-                                }
-                            }
-                    );
-
                 }
+
                 if (!id_current.equals(id_auteur)) {
 
                     img.setVisibility(View.VISIBLE);
@@ -195,8 +167,13 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
                     poiListView.setOnItemClickListener(
                             new AdapterView.OnItemClickListener() {
+
                                 @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                                {
+                                    idItemPoi=(TextView) view.findViewById(R.id.idPoi);
+                                    nomPoi=(TextView) view.findViewById(R.id.nomPoi);
+                                    String nom=nomPoi.getText().toString();
 
                                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                                         @Override
@@ -207,6 +184,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                                     break;
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     //Yes button clicked
+                                                     String id = idItemPoi.getText().toString();
+                                                    dialogPerso(id+" "+id_current+" "+id_auteur,"info","ok",infoVoyage.this);
+                                                    //DevenirGuide(id,id_current,id_auteur);
                                                     break;
 
                                             }
@@ -214,11 +194,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                     };
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
-                                    builder.setMessage("Devenir l'accompagnateur pour ce lieu ? ")
+                                    builder.setMessage("Devenir l'accompagnateur pour "+ nom +" ? ")
                                             .setTitle("Info")
                                             .setNegativeButton("Non", dialogClickListener)
                                             .setPositiveButton("Oui", dialogClickListener)
                                             .show();
+
                                 }
                             }
                     );
@@ -231,7 +212,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
     }
 
-    private void DevenirGuide( String id_poi, String id_current, String id_voyage){
+    private void DevenirGuide( String id_poi, String id_current, String id_voyage,String id_auteur){
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
@@ -240,6 +221,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         net.addParam("id_poi", id_poi);
         net.addParam("id_current", id_current);
         net.addParam("id_voyage",id_voyage);
+        net.addParam("id_auteur",id_auteur);
         net.send();
     }
 
