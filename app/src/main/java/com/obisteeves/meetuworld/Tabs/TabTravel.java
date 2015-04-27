@@ -100,7 +100,6 @@ public class TabTravel extends Fragment implements Observer{
             try
             {
                 JSONArray voyages =  resultat.getResult().getJSONArray("voyages");
-                String[] listvoyages = new String[voyages.length()];
                 for (int i = 0; i < voyages.length(); i++)
                 {
                     HashMap<String,String> listViewMap = new HashMap<String, String>();

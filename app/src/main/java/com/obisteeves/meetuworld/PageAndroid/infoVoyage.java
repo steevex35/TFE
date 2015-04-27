@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
@@ -27,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -41,8 +43,11 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
     ImageView img;
     Button boutonModif;
+    String [] fields = {"nom","id"};
+    int[] field_R_id = {R.id.nomPoi,R.id.idPoi};
+    private ArrayList<HashMap<String, String>> listHashPoi =  new ArrayList<HashMap<String, String>>();
 
-    private HashMap<String,String> listViewPoi = new HashMap<String, String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +122,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.afficheVoyages);
         net.setUrl(address);
-        net.addParam("id_voyage",id_voyage);
+        net.addParam("id_voyage", id_voyage);
         net.send();
 
     }
@@ -130,21 +135,25 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         if (data.toString().equals(netReq))
         {
             try {
-                JSONArray voyages = resultat.getResult().getJSONArray("poi");
-                String[] listvoyages = new String[voyages.length()];
-                for (int i = 0; i < voyages.length(); i++) {
-                    JSONObject json = voyages.getJSONObject(i);
-                    String pays = json.getString("nom");
-                    String id = json.getString("id");
+                JSONArray poi = resultat.getResult().getJSONArray("poi");
+                for (int i = 0; i < poi.length(); i++)
+                {
+                    HashMap<String,String> listViewMap = new HashMap<String, String>();
+                    JSONObject json = poi.getJSONObject(i);
+                    String nomPoi = json.getString("nom");
+                    String idPoi = json.getString("id");
                     id_current=json.getString("id_current");
                     id_auteur=json.getString("id_auteur");
-                    listViewPoi.put(pays, id);
-                    listvoyages[i] = pays;
+
+                    listViewMap.put("nom",nomPoi);
+                    listViewMap.put("id",idPoi);
+                    listHashPoi.add(listViewMap);
                 }
 
-                ListAdapter voyagesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listvoyages);
                 ListView poiListView = (ListView) findViewById(R.id.listViewPoi);
-                poiListView.setAdapter(voyagesAdapter);
+                SimpleAdapter poiAdapter = new SimpleAdapter(this,listHashPoi,R.layout.listview_poi,fields,field_R_id);
+                poiListView.setAdapter(poiAdapter);
+
 
                 if(id_current.equals(id_auteur)){
 
@@ -174,7 +183,6 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                             .setNegativeButton("Non", dialogClickListener)
                                             .setPositiveButton("Oui", dialogClickListener)
                                             .show();
-                                    //ouvrir un autre dialog pour modifier ou supprimer un POi
                                 }
                             }
                     );
@@ -189,7 +197,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                             new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    //condition pour juste ouvrir ce dialog si l'utilisateur en cours n'est pas le créateur du voyage
+
                                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -211,9 +219,6 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                             .setNegativeButton("Non", dialogClickListener)
                                             .setPositiveButton("Oui", dialogClickListener)
                                             .show();
-
-
-                                    //ouvrir un autre dialog pour modifier ou supprimer un POi
                                 }
                             }
                     );
@@ -224,6 +229,18 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             }
         }
 
+    }
+
+    private void DevenirGuide( String id_poi, String id_current, String id_voyage){
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.devenirGuide);
+        net.setUrl(address);
+        net.addParam("id_poi", id_poi);
+        net.addParam("id_current", id_current);
+        net.addParam("id_voyage",id_voyage);
+        net.send();
     }
 
 
