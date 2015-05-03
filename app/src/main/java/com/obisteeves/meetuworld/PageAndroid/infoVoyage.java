@@ -40,8 +40,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     private Toolbar toolbar;
     private TextView error,nomUser,idItemPoi,nomPoi;
 
-    private String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
+    private String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur,guide;
     private ImageView img;
+    private ImageButton boutonGuide;
     private Button boutonModif;
     private  String [] fields = {"nom","id"};
     private  int[] field_R_id = {R.id.nomPoi,R.id.idPoi};
@@ -56,6 +57,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         iniActionBar();
         img = (ImageView)findViewById(R.id.avatarCompte);
         boutonModif=(Button) findViewById(R.id.boutonModifVoyage);
+
 
         nomUser=(TextView)findViewById(R.id.nomUser);
 
@@ -133,6 +135,32 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         String netReq = String.valueOf(NetworkRequestAdapter.OKlistPoi);
+        String netReq2 = String.valueOf(NetworkRequestAdapter.OK);
+
+        if(data.toString().equals(netReq2)){
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //POur refesh l'activity
+                            Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                            break;
+
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
+            builder.setMessage("Merci d'avoir choisi d'être mon guide pour ce lieu")
+                    .setTitle("Info")
+                    .setPositiveButton("Retour", dialogClickListener)
+                    .show();
+
+        }
+
         if (data.toString().equals(netReq))
         {
             try {
@@ -143,9 +171,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                     JSONObject json = poi.getJSONObject(i);
                     String nomPoi = json.getString("nom");
                     String idPoi = json.getString("id");
+                    guide=json.getString("guide");
                     id_current=json.getString("id_current");
                     id_auteur=json.getString("id_auteur");
-
                     listViewMap.put("nom",nomPoi);
                     listViewMap.put("id",idPoi);
                     listHashPoi.add(listViewMap);
@@ -156,9 +184,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 poiListView.setAdapter(poiAdapter);
 
                 poiListView.setClickable(true);
+
+
                 if(id_current.equals(id_auteur)){
                     boutonModif.setVisibility(View.VISIBLE);
                 }
+
 
                 if (!id_current.equals(id_auteur)) {
 
@@ -166,13 +197,22 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                     nomUser.setVisibility(View.VISIBLE);
 
                     poiListView.setOnItemClickListener(
+
                             new AdapterView.OnItemClickListener() {
+
+
 
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                                 {
                                     idItemPoi=(TextView) view.findViewById(R.id.idPoi);
                                     nomPoi=(TextView) view.findViewById(R.id.nomPoi);
+                                    boutonGuide=(ImageButton)view.findViewById(R.id.boutonGuide);
+
+                                    boutonGuide.setVisibility(View.VISIBLE); //le faire à la création de la listView
+
+
+
                                     String nom=nomPoi.getText().toString();
 
                                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -185,8 +225,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     //Yes button clicked
                                                      String id = idItemPoi.getText().toString();
-                                                    dialogPerso(id+" "+id_current+" "+id_auteur,"info","ok",infoVoyage.this);
-                                                    //DevenirGuide(id,id_current,id_auteur);
+                                                    DevenirGuide(id, id_current, id_auteur);
                                                     break;
 
                                             }
@@ -212,7 +251,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
     }
 
-    private void DevenirGuide( String id_poi, String id_current, String id_voyage,String id_auteur){
+    private void DevenirGuide( String id_poi, String id_current,String id_auteur){
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
@@ -220,7 +259,6 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         net.setUrl(address);
         net.addParam("id_poi", id_poi);
         net.addParam("id_current", id_current);
-        net.addParam("id_voyage",id_voyage);
         net.addParam("id_auteur",id_auteur);
         net.send();
     }

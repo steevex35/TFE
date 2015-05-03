@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
@@ -26,6 +27,7 @@ public class listViewPersoPoi extends ArrayAdapter<String> {
         String voyagesItem = getItem(position);
         TextView nom = (TextView) listviewPerso.findViewById(R.id.nomPoi);
         TextView id = (TextView) listviewPerso.findViewById(R.id.idPoi);
+
 
         nom.setText(voyagesItem);
         id.setText(voyagesItem);
