@@ -37,14 +37,14 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
 public class infoVoyage extends ActionBarActivity implements Observer {
 
-    Toolbar toolbar;
-    TextView error,nomUser,idItemPoi,nomPoi;
+    private Toolbar toolbar;
+    private TextView error,nomUser,idItemPoi,nomPoi;
 
-    String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
-    ImageView img;
-    Button boutonModif;
-    String [] fields = {"nom","id"};
-    int[] field_R_id = {R.id.nomPoi,R.id.idPoi};
+    private String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
+    private ImageView img;
+    private Button boutonModif;
+    private  String [] fields = {"nom","id"};
+    private  int[] field_R_id = {R.id.nomPoi,R.id.idPoi};
     private ArrayList<HashMap<String, String>> listHashPoi =  new ArrayList<HashMap<String, String>>();
 
 

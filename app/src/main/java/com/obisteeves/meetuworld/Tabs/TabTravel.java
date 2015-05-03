@@ -109,13 +109,14 @@ public class TabTravel extends Fragment implements Observer{
                     idVoyage = json.getString("id");
                     String dateA=json.getString("date_arrivee");
                     String dateD=json.getString("date_depart");
+                    String jRestant=json.getString("joursRestant");
 
                     listViewMap.put("id",idVoyage);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
                     listViewMap.put("date_arrivee",dateA);
                     listViewMap.put("date_depart",dateD);
-                    listViewMap.put("jRestant","Départ dans : ");
+                    listViewMap.put("jRestant","Départ dans : "+jRestant+" Jour(s)");
                     listHashVoyage.add(listViewMap);
 
                 }
