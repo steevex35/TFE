@@ -116,7 +116,7 @@ public class TabTravel extends Fragment implements Observer{
                     listViewMap.put("ville",ville);
                     listViewMap.put("date_arrivee",dateA);
                     listViewMap.put("date_depart",dateD);
-                    listViewMap.put("jRestant","Départ dans : "+jRestant+" Jour(s)");
+                    listViewMap.put("jRestant",jRestant);
                     listHashVoyage.add(listViewMap);
 
                 }
