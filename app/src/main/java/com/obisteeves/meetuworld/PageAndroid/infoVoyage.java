@@ -40,12 +40,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     private Toolbar toolbar;
     private TextView error,nomUser,idItemPoi,nomPoi;
 
-    private String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur,guide;
+    private String id_voyage,nom, pays,ville,dateA,dateD,id_current,id_auteur;
     private ImageView img;
     private ImageButton boutonGuide;
     private Button boutonModif;
-    private  String [] fields = {"nom","id"};
-    private  int[] field_R_id = {R.id.nomPoi,R.id.idPoi};
+    private  String [] fields = {"nom","id","guide"};
+    private  int[] field_R_id = {R.id.nomPoi,R.id.idPoi,R.id.guide};
     private ArrayList<HashMap<String, String>> listHashPoi =  new ArrayList<HashMap<String, String>>();
 
 
@@ -171,11 +171,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                     JSONObject json = poi.getJSONObject(i);
                     String nomPoi = json.getString("nom");
                     String idPoi = json.getString("id");
-                    guide=json.getString("guide");
+                    String guide=json.getString("guide");
                     id_current=json.getString("id_current");
                     id_auteur=json.getString("id_auteur");
                     listViewMap.put("nom",nomPoi);
                     listViewMap.put("id",idPoi);
+                    listViewMap.put("guide",guide);
                     listHashPoi.add(listViewMap);
                 }
 
@@ -207,14 +208,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                 {
                                     idItemPoi=(TextView) view.findViewById(R.id.idPoi);
                                     nomPoi=(TextView) view.findViewById(R.id.nomPoi);
-                                    boutonGuide=(ImageButton)view.findViewById(R.id.boutonGuide);
-
-                                    boutonGuide.setVisibility(View.VISIBLE); //le faire à la création de la listView
-
-
-
                                     String nom=nomPoi.getText().toString();
-
                                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {

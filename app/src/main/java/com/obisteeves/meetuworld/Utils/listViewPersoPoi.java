@@ -27,10 +27,12 @@ public class listViewPersoPoi extends ArrayAdapter<String> {
         String voyagesItem = getItem(position);
         TextView nom = (TextView) listviewPerso.findViewById(R.id.nomPoi);
         TextView id = (TextView) listviewPerso.findViewById(R.id.idPoi);
+        TextView guide=(TextView) listviewPerso.findViewById(R.id.guide);
 
 
         nom.setText(voyagesItem);
         id.setText(voyagesItem);
+        guide.setText(voyagesItem);
         return listviewPerso;
 
     }
