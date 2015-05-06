@@ -82,10 +82,23 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             ((TextView) findViewById(R.id.dateArriveInfo)).setText(dateA);
             ((TextView) findViewById(R.id.dateDepartInfo)).setText(dateD);
 
+            Button boutonIti =(Button) findViewById(R.id.boutonMap);
+            boutonIti.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    //page de modif du profil
+                    Intent intent = new Intent(infoVoyage.this, ItinerairePage.class);
+                    startActivity(intent);
+                }
+            });
+
 
         }else
         dialogPerso("error","error","error",infoVoyage.this);
     }
+
+
 
 
     @Override

@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:drawableLeft="@drawable/map"
+                    android:drawableLeft="@drawable/map3"
                     android:text="   Voir L'itinéraire"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_gravity="left|bottom"/>
