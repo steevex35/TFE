@@ -69,6 +69,12 @@ public class ItinerairePage extends ActionBarActivity {
             if(null == googleMap){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(
                         R.id.mapView)).getMap();
+               googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.setMyLocationEnabled(true);
+
+
+
 
                 /**
                  * If the map is still null after attempted initialisation,
@@ -90,7 +96,7 @@ public class ItinerairePage extends ActionBarActivity {
 
         /** Make sure that the map has been initialised **/
         if(null != googleMap){
-            Marker afficheInfo=googleMap.addMarker(new MarkerOptions()
+            Marker afficheInfo = googleMap.addMarker(new MarkerOptions()
                             .position(new LatLng(50.66, 4.61))
                             .title("POi")
                             .snippet("Pour le fun bro")
@@ -98,6 +104,13 @@ public class ItinerairePage extends ActionBarActivity {
 
 
             );
+          googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(afficheInfo.getPosition(), 15));
+            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+
+
+
         afficheInfo.showInfoWindow();
         }
     }
