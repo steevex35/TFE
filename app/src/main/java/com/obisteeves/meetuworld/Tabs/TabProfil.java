@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.modifierProfil;
@@ -30,7 +30,7 @@ public class TabProfil extends Fragment implements Observer {
 
         afficheProfil(v);
 
-        Button boutonAlter =(Button) v.findViewById(R.id.modifier_profil);
+        ImageButton boutonAlter = (ImageButton) v.findViewById(R.id.modifier_profil);
         boutonAlter.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -66,12 +66,15 @@ public class TabProfil extends Fragment implements Observer {
         if (data.toString().equals(netReq)) {
 
            try {
-               ((TextView) getActivity().findViewById(R.id.profil_Prenom)).setText(resultat.getResult().get("prenom").toString());
-               ((TextView) getActivity().findViewById(R.id.profil_nom)).setText(resultat.getResult().get("nom").toString());
+               String nom = resultat.getResult().get("nom").toString();
+               String prenom = resultat.getResult().get("prenom").toString();
+               String ville = resultat.getResult().get("ville").toString();
+               String pays = resultat.getResult().get("pays").toString();
+               ((TextView) getActivity().findViewById(R.id.profil_nomPrenom)).setText(prenom + " " + nom);
+               ((TextView) getActivity().findViewById(R.id.profil_villePays)).setText(pays + ", " + ville);
                ((TextView) getActivity().findViewById(R.id.profil_Email)).setText(resultat.getResult().get("email").toString());
-               ((TextView) getActivity().findViewById(R.id.Profil_Ville)).setText(resultat.getResult().get("ville").toString());
-               ((TextView) getActivity().findViewById(R.id.profil_pays)).setText(resultat.getResult().get("pays").toString());
-            } catch (JSONException e) {
+
+           } catch (JSONException e) {
                 e.printStackTrace();
             }
         }

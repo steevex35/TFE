@@ -62,11 +62,7 @@
             android:parentActivityName=".PageAndroid.MainActivity"
             android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity
-            android:name=".PageAndroid.HomePage"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_home_page" >
-        </activity>
+
         <activity
             android:name=".Tabs.TabProfil"
             android:configChanges="orientation|screenSize"

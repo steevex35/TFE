@@ -9,135 +9,137 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
 
-        android:orientation="vertical"
         android:background="#FFFFFF"
+        android:orientation="vertical"
         tools:coontext="com.obisteeves.meetuworld.Tabs.TabProfil">
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_account_circle_grey600_48dp"
-            android:layout_weight="0.5"/>
+            android:layout_marginTop="40dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_account_circle_grey600_48dp" />
+
+
+        <TextView
+            android:id="@+id/profil_nomPrenom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:hint="nom"
+            android:textColor="#212121"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profil_villePays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Ville"
+            android:textColor="#727272"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/profil_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Note :"
+            android:textColor="#727272"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/profil_Langues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Français, Anglais, Espagnol, Néerlandais"
+            android:textColor="#727272"
+            android:textSize="16dp" />
 
         <View
-            android:layout_marginTop="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#FFAB00" />
-
-
-        <TextView
-            android:id="@+id/textViewprofil_nom"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="35dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:textColor="@color/button_material_dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/profil_page_nom"/>
-
-
-            <TextView
-                android:id="@+id/profil_nom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:layout_width="150dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="15dp"
+            android:background="#00796B" />
 
         <TextView
-            android:id="@+id/prenom"
-            android:layout_marginLeft="10dp"
+            android:id="@+id/profil_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/profil_page_prenom"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/button_material_dark"/>
-
-
-            <TextView
-                android:id="@+id/profil_Prenom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Age"
+            android:textColor="#727272"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/profil_membre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Membre depuis : "
+            android:textColor="#727272"
+            android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/profil_nombreDeVoyage"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
-            android:text="@string/profil_page_email"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:textColor="@color/button_material_dark" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Nombre de voyage :"
+            android:textColor="#727272"
+            android:textSize="16dp" />
 
+        <TextView
+            android:id="@+id/profil_nombreFoisGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Nombre de fois guide: "
+            android:textColor="#727272"
+            android:textSize="16dp" />
         <TextView
             android:id="@+id/profil_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/ColorPrimary"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/textView2"
             android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profil_page_ville"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:textColor="@color/button_material_dark" />
-
-            <TextView
-                android:id="@+id/Profil_Ville"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:layout_marginTop="5dp"
+            android:hint="Email"
+            android:textColor="#727272"
+            android:textSize="16dp" />
 
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profil_page_pays"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:textColor="@color/button_material_dark" />
-
-            <TextView
-                android:id="@+id/profil_pays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="#FF0000" />
+            android:textColor="#FF0000"
+            android:textStyle="bold" />
 
 
-
-            <Button
-                android:id="@+id/modifier_profil"
-                android:layout_marginLeft="80dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:padding="10dp"
-                android:background="@drawable/button_default_bg"
-                android:text="@string/profil_page_bouton" />
-
-
-
-
-
-
+        <ImageButton
+            android:id="@+id/modifier_profil"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="15dp"
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_create_white_24dp"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </ScrollView>
