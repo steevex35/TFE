@@ -5,18 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -96,7 +94,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
 
         }else
-        dialogPerso("error","error","error",infoVoyage.this);
+            dialogPerso("error", "error", "error", infoVoyage.this);
     }
 
 
@@ -195,7 +193,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 }
 
                 ListView poiListView = (ListView) findViewById(R.id.listViewPoi);
-                SimpleAdapter poiAdapter = new SimpleAdapter(infoVoyage.this,listHashPoi,R.layout.listview_poi,fields,field_R_id);
+                SimpleAdapter poiAdapter = new SimpleAdapter(infoVoyage.this, listHashPoi, R.layout.listview_poi, fields, field_R_id);
                 poiListView.setAdapter(poiAdapter);
 
                 poiListView.setClickable(true);

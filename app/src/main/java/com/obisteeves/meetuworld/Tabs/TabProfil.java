@@ -1,6 +1,5 @@
 package com.obisteeves.meetuworld.Tabs;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,15 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
-import com.obisteeves.meetuworld.PageAndroid.inscriptionPage;
 import com.obisteeves.meetuworld.PageAndroid.modifierProfil;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
-import com.obisteeves.meetuworld.Utils.Utilities;
 
 import org.json.JSONException;
 

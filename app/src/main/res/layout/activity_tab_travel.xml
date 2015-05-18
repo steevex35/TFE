@@ -6,26 +6,26 @@
     tools:context="com.obisteeves.meetuworld.Tabs.TabTravel">
 
     <ListView
+        android:id="@+id/voyageListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/voyageListView"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:divider="#E0E0E0"
+        android:layout_marginTop="5dp"
         android:background="#FFFFFF"
+        android:divider="#E0E0E0"
         android:dividerHeight="10.0sp"
         >
 
         </ListView>
 
      <FrameLayout
+         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/frameLayout">
+         android:layout_alignParentTop="true">
 
          <!--
          <TextView
@@ -41,13 +41,13 @@
 
         <ImageButton
             android:id="@+id/buttonAdd"
-            android:layout_margin="15dp"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:textColor="#FFFFFF"
-            android:src="@drawable/ic_action"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="15dp"
             android:background="@drawable/circle"
-            android:layout_gravity="right|bottom"/>
+            android:src="@drawable/ic_add_white_24dp"
+            android:textColor="#FFFFFF" />
 
     </FrameLayout>
 

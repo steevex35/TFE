@@ -1,16 +1,16 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 
-
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,11 +20,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
-
 import com.obisteeves.meetuworld.Utils.DatePickerFragment;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.Utilities;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,9 +34,9 @@ import java.util.Observer;
 
 import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
-public class inscriptionPage extends ActionBarActivity implements Observer{
+public class inscriptionPage extends ActionBarActivity implements Observer {
 
-        EditText nom,prenom,email,emailConf,pwd,pwdConf,ville;
+    EditText nom, prenom, email, pwd, ville;
         TextView error,fdateDob;
         Spinner spinner;
         String idSelectionPays;
@@ -62,12 +60,8 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
         ville.setText("Louvain-La-Neuve");
         email= (EditText) findViewById(R.id.email);
         email.setText("steeve35@hotmail.com");
-        emailConf= (EditText) findViewById(R.id.emailConfirmation);
-        emailConf.setText("steeve35@hotmail.com");
         pwd= (EditText) findViewById(R.id.pwd);
         pwd.setText("test1");
-        pwdConf=(EditText) findViewById(R.id.pwdConfirmation);
-        pwdConf.setText("test1");
         error = (TextView) findViewById(R.id.error);
         ListPays();
     }
@@ -85,9 +79,9 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
     private void iniActionBar(){
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Inscription");
+        getSupportActionBar().setTitle(Html.fromHtml("<b><font color='#ffffff'>Inscription</font></b>"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAB00")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
     }
 
     public void ListPays()
@@ -98,7 +92,6 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
                 + getResources().getString(R.string.listPays);
         net.setUrl(address);
         net.send();
-
     }
 
     @Override
@@ -129,9 +122,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
                        envoyerDataInscription(  nom.getText().toString(),
                                                 prenom.getText().toString(),
                                                 email.getText().toString(),
-                                                emailConf.getText().toString(),
                                                 pwd.getText().toString(),
-                                                pwdConf.getText().toString(),
                                                 ville.getText().toString(),
                                                 fdateDob.getText().toString(),
                                                 idSelectionPays);
@@ -151,35 +142,6 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
                 .setNegativeButton("Non", dialogClickListener).show();
     }
 
-    /**
-     *
-     * @param data1
-     * @param data2
-     * @param data3
-     * @param data4
-     * @param data5
-     * @param data6
-     * @param data7
-     * @param data8
-     * @return
-     */
-    public boolean testStringInscription(String data1,String data2,String data3, String data4,
-                                         String data5, String data6, String data7, String data8){
-        if(data1 != null && !data1.isEmpty()&&(data2!=null && !data2.isEmpty())&&
-                (data3!=null && !data3.isEmpty())&&(data4!=null && !data4.isEmpty())&&
-                (data5!=null && !data5.isEmpty())&&(data6!=null && !data6.isEmpty())&&
-                (data7!=null && !data7.isEmpty())&&(data8!=null && !data8.isEmpty())){
-            return true;
-        }else
-            return false;
-    }
-    public static boolean testStringInscription(String data1,String data2,String data3, String data4){
-        if(data1 != null && !data1.isEmpty()&&(data2!=null && !data2.isEmpty())&&
-                (data3!=null && !data3.isEmpty())&&(data4!=null && !data4.isEmpty())){
-            return true;
-        }else
-            return false;
-    }
 
     public void showDatePickerDialog(View v)
     {
@@ -194,37 +156,32 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
      * @param nom
      * @param prenom
      * @param email
-     * @param emailConf
      * @param pwd
-     * @param pwdConf
      * @param ville
      * @param dateOb
      * @param pays
      * @return
      */
-    private boolean  envoyerDataInscription(String nom,String prenom, String email,String emailConf,
-                                    String pwd, String pwdConf, String ville, String dateOb,String pays){
+    private boolean envoyerDataInscription(String nom, String prenom, String email,
+                                           String pwd, String ville, String dateOb, String pays) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.pageInscription);
         net.setUrl(address);
 
-        if(testStringInscription(nom,prenom,email,emailConf,pwd,pwdConf,ville,dateOb)==true) {
+        if (Utilities.testStringInscription(nom, prenom, email, pwd, ville, dateOb) == true) {
             net.addParam("nom", nom);
             net.addParam("prenom", prenom);
             net.addParam("email", email);
             net.addParam("pays",pays);
             net.addParam("ville",ville);
             net.addParam("dateOb",dateOb);
-            net.addParam("emailConf", emailConf);
             net.addParam("pwd", pwd);
-            net.addParam("pwdConf", pwdConf);
-
             net.send();
             return true;
         } else
-            dialogPerso("Un ou plusieurs champs sont vides","Avertissement","Retour",inscriptionPage.this);
+            dialogPerso("Un ou plusieurs champs sont vides", "Avertissement", "Retour", inscriptionPage.this);
         return false;
     }
 
@@ -279,7 +236,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer{
             builder.setMessage("Inscription Confirmée").setTitle(" Avertissement").setPositiveButton("Continuer", dialogClickListener).show();
             initAdvertTypesTable(observable);
         }else
-            dialogPerso(data.toString(),"Avertissement","Retour",inscriptionPage.this);
+            dialogPerso(data.toString(), "Avertissement", "Retour", inscriptionPage.this);
     }
 
     private void initAdvertTypesTable(final Observable observable){

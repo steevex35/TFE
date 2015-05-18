@@ -5,10 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,15 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
-import com.obisteeves.meetuworld.Tabs.TabProfil;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.Utilities;
 
 import org.json.JSONException;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.obisteeves.meetuworld.PageAndroid.inscriptionPage.testStringInscription;
+
 
 
 public class modifierProfil extends ActionBarActivity implements Observer {
@@ -134,7 +133,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                 + getResources().getString(R.string.pageModifierProfil);
         net.setUrl(address);
 
-        if(testStringInscription(nom, prenom, ville, pays)==true) {
+        if (Utilities.testStringInscription(nom, prenom, ville, pays) == true) {
             net.addParam("nom", nom);
             net.addParam("prenom", prenom);
             net.addParam("ville", ville);

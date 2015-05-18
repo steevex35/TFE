@@ -1,15 +1,11 @@
 package com.obisteeves.meetuworld.Utils;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.SystemClock;
-import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 
-import com.obisteeves.meetuworld.PageAndroid.ConnectionPage;
 import com.obisteeves.meetuworld.R;
 
 import org.json.JSONArray;
@@ -23,7 +19,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Objects;
 
 /**
  * Created by Steeves on 07-02-15.
@@ -125,8 +120,8 @@ public class Utilities {
 
     public static void agreed(int title, int msg, Activity source){
         agreed(source.getResources().getString(title)
-                ,source.getResources().getString(msg)
-                ,source);
+                , source.getResources().getString(msg)
+                , source);
     }
 
     /**
@@ -185,6 +180,24 @@ public class Utilities {
         }
 
 
+    }
+
+    public static boolean testStringInscription(String data1, String data2, String data3, String data4,
+                                                String data5, String data6) {
+        if (data1 != null && !data1.isEmpty() && (data2 != null && !data2.isEmpty()) &&
+                (data3 != null && !data3.isEmpty()) && (data4 != null && !data4.isEmpty()) &&
+                (data5 != null && !data5.isEmpty()) && (data6 != null && !data6.isEmpty())) {
+            return true;
+        } else
+            return false;
+    }
+
+    public static boolean testStringInscription(String data1, String data2, String data3, String data4) {
+        if (data1 != null && !data1.isEmpty() && (data2 != null && !data2.isEmpty()) &&
+                (data3 != null && !data3.isEmpty()) && (data4 != null && !data4.isEmpty())) {
+            return true;
+        } else
+            return false;
     }
 
 

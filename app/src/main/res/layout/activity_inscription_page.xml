@@ -1,191 +1,154 @@
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@color/ColorPrimary"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
         <ScrollView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/ColorPrimary"
+            android:background="#FFFFFF"
             tools:context="com.obisteeves.meetuworld.PageAndroid.inscriptionPage">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_centerInParent="true"
                 android:layout_marginTop="20dp"
-                android:layout_centerInParent="true">
-            <EditText
-                android:id="@+id/nom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginTop="-2dp"
-                android:padding="10dp"
-                android:hint="@string/nomUtilisateur"
-                android:textSize="14dp"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/user"/>
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/prenom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginTop="-2dp"
-                android:padding="10dp"
-                android:hint="@string/prenomUtilisateur"
-                android:textSize="14dp"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/user"/>
+                <EditText
+                    android:id="@+id/nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="-2dp"
+                    android:drawableLeft="@drawable/user"
+                    android:hint="@string/nomUtilisateur"
+                    android:padding="10dp"
+                    android:textColor="#212121"
+                    android:textColorHint="#727272"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/prenom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="-2dp"
+                    android:drawableLeft="@drawable/user"
+                    android:hint="@string/prenomUtilisateur"
+                    android:padding="10dp"
+                    android:textColor="#212121"
+                    android:textColorHint="#727272"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:drawableLeft="@drawable/email"
+                    android:hint="@string/email"
+                    android:padding="10dp"
+                    android:textColor="#212121"
+                    android:textColorHint="#727272"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:drawableLeft="@drawable/password"
+                    android:hint="@string/password"
+                    android:padding="10dp"
+                    android:password="true"
+                    android:textColor="#212121"
+                    android:textColorHint="#727272"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Dob"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="14dp"
-                    android:hint="Date de naissance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
                     android:layout_margin="20dp"
+                    android:clickable="true"
+                    android:hint="Date de naissance"
                     android:onClick="showDatePickerDialog"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/villeInscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Ville"
+                    android:padding="10dp"
+                    android:textColor="#212121"
+                    android:textColorHint="#727272"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/textView2"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="14dp"
-                    android:hint="Pays :"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp" />
+                    android:layout_margin="20dp"
+                    android:hint="Pays :"
+                    android:padding="5dp"
+                    android:textColorHint="#212121"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/listPaysInscription"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="20dp" />
 
-                    />
-                <EditText
-                    android:id="@+id/villeInscription"
+                <TextView
+                    android:id="@+id/error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textColor="#FF0000"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/boutonInscription"
+                    style="@style/DefaultButtonText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:background="@drawable/button_inscription"
+                    android:onClick="envoyerInscription"
                     android:padding="10dp"
-                    android:hint="Ville"
-                    android:textSize="14dp"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
-
-
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:hint="@string/email"
-                android:textSize="14dp"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/email"/>
-
-            <EditText
-                android:id="@+id/emailConfirmation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:textSize="14dp"
-                android:hint="@string/emailConfirmation"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/email"/>
-
-
-            <EditText
-                android:id="@+id/pwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:textSize="14dp"
-                android:hint="@string/password"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
-                android:password="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/password"/>
-
-            <EditText
-                android:id="@+id/pwdConfirmation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:textSize="14dp"
-                android:hint="@string/passwordConfirmation"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
-                android:password="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/password"/>
-
-            <TextView
-                android:id="@+id/error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="#FF0000"/>
-
-
-            <Button
-                android:id="@+id/boutonInscription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="30dp"
-                android:text="@string/inscriptionPage_confirmer"
-                style="@style/DefaultButtonText"
-                android:background="@drawable/button_default_bg"
-                android:onClick="envoyerInscription"/>
+                    android:text="@string/inscriptionPage_confirmer"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
         </ScrollView>
 </LinearLayout>

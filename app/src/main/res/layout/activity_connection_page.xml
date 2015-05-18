@@ -1,82 +1,91 @@
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:background="@color/ColorPrimary"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/ColorPrimary"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="#FFFFFF">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:orientation="vertical"
                 tools:context="com.obisteeves.meetuworld.PageAndroid.ConnectionPage">
 
 
                     <EditText
                         android:id="@+id/email"
-                        android:layout_marginTop="110dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:hint="@string/email"
-                        android:textSize="14dp"
-                        android:textColorHint="#FFFFFF"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:drawableLeft="@drawable/email"/>
+                        android:layout_marginTop="110dp"
+                        android:drawableLeft="@drawable/email"
+                        android:hint="@string/email"
+                        android:padding="10dp"
+                        android:textColor="#212121"
+                        android:textColorHint="#727272"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
                     <EditText
                         android:id="@+id/pwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:layout_marginTop="-2dp"
-                        android:padding="10dp"
-                        android:hint="@string/password"
-                        android:textSize="14dp"
-                        android:textColorHint="#FFFFFF"
-                        android:textColor="#FFFFFF"
-                        android:password="true"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:drawableLeft="@drawable/password"/>
+                        android:layout_marginTop="-2dp"
+                        android:drawableLeft="@drawable/password"
+                        android:hint="@string/password"
+                        android:padding="10dp"
+                        android:password="true"
+                        android:textColor="#212121"
+                        android:textColorHint="#727272"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginTop="10dp"
                         android:id="@+id/error"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
                         android:layout_gravity="center"
-                        android:textColor="#FF0000"/>
+                        android:layout_marginTop="10dp"
+                        android:textColor="#FF0000"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btnSingIn"
+                        style="@style/ConnexionButtonText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
                         android:layout_margin="30dp"
-                        android:text="@string/connection"
+                        android:background="@drawable/button_connection_page"
                         android:onClick="connection"
-                        style="@style/DefaultButtonText"
-                        android:background="@drawable/button_default_bg"/>
+                        android:padding="10dp"
+                        android:text="@string/connection" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="110dp"
+                    android:text="Mot de passe oublié ?"
+                    android:textColor="#00796B"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
     </ScrollView>
 </LinearLayout>

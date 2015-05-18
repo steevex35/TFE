@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.obisteeves.meetuworld.Tabs.TabGuide;
 import com.obisteeves.meetuworld.Tabs.TabHome;
 import com.obisteeves.meetuworld.Tabs.TabProfil;
 import com.obisteeves.meetuworld.Tabs.TabTravel;
@@ -43,6 +44,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 TabProfil tabProfil = new TabProfil();
                 return tabProfil;
+            case 3:
+                TabGuide tabGuide = new TabGuide();
+                return tabGuide;
 
         }
 

@@ -3,12 +3,13 @@ package com.obisteeves.meetuworld.PageAndroid;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -34,12 +35,13 @@ public class HomePage extends ActionBarActivity {
 
     private void ini(){
         // Set the Settings of the tabs
-        nbTabs = 3;
-        titles = new CharSequence[]{"Home","U Travel","Profil"};
+        nbTabs = 4;
+        titles = new CharSequence[]{"Home", "U Trips", "Profil", "Guide"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
-        getSupportActionBar().setTitle("Meet u World");
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
+        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Meet Your World</font></b></center>"));
+
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager)findViewById(R.id.pager);
         pager.setAdapter(adapter);
@@ -70,9 +72,34 @@ public class HomePage extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
+            case R.id.action_filtre:
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                //filtre sur la Localisation
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage("Filtre en fonction de votre localisation ?").setTitle("Info").setPositiveButton("Oui", dialogClickListener1)
+                        .setNegativeButton("Non", dialogClickListener1).show();
+                return true;
+
             case R.id.action_apropos:
                 // About option clicked.
                 return true;
+
             case R.id.action_deco:
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override

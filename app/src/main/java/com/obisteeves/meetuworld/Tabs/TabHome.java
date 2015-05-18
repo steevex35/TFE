@@ -8,16 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-
 import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,17 +25,15 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
-
 /**
  * Created by hp1 on 21-01-2015.
  */
 public class TabHome extends Fragment implements Observer{
 
-    private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
     String idVoyage;
     String [] fields = {"id","nom","pays","ville","date_arrivee","date_depart"};
     int[] field_R_id = {R.id.idVoyage,R.id.nomUser,R.id.paysHome, R.id.villeHome,R.id.dateArrivee,R.id.dateDepart};
+    private ArrayList<HashMap<String, String>> listHashVoyage = new ArrayList<HashMap<String, String>>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -118,7 +113,7 @@ public class TabHome extends Fragment implements Observer{
                                 String dateATosend=dateA.getText().toString();
                                 String dateDTosend=dateD.getText().toString();
 
-                              Intent intent = new Intent(getActivity(), infoVoyage.class);
+                                Intent intent = new Intent(getActivity(), infoVoyage.class);
                                intent.putExtra("id_voyage", idVoyageToSend);
                                 intent.putExtra("nom_user", nomUserToSend);
                                 intent.putExtra("pays_user", paysUserTosend);
