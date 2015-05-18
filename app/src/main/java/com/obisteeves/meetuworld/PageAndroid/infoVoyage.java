@@ -87,8 +87,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
                 @Override
                 public void onClick(View v) {
-                    //page de modif du profil
+                    //googleMaps
                     Intent intent = new Intent(infoVoyage.this, ItinerairePage.class);
+                    intent.putExtra("ville", ville);
                     startActivity(intent);
                 }
             });
