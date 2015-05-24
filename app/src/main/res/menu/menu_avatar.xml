@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/take"
+
+        android:title="Prendre une photo "></item>
+
+    <item
+        android:id="@+id/choose"
+
+        android:title="Depuis la Bibi" />
+
+</menu>
