@@ -22,6 +22,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -67,7 +68,6 @@
             android:parentActivityName=".PageAndroid.MainActivity"
             android:windowSoftInputMode="stateHidden" >
         </activity>
-
         <activity
             android:name=".Tabs.TabProfil"
             android:configChanges="orientation|screenSize"
@@ -107,10 +107,15 @@
         <activity
             android:name=".PageAndroid.ItinerairePage"
             android:label="@string/title_activity_itineraire_page"
-            android:parentActivityName=".PageAndroid.infoVoyage"></activity>
+            android:parentActivityName=".PageAndroid.infoVoyage" />
         <activity
             android:name=".Tabs.TabGuide"
-            android:label="@string/title_activity_tab_guide">
+            android:label="@string/title_activity_tab_guide"></activity>
+        <activity
+            android:name=".PageAndroid.ResetPwd"
+            android:label="@string/title_activity_reset_pwd"
+            android:parentActivityName=".PageAndroid.ConnectionPage"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

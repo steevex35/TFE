@@ -54,6 +54,7 @@
     <string name="failed">Erreur</string>
     <string name="serveurAdd">http://www.l4h.be</string>
     <string name="connexionAdd">/TFE/android/connexion.php</string>
+    <string name="modifMotDePasse">/TFE/android/modifMotDePasse.php</string>
     <string name="pageInscription">/TFE/android/pageInscription.php</string>
     <string name="pageProfil">/TFE/android/profil.php</string>
     <string name="pageModifierProfil">/TFE/android/modifierProfil.php</string>
@@ -102,6 +103,7 @@
     <string name="title_activity_info_voyage">infoVoyage</string>
     <string name="title_activity_itineraire_page">ItinerairePage</string>
     <string name="title_activity_tab_guide">TabGuide</string>
+    <string name="title_activity_reset_pwd">ResetPwd</string>
 
 
 

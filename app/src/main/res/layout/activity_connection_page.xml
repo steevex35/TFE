@@ -33,7 +33,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="110dp"
-                        android:drawableLeft="@drawable/email"
+                        android:drawableLeft="@drawable/mail"
                         android:hint="@string/email"
                         android:padding="10dp"
                         android:textColor="#212121"
@@ -47,7 +47,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="-2dp"
-                        android:drawableLeft="@drawable/password"
+                        android:drawableLeft="@drawable/lock"
                         android:hint="@string/password"
                         android:padding="10dp"
                         android:password="true"
@@ -78,9 +78,11 @@
                         android:text="@string/connection" />
 
                 <TextView
+                    android:id="@+id/resetPwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="110dp"
+                    android:onClick="true"
                     android:text="Mot de passe oublié ?"
                     android:textColor="#00796B"
                     android:textSize="15dp"

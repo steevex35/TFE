@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
@@ -32,6 +33,7 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
     private EditText fEmail, fMdp;
     private String id, nom, prenom, email, ville, pays;
     private User userCurrent;
+    private TextView resetPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,15 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         fEmail.setText("steeve35@hotmail.com");
         fMdp = (EditText) findViewById(R.id.pwd);
         fMdp.setText("test1");
+
+        resetPwd = (TextView) findViewById(R.id.resetPwd);
+        resetPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ConnectionPage.this, ResetPwd.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
