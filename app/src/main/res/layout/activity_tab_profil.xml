@@ -21,7 +21,7 @@
             android:layout_width="180dp"
             android:layout_height="1800dp"
             android:layout_marginLeft="80dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="0.5"
             android:clickable="true"
             android:src="@drawable/ic_account_circle_grey600_48dp"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Note :"
+            android:hint="Note : 8/10"
             android:textColor="#727272"
             android:textSize="16dp" />
 
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:hint="Age"
+            android:hint="Age : 23 ans"
             android:textColor="#727272"
             android:textSize="16dp" />
         <TextView
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Membre depuis : "
+            android:hint="Membre depuis : 1 ans"
             android:textColor="#727272"
             android:textSize="16dp" />
 
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Nombre de voyage :"
+            android:hint="Nombre de voyage : 20"
             android:textColor="#727272"
             android:textSize="16dp" />
 
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Nombre de fois guide: "
+            android:hint="Nombre de fois guide: 18  "
             android:textColor="#727272"
             android:textSize="16dp" />
         <TextView
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Email"
+            android:hint="Email: Steevex35@hotmail.com"
             android:textColor="#727272"
             android:textSize="16dp" />
 
@@ -139,7 +139,8 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="right|bottom"
-            android:layout_margin="15dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/circle"
             android:src="@drawable/ic_create_white_24dp"
             android:textColor="#FFFFFF" />

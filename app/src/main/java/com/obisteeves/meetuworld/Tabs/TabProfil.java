@@ -15,11 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.obisteeves.meetuworld.PageAndroid.HomePage;
 import com.obisteeves.meetuworld.PageAndroid.modifierProfil;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
-
-import org.json.JSONException;
+import com.obisteeves.meetuworld.Utils.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,9 +28,6 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- * Created by hp1 on 21-01-2015.
- */
 public class TabProfil extends Fragment implements Observer {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView avatar;
@@ -38,13 +35,23 @@ public class TabProfil extends Fragment implements Observer {
     private String mCurrentPhotoPath;
     private File photoFile = null;
     private File image;
+    private User userCurrent;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.activity_tab_profil,container,false);
+        View v = inflater.inflate(R.layout.activity_tab_profil, container, false);
+        //afficheProfil(v);
+        HomePage homeActivity = (HomePage) getActivity();
+        userCurrent = homeActivity.getUser();
+        try {
+            ((TextView) v.findViewById(R.id.profil_nomPrenom)).setText(userCurrent.getmPrenom() + " " + userCurrent.getmNom());
+            ((TextView) v.findViewById(R.id.profil_villePays)).setText(userCurrent.getmPays() + ", " + userCurrent.getmVille());
+            ((TextView) v.findViewById(R.id.profil_Email)).setText(userCurrent.getmEmail());
 
-        afficheProfil(v);
-
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         avatar = (ImageView) v.findViewById(R.id.avatar);
         boutonAlter = (ImageButton) v.findViewById(R.id.modifier_profil);
         boutonAlter.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +60,9 @@ public class TabProfil extends Fragment implements Observer {
             public void onClick(View v) {
                 //page de modif du profil
                 Intent intent = new Intent(getActivity(), modifierProfil.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("user", userCurrent);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -65,6 +75,8 @@ public class TabProfil extends Fragment implements Observer {
 
             }
         });
+
+        ((TextView) v.findViewById(R.id.profil_Email)).setText("");
 
         return v;
 
@@ -143,18 +155,18 @@ public class TabProfil extends Fragment implements Observer {
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
         if (data.toString().equals(netReq)) {
 
-           try {
-               String nom = resultat.getResult().get("nom").toString();
-               String prenom = resultat.getResult().get("prenom").toString();
-               String ville = resultat.getResult().get("ville").toString();
-               String pays = resultat.getResult().get("pays").toString();
-               ((TextView) getActivity().findViewById(R.id.profil_nomPrenom)).setText(prenom + " " + nom);
-               ((TextView) getActivity().findViewById(R.id.profil_villePays)).setText(pays + ", " + ville);
-               ((TextView) getActivity().findViewById(R.id.profil_Email)).setText(resultat.getResult().get("email").toString());
+            //try {
+            //String nom = resultat.getResult().get("nom").toString();
+            //String prenom = resultat.getResult().get("prenom").toString();
+            //String ville = resultat.getResult().get("ville").toString();
+            //String pays = resultat.getResult().get("pays").toString();
+            //((TextView) getActivity().findViewById(R.id.profil_nomPrenom)).setText(prenom + " " + nom);
+            //((TextView) getActivity().findViewById(R.id.profil_villePays)).setText(pays + ", " + ville);
+            //((TextView) getActivity().findViewById(R.id.profil_Email)).setText(resultat.getResult().get("email").toString());
 
-           } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            //} catch (JSONException e) {
+            //e.printStackTrace();
+            //}
         }
 
     }

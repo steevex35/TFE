@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.Utilities;
 
 import org.json.JSONException;
@@ -31,12 +33,16 @@ public class modifierProfil extends ActionBarActivity implements Observer {
     Toolbar toolbar;
     EditText nom,prenom,ville,pays;
     TextView error;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifier_profil);
-
+        try {
+            user = getIntent().getExtras().getParcelable("user");
+        } catch (NullPointerException e) {
+        }
 
         iniActionBar();
         afficheProfil();
@@ -45,6 +51,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         ville=(EditText) findViewById(R.id.hidden_edit_ville);
         pays=(EditText) findViewById(R.id.hidden_edit_pays);
         error = (TextView) findViewById(R.id.error);
+
     }
 
 
@@ -54,10 +61,9 @@ public class modifierProfil extends ActionBarActivity implements Observer {
     private void iniActionBar(){
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Modifier votre profil");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Modifier votre profil</font></b></center>"));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
     }
 
     @Override
@@ -104,7 +110,9 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                                 ville.getText().toString(),pays.getText().toString());
 
                         //Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
-                        startActivity(new Intent(getApplicationContext(),HomePage.class));
+                        Intent intent = new Intent(modifierProfil.this, HomePage.class);
+                        intent.putExtra("user", user);
+                        startActivity(intent);
 
                         break;
 
@@ -125,8 +133,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
     }
 
     private void nouveauProfil(String nom,String prenom, String ville, String pays){
-
-
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)

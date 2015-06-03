@@ -39,7 +39,7 @@
             android:layout_margin="4dp"
             android:background="@drawable/button_facebook"
             android:padding="10dp"
-            android:text="Se connecter avec Facebook" />
+            android:text="S'inscrire avec Facebook" />
 
 
         <Button

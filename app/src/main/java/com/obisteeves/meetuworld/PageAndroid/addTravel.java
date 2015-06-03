@@ -8,9 +8,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +22,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.DatePickerFragment;
@@ -106,10 +106,9 @@ public class addTravel extends ActionBarActivity implements Observer {
     {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Rajouter un voyage");
-        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Rajouter un voyage</font></b></center>"));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
     }
 
 

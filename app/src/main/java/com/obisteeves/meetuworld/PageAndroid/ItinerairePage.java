@@ -4,20 +4,21 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.*;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import com.obisteeves.meetuworld.R;
 
 import java.io.IOException;
@@ -50,10 +51,9 @@ public class ItinerairePage extends ActionBarActivity {
     private void iniActionBar(){
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Itinéraire");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Itinéraire</font></b></center>"));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
     }
 
     @Override
@@ -111,29 +111,57 @@ public class ItinerairePage extends ActionBarActivity {
 
         Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
         String adresse = ville;
+        String Poi1 = "Tour Eiffel";
+        String Poi2 = "Pigalle";
+        String Poi3 = "Place de clichy";
         try {
-            List<Address> add= geoCoder.getFromLocationName(adresse,5);
+            List<Address> add = geoCoder.getFromLocationName(Poi3, 5);
             Double lat = (double) (add.get(0).getLatitude());
             Double lon = (double) (add.get(0).getLongitude());
 
+            List<Address> add2 = geoCoder.getFromLocationName(Poi1, 5);
+            Double lat1 = (double) (add2.get(0).getLatitude());
+            Double lon1 = (double) (add2.get(0).getLongitude());
+
+            List<Address> add3 = geoCoder.getFromLocationName(Poi2, 5);
+            Double lat2 = (double) (add3.get(0).getLatitude());
+            Double lon2 = (double) (add3.get(0).getLongitude());
+
             /** Make sure that the map has been initialised **/
             if(null != googleMap) {
-                Marker afficheInfo = googleMap.addMarker(new MarkerOptions()
+                Marker afficheInfo1 = googleMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(lat2, lon2))
+                                .title(Poi2)
+                                .snippet("")
+                                .draggable(true)
 
+                );
+                Marker afficheInfo = googleMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(lat, lon))
-                                .title("POi")
-                                .snippet("Pour le fun bro")
+                                .title(Poi3)
+                                .snippet("")
+                                .draggable(true)
+
+                );
+                Marker affichePOi = googleMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(lat1, lon1))
+                                .snippet("Celien Nanson")
+                                .title(Poi1)
                                 .draggable(true)
 
 
                 );
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(afficheInfo.getPosition(), 15));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(affichePOi.getPosition(), 15));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(afficheInfo1.getPosition(), 15));
                 googleMap.animateCamera(CameraUpdateFactory.zoomIn());
                 // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(30), 2000, null);
 
 
                 afficheInfo.showInfoWindow();
+                afficheInfo1.showInfoWindow();
+                affichePOi.showInfoWindow();
             }
 
         } catch (IOException e) {

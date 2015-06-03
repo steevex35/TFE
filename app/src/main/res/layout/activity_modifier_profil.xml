@@ -1,32 +1,32 @@
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <include
     android:id="@+id/tool_bar"
     layout="@layout/tool_bar"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="#E0E0E0"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="#E0E0E0">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
                 android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:paddingBottom="70dp"
                 tools:context="com.obisteeves.meetuworld.PageAndroid.modifierProfil">
 
 
@@ -34,66 +34,64 @@
                     android:id="@+id/hidden_edit_nom"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textColorHint="@color/ColorPrimary"
-                    android:hint="@string/profil_page_editNom"/>
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/profil_page_editNom"
+                    android:textColorHint="@color/ColorPrimary" />
 
                 <EditText
                     android:id="@+id/hidden_edit_prenom"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/ColorPrimary"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:hint="@string/profil_page_editPrenom" />
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/profil_page_editPrenom"
+                    android:textColorHint="@color/ColorPrimary" />
 
 
                 <EditText
                     android:id="@+id/hidden_edit_ville"
                     android:layout_width="fill_parent"
-                    android:layout_marginTop="20dp"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/ColorPrimary"
-                    android:hint="@string/profil_page_editVille"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="text"/>
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/profil_page_editVille"
+                    android:inputType="text"
+                    android:textColorHint="@color/ColorPrimary" />
 
 
                 <EditText
                     android:id="@+id/hidden_edit_pays"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/ColorPrimary"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
                     android:hint="@string/profil_page_ediPays"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColorHint="@color/ColorPrimary" />
 
                 <TextView
                     android:id="@+id/error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:textColor="#FF0000"/>
+                    android:textColor="#FF0000"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
 
                 <Button
                     android:id="@+id/envoyer_modifier_profil"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginBottom="50dp"
+                    style="@style/ConnexionButtonText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:padding="10dp"
+                    android:background="@drawable/button_inscription"
                     android:onClick="envoyerNouveauProfil"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_default_bg"
                     android:text="@string/profil_page_sendNewProfil" />
             </LinearLayout>
     </ScrollView>

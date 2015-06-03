@@ -1,6 +1,7 @@
 package com.obisteeves.meetuworld.PageAndroid;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,10 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.Utilities;
 
 import org.json.JSONException;
@@ -27,9 +28,10 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
 public class ConnectionPage extends ActionBarActivity implements Observer{
 
-    Toolbar toolbar;
+    private Toolbar toolbar;
     private EditText fEmail, fMdp;
-    private TextView error;
+    private String id, nom, prenom, email, ville, pays;
+    private User userCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +39,11 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         setContentView(R.layout.activity_connection_page);
         iniActionBar();
 
-
         fEmail=(EditText) findViewById(R.id.email);
         fEmail.setText("steeve35@hotmail.com");
         fMdp = (EditText) findViewById(R.id.pwd);
         fMdp.setText("test1");
-        error = (TextView) findViewById(R.id.error);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,7 +79,6 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         return super.onOptionsItemSelected(item);
     }
     public void connection(View view){
-        error.setText("");
         connect(fEmail.getText().toString(), fMdp.getText().toString());
         //Utilities.enter(HomePage.class, this);
     }
@@ -101,10 +99,27 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
 
     public void update(Observable observable,final Object msg) {
         if(msg==null) return ;
-
+        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         if(msg.toString().equals(NetworkRequestAdapter.NO_ERROR)){
-           Utilities.enter(HomePage.class, this);
-           initAdvertTypesTable(observable);
+
+            try {
+                id = resultat.getResult().get("id").toString();
+                nom = resultat.getResult().get("nom").toString();
+                prenom = resultat.getResult().get("prenom").toString();
+                email = resultat.getResult().get("email").toString();
+                ville = resultat.getResult().get("ville").toString();
+                pays = resultat.getResult().get("pays").toString();
+
+                userCurrent = new User(id, nom, prenom, email, ville, pays);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //Utilities.enter(HomePage.class, this);
+            Intent intent = new Intent(ConnectionPage.this, HomePage.class);
+            intent.putExtra("user", userCurrent);
+            startActivity(intent);
+            initAdvertTypesTable(observable);
 
         }
         else

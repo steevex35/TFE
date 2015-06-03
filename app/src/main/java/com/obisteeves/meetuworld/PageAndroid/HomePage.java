@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Tabs.SlidingTabLayout;
+import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.ViewPagerAdapter;
 
 public class HomePage extends ActionBarActivity {
@@ -25,18 +26,34 @@ public class HomePage extends ActionBarActivity {
     SlidingTabLayout tabs;
     CharSequence titles[];
     int nbTabs;
+    private User user;
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         ini();
+        try {
+            user = getIntent().getExtras().getParcelable("user");
+        } catch (NullPointerException e) {
+        }
+
     }
 
     private void ini(){
         // Set the Settings of the tabs
         nbTabs = 4;
-        titles = new CharSequence[]{"Home", "U Trips", "Profil", "Guide"};
+        titles = new CharSequence[]{"Home", "Ur Trips", "Profil", "Guide"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
@@ -132,4 +149,6 @@ public class HomePage extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

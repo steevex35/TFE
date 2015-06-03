@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -125,10 +126,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     private void iniActionBar(){
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Info voyage");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitleTextColor(Color.parseColor("#FFAB00"));
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#01579B")));
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Info voyage</font></b></center>"));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
     }
 
     private void afficheVoyage(String id_voyage){
