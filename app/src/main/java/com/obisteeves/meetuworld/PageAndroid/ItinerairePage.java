@@ -53,7 +53,7 @@ public class ItinerairePage extends ActionBarActivity {
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Itinéraire</font></b></center>"));
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
     }
 
     @Override

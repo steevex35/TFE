@@ -31,7 +31,7 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
 
     private Toolbar toolbar;
     private EditText fEmail, fMdp;
-    private String id, nom, prenom, email, ville, pays;
+    private String id, nom, prenom, age, email, ville, pays, inscription, nbVoyage, nbGuides;
     private User userCurrent;
     private TextView resetPwd;
 
@@ -72,7 +72,7 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Connexion</font></b></center>"));
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
     }
 
     @Override
@@ -117,11 +117,15 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
                 id = resultat.getResult().get("id").toString();
                 nom = resultat.getResult().get("nom").toString();
                 prenom = resultat.getResult().get("prenom").toString();
+                age = resultat.getResult().get("age").toString();
                 email = resultat.getResult().get("email").toString();
                 ville = resultat.getResult().get("ville").toString();
                 pays = resultat.getResult().get("pays").toString();
+                inscription = resultat.getResult().get("inscrit").toString();
+                nbVoyage = resultat.getResult().get("nbVoyage").toString();
+                nbGuides = resultat.getResult().get("nbGuide").toString();
 
-                userCurrent = new User(id, nom, prenom, email, ville, pays);
+                userCurrent = new User(id, nom, prenom, age, email, ville, pays, inscription, nbVoyage, nbGuides);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

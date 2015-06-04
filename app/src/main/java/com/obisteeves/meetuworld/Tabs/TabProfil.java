@@ -47,7 +47,12 @@ public class TabProfil extends Fragment implements Observer {
         try {
             ((TextView) v.findViewById(R.id.profil_nomPrenom)).setText(userCurrent.getmPrenom() + " " + userCurrent.getmNom());
             ((TextView) v.findViewById(R.id.profil_villePays)).setText(userCurrent.getmPays() + ", " + userCurrent.getmVille());
-            ((TextView) v.findViewById(R.id.profil_Email)).setText(userCurrent.getmEmail());
+            ((TextView) v.findViewById(R.id.email_profil)).setText("Email : " + userCurrent.getmEmail());
+            ((TextView) v.findViewById(R.id.profil_age)).setText("Âge : " + userCurrent.getmAge() + " ans");
+            ((TextView) v.findViewById(R.id.profil_membre)).setText("Membre depuis : " + userCurrent.getmInscription());
+            ((TextView) v.findViewById(R.id.profil_nombreDeVoyage)).setText("Nombre de voyages : " + userCurrent.getmNbVoyages());
+            ((TextView) v.findViewById(R.id.profil_nombreFoisGuide)).setText("Nombre de fois guide : " + userCurrent.getmNbGuides());
+
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -76,7 +81,6 @@ public class TabProfil extends Fragment implements Observer {
             }
         });
 
-        ((TextView) v.findViewById(R.id.profil_Email)).setText("");
 
         return v;
 

@@ -128,7 +128,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Info voyage</font></b></center>"));
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
     }
 
     private void afficheVoyage(String id_voyage){

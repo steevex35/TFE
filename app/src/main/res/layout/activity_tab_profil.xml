@@ -41,6 +41,16 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/profil_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Age : "
+            android:textColor="#212121"
+            android:textSize="16dp" />
+
+        <TextView
             android:id="@+id/profil_villePays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,28 +80,30 @@
             android:textColor="#727272"
             android:textSize="16dp" />
 
+        <TextView
+            android:id="@+id/email_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="email"
+            android:textColor="#727272"
+            android:textSize="16dp" />
+
         <View
             android:layout_width="150dp"
             android:layout_height="5dp"
             android:layout_marginTop="15dp"
             android:background="#00796B" />
 
-        <TextView
-            android:id="@+id/profil_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:hint="Age : 23 ans"
-            android:textColor="#727272"
-            android:textSize="16dp" />
+
         <TextView
             android:id="@+id/profil_membre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Membre depuis : 1 ans"
+            android:hint="Membre depuis : "
             android:textColor="#727272"
             android:textSize="16dp" />
 
@@ -101,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Nombre de voyage : 20"
+            android:hint="Nombre de voyage : "
             android:textColor="#727272"
             android:textSize="16dp" />
 
@@ -111,19 +123,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Nombre de fois guide: 18  "
+            android:hint="Nombre de fois guide: "
             android:textColor="#727272"
             android:textSize="16dp" />
-        <TextView
-            android:id="@+id/profil_Email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:hint="Email: Steevex35@hotmail.com"
-            android:textColor="#727272"
-            android:textSize="16dp" />
-
 
 
         <TextView
@@ -146,4 +148,5 @@
             android:textColor="#FFFFFF" />
 
     </LinearLayout>
+
 </ScrollView>

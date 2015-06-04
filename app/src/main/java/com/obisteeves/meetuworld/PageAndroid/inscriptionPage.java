@@ -81,7 +81,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(Html.fromHtml("<b><font color='#ffffff'>Inscription</font></b>"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
     }
 
     public void ListPays()

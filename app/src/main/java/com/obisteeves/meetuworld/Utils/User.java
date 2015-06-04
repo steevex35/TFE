@@ -22,28 +22,40 @@ public class User implements Parcelable {
     private String mId;
     private String mNom;
     private String mPrenom;
+    private String mAge;
     private String mEmail;
     private String mVille;
     private String mPays;
+    private String mInscription;
+    private String mNbVoyages;
+    private String mNbGuides;
 
 
-    public User(String id, String nom, String prenom, String email, String ville, String pays) {
+    public User(String id, String nom, String prenom, String age, String email, String ville, String pays, String inscription, String nbVoyages, String nbGuides) {
         super();
         this.mId = id;
         this.mNom = nom;
         this.mPrenom = prenom;
+        this.mAge = age;
         this.mEmail = email;
         this.mVille = ville;
         this.mPays = pays;
+        this.mInscription = inscription;
+        this.mNbVoyages = nbVoyages;
+        this.mNbGuides = nbGuides;
     }
 
     public User(Parcel in) {
         mId = in.readString();
         mNom = in.readString();
         mPrenom = in.readString();
+        mAge = in.readString();
         mEmail = in.readString();
         mVille = in.readString();
         mPays = in.readString();
+        mInscription = in.readString();
+        mNbVoyages = in.readString();
+        mNbGuides = in.readString();
     }
 
     @Override
@@ -56,9 +68,13 @@ public class User implements Parcelable {
         dest.writeString(mId);
         dest.writeString(mNom);
         dest.writeString(mPrenom);
+        dest.writeString(mAge);
         dest.writeString(mEmail);
         dest.writeString(mVille);
         dest.writeString(mPays);
+        dest.writeString(mInscription);
+        dest.writeString(mNbVoyages);
+        dest.writeString(mNbGuides);
     }
 
     public String getmId() {
@@ -85,6 +101,14 @@ public class User implements Parcelable {
         this.mPrenom = mPrenom;
     }
 
+    public String getmAge() {
+        return mAge;
+    }
+
+    public void setmAge(String mAge) {
+        this.mAge = mAge;
+    }
+
     public String getmEmail() {
         return mEmail;
     }
@@ -108,5 +132,30 @@ public class User implements Parcelable {
     public void setmPays(String mPays) {
         this.mPays = mPays;
     }
+
+    public String getmInscription() {
+        return mInscription;
+    }
+
+    public void setmInscription(String mInscription) {
+        this.mInscription = mInscription;
+    }
+
+    public String getmNbVoyages() {
+        return mNbVoyages;
+    }
+
+    public void setmNbVoyages(String mNbVoyages) {
+        this.mNbVoyages = mNbVoyages;
+    }
+
+    public String getmNbGuides() {
+        return mNbGuides;
+    }
+
+    public void setmNbGuides(String mNbGuides) {
+        this.mNbGuides = mNbGuides;
+    }
+
 
 }
