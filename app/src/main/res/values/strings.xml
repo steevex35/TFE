@@ -61,6 +61,7 @@
     <string name="pageAjouterVoyage">/TFE/android/ajouterVoyage.php</string>
     <string name="listPays">/TFE/android/Outils/listPays.php</string>
     <string name="listVoyageUser">/TFE/android/Outils/listVoyageUser.php</string>
+    <string name="listGuideUser">/TFE/android/Outils/listGuideUser.php</string>
     <string name="listVoyages">/TFE/android/Outils/listVoyages.php</string>
     <string name="afficheVoyages">/TFE/android/Outils/afficheVoyage.php</string>
     <string name="devenirGuide">/TFE/android/devenirGuide.php</string>
