@@ -27,8 +27,8 @@ import java.util.Observer;
 public class TabGuide extends Fragment implements Observer {
 
     private User user;
-    private String[] fields = {"id", "", "nom", "ville", "dateP", "nomUser", "prenom", "idVoyage"};
-    private int[] field_R_id = {R.id.idGuide, R.id.nomPoiGuide, R.id.villeGuide, R.id.datePassage, R.id.nomAuteurVoyage, R.id.prenomAuteurVoyage, R.id.idVoyageGuide};
+    private String[] fields = {"id", "nom", "ville", "dateP", "nomUser", "idVoyage"};
+    private int[] field_R_id = {R.id.idGuide, R.id.nomPoiGuide, R.id.villeGuide, R.id.datePassage, R.id.nomAuteurVoyage, R.id.idVoyageGuide};
     private ArrayList<HashMap<String, String>> listHashGuide = new ArrayList<HashMap<String, String>>();
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,12 +68,11 @@ public class TabGuide extends Fragment implements Observer {
                     String prenom = json.getString("prenom");
                     String idVoyage = json.getString("voyages_id");
 
-                    listViewMap.put("pays", id);
-                    listViewMap.put("nomPoi", nomPoi);
+                    listViewMap.put("id", id);
+                    listViewMap.put("nom", nomPoi);
                     listViewMap.put("ville", ville);
-                    listViewMap.put("dateP", dateP);
-                    listViewMap.put("nom", nom);
-                    listViewMap.put("prenom", prenom);
+                    listViewMap.put("dateP", "Le : " + dateP);
+                    listViewMap.put("nomUser", "Avec : " + nom + " " + prenom);
                     listViewMap.put("idVoyage", idVoyage);
                     listHashGuide.add(listViewMap);
 

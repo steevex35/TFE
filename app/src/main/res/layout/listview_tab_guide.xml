@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="2dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="5dp"
     android:orientation="vertical">
 
     <TextView
@@ -12,55 +12,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="2dp"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121" />
+    <TextView
+        android:id="@+id/villeGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Large Text"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/datePassage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
         android:layout_marginLeft="10dp"
-        android:hint="date passage" />
+        android:hint="Date passage" />
 
     <TextView
         android:id="@+id/nomAuteurVoyage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="10dp"
         android:text="Large Text"
         android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/prenomAuteurVoyage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:text="Large Text"
-        android:visibility="visible" />
-
-    <TextView
-        android:id="@+id/villeGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:text="Large Text"
-        android:visibility="visible" />
 
     <TextView
         android:id="@+id/idGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
+        android:layout_marginLeft="10dp"
         android:text="Large Text"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/idVoyageGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
+        android:layout_marginLeft="10dp"
         android:text="Large Text"
-        android:visibility="visible" />
+        android:visibility="gone" />
 </LinearLayout>

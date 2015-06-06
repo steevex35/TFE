@@ -29,13 +29,11 @@ public class ListViewTabGuide_Adapter extends ArrayAdapter<String> {
         TextView ville = (TextView) listviewPerso.findViewById(R.id.villeGuide);
         TextView dateP = (TextView) listviewPerso.findViewById(R.id.datePassage);
         TextView nom = (TextView) listviewPerso.findViewById(R.id.nomAuteurVoyage);
-        TextView prenom = (TextView) listviewPerso.findViewById(R.id.prenomAuteurVoyage);
         TextView idVoyage = (TextView) listviewPerso.findViewById(R.id.idVoyageGuide);
 
 
         id.setText(voyagesItem);
         nom.setText(voyagesItem);
-        prenom.setText(voyagesItem);
         dateP.setText(voyagesItem);
         nomPoi.setText(voyagesItem);
         ville.setText(voyagesItem);

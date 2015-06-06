@@ -71,7 +71,7 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Connexion</font></b></center>"));
+        getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Connexion</font></center>"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
     }
 

@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="horizontal">
 <ImageView
+    android:id="@+id/avatarCompte"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/avatarCompte"
-    android:src="@drawable/ic_account_box_grey600_48dp"
-    android:layout_margin="6dp" />
+    android:layout_margin="6dp"
+    android:src="@drawable/ic_account_box_grey600_48dp" />
 
 
 <LinearLayout
-    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     >
 
     <TextView
+        android:id="@+id/nomUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginTop="15dp"
         android:text="Large Text"
-        android:id="@+id/nomUser"
-        android:layout_marginTop="15dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#212121" />
 
 
         <TextView
+            android:id="@+id/paysHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Large Text"
-            android:id="@+id/paysHome"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Large Text"
         android:id="@+id/villeHome"
-        android:paddingBottom="5dp"
-        />
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingBottom="5dp"
         android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+    <TextView
         android:id="@+id/idVoyage"
-        android:visibility="gone"
-        android:paddingBottom="5dp"
-        />
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingBottom="5dp"
         android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone"
+        />
+    <TextView
         android:id="@+id/dateArrivee"
-        android:visibility="gone"
-        android:paddingBottom="5dp"
-        />
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Large Text"
-        android:id="@+id/dateDepart"
-        android:visibility="gone"
         android:paddingBottom="5dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/dateDepart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone"
         />
 
 

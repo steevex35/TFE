@@ -57,7 +57,7 @@ public class HomePage extends ActionBarActivity {
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
-        getSupportActionBar().setTitle(Html.fromHtml("<center><b><font color='#ffffff'>Meet Your World</font></b></center>"));
+        getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Meet Your World</font></center>"));
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager)findViewById(R.id.pager);
