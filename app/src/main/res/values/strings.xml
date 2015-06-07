@@ -105,6 +105,7 @@
     <string name="title_activity_itineraire_page">ItinerairePage</string>
     <string name="title_activity_tab_guide">TabGuide</string>
     <string name="title_activity_reset_pwd">ResetPwd</string>
+    <string name="title_activity_modifier_voyage">ModifierVoyage</string>
 
 
 

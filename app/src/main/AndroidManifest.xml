@@ -110,12 +110,15 @@
             android:parentActivityName=".PageAndroid.infoVoyage" />
         <activity
             android:name=".Tabs.TabGuide"
-            android:label="@string/title_activity_tab_guide"></activity>
+            android:label="@string/title_activity_tab_guide" />
         <activity
             android:name=".PageAndroid.ResetPwd"
             android:label="@string/title_activity_reset_pwd"
             android:parentActivityName=".PageAndroid.ConnectionPage"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".PageAndroid.ModifierVoyage"
+            android:label="@string/title_activity_modifier_voyage">
         </activity>
     </application>
 

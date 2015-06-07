@@ -1,61 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="15dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
         >
         <TextView
+            android:id="@+id/paysTravel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/paysTravel"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
          <TextView
              android:id="@+id/jourRestant"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:hint="10 j (ex)"
-             android:layout_marginLeft="10dp"
              android:layout_marginBottom="2dp"
+             android:layout_marginLeft="10dp"
+             android:hint="10 j (ex)"
         />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
             android:id="@+id/dateArriveeTravel"
-            android:visibility="gone"
-            android:paddingBottom="5dp"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
             android:text="Large Text"
+            android:visibility="gone"
+            />
+        <TextView
             android:id="@+id/dateDepartTravel"
-            android:visibility="gone"
-            android:paddingBottom="5dp"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
             android:text="Large Text"
+            android:visibility="gone"
+            />
+        <TextView
             android:id="@+id/villeTravel"
-            android:visibility="gone"
-            android:paddingBottom="5dp"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:id="@+id/idVoyageTravel"
             android:paddingBottom="5dp"
+            android:text="Large Text"
             android:visibility="gone"
             />
+        <TextView
+            android:id="@+id/idVoyageTravel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Large Text"
+            android:visibility="gone"
+            />
+
+    <TextView
+        android:id="@+id/idAuteurTravel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="Large Text"
+        android:visibility="gone" />
         </LinearLayout>

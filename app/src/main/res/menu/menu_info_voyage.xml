@@ -2,9 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.obisteeves.meetuworld.PageAndroid.infoVoyage">
+
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_edit"
+        android:title="Modifier"
+        app:showAsAction="ifRoom|collapseActionView" />
+
 </menu>

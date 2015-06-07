@@ -12,9 +12,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.obisteeves.meetuworld.PageAndroid.HomePage;
 import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,15 +32,18 @@ import java.util.Observer;
  */
 public class TabHome extends Fragment implements Observer{
 
-    String idVoyage;
-    String [] fields = {"id","nom","pays","ville","date_arrivee","date_depart"};
-    int[] field_R_id = {R.id.idVoyage,R.id.nomUser,R.id.paysHome, R.id.villeHome,R.id.dateArrivee,R.id.dateDepart};
+    User userCurrent;
+    String idVoyage, idAuteur;
+    String[] fields = {"id", "idAuteur", "nom", "pays", "ville", "date_arrivee", "date_depart"};
+    int[] field_R_id = {R.id.idVoyage, R.id.idAuteur, R.id.nomUser, R.id.paysHome, R.id.villeHome, R.id.dateArrivee, R.id.dateDepart};
     private ArrayList<HashMap<String, String>> listHashVoyage = new ArrayList<HashMap<String, String>>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.activity_tab_home,container,false);
 
+        HomePage homeActivity = (HomePage) getActivity();
+        userCurrent = homeActivity.getUser();
         listViewVoyage();
         return v;
     }
@@ -76,9 +81,11 @@ public class TabHome extends Fragment implements Observer{
                     String dateA=json.getString("date_arrivee");
                     String dateD=json.getString("date_depart");
                     idVoyage = json.getString("id");
+                    idAuteur = json.getString("id_auteur");
 
 
                     listViewMap.put("id",idVoyage);
+                    listViewMap.put("idAuteur", idAuteur);
                     listViewMap.put("nom",nom+" "+prenom);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
@@ -100,6 +107,7 @@ public class TabHome extends Fragment implements Observer{
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 TextView Id = (TextView) view.findViewById(R.id.idVoyage);
+                                TextView idAuteur = (TextView) view.findViewById(R.id.idAuteur);
                                 TextView Nom = (TextView) view.findViewById(R.id.nomUser);
                                 TextView Pays = (TextView) view.findViewById(R.id.paysHome);
                                 TextView Ville= (TextView) view.findViewById(R.id.villeHome);
@@ -107,6 +115,7 @@ public class TabHome extends Fragment implements Observer{
                                 TextView dateD=(TextView) view.findViewById(R.id.dateDepart);
 
                                 String idVoyageToSend=Id.getText().toString();
+                                String idAuteurToSend = idAuteur.getText().toString();
                                 String nomUserToSend=Nom.getText().toString();
                                 String paysUserTosend=Pays.getText().toString();
                                 String villeUserTosend=Ville.getText().toString();
@@ -114,7 +123,9 @@ public class TabHome extends Fragment implements Observer{
                                 String dateDTosend=dateD.getText().toString();
 
                                 Intent intent = new Intent(getActivity(), infoVoyage.class);
-                               intent.putExtra("id_voyage", idVoyageToSend);
+                                intent.putExtra("userCurrent", userCurrent.getmId());
+                                intent.putExtra("id_voyage", idVoyageToSend);
+                                intent.putExtra("id_auteur", idAuteurToSend);
                                 intent.putExtra("nom_user", nomUserToSend);
                                 intent.putExtra("pays_user", paysUserTosend);
                                 intent.putExtra("ville_user", villeUserTosend);

@@ -1,150 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#E0E0E0"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <com.obisteeves.meetuworld.Tabs.SlidingTabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        android:background="@color/ColorPrimary"
+        android:elevation="2dp" />
 
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#FFFFFF"
-            tools:context="com.obisteeves.meetuworld.PageAndroid.modifierProfil">
-
-            <ImageView
-                android:id="@+id/avatarCompte"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_account_box_grey600_48dp"
-                android:layout_margin="6dp" />
-
-
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000"
-                android:text="Nom utilisateur"
-                android:id="@+id/nomUser"
-                android:layout_marginTop="15dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Pays"
-                    android:textStyle="bold"
-                    android:id="@+id/paysInfo"
-                    android:textColor="#000000"
-                    android:layout_marginTop="15dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Ville"
-                    android:id="@+id/villeinfo"
-                    android:layout_marginBottom="15dp"
-                     />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="  Date d'arrivée"
-                    android:id="@+id/dateArriveInfo"
-                    android:textColor="#558B2F"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/airport_arrival"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="  Date de depart"
-                    android:textStyle="bold"
-                    android:textColor="#D32F2F"
-                    android:id="@+id/dateDepartInfo"
-                    android:drawableLeft="@drawable/airport_depart"
-                    />
-                <Button
-                    android:id="@+id/boutonModifVoyage"
-                    android:layout_marginTop="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/pencil"
-                    android:textSize="10sp"
-                    android:text="   Editer"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_gravity="left|bottom"/>
-                <Button
-                    android:id="@+id/boutonMap"
-                    android:layout_marginTop="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:drawableLeft="@drawable/map3"
-                    android:text="   Voir L'itinéraire"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_gravity="left|bottom"/>
-
-                <TextView
-                    android:id="@+id/errorInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:textColor="#FF0000"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Lieu d'intérêts"
-        android:textStyle="bold"
-        android:background="#FFFFFF"
-        android:id="@+id/textView3"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp" />
-
-
-    <ListView
-        android:background="#FFFFFF"
-        android:id="@+id/listViewPoi"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-    </ListView>
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
 
 
 

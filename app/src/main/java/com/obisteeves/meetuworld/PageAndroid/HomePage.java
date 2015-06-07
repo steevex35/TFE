@@ -58,6 +58,7 @@ public class HomePage extends ActionBarActivity {
         setSupportActionBar(toolbar);
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
         getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Meet Your World</font></center>"));
+        toolbar.setLogo(R.drawable.ic_logo);
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager)findViewById(R.id.pager);
@@ -80,6 +81,7 @@ public class HomePage extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home_page, menu);
+
         return true;
     }
 
@@ -113,9 +115,6 @@ public class HomePage extends ActionBarActivity {
                         .setNegativeButton("Non", dialogClickListener1).show();
                 return true;
 
-            case R.id.action_apropos:
-                // About option clicked.
-                return true;
 
             case R.id.action_deco:
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

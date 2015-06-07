@@ -2,30 +2,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.obisteeves.meetuworld.PageAndroid.HomePage">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
 
     <item
         android:id="@+id/action_filtre"
+        android:icon="@drawable/ic_geo"
         android:orderInCategory="1"
-        android:showAsAction="never"
-        android:title="Filtre" />
+        android:title="Filtre"
+        app:showAsAction="ifRoom|collapseActionView" />
 
-    <item
-        android:id="@+id/action_apropos"
-        android:orderInCategory="2"
-        android:showAsAction="never"
-        android:title="À propos"/>
+
     <item
         android:id="@+id/action_deco"
+        android:icon="@drawable/ic_logout"
         android:orderInCategory="3"
-        android:showAsAction="never"
-        android:title="Déconnexion"/>
-
-
+        android:title="Déconnexion"
+        app:showAsAction="ifRoom|collapseActionView" />
 
 
 </menu>

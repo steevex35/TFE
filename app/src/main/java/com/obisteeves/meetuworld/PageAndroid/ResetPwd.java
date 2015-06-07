@@ -48,6 +48,7 @@ public class ResetPwd extends ActionBarActivity implements Observer {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Mot de passe oublié </font></center>"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
+        toolbar.setLogo(R.drawable.ic_logo);
     }
 
     public void resetPwdUser(View view) {
