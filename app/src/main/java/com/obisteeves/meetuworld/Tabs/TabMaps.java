@@ -20,6 +20,7 @@ import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,13 +28,13 @@ import java.util.Locale;
 public class TabMaps extends Fragment {
     GoogleMap googleMap;
     String ville, pays;
+    infoVoyage infoVoyage;
+    private ArrayList<String> tabNomPoi = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab_maps, container, false);
-        infoVoyage infoVoyage = (infoVoyage) getActivity();
-        pays = infoVoyage.getPays();
-        ville = infoVoyage.getVille();
+        infoVoyage = (infoVoyage) getActivity();
         createMapView();
         addMarker();
         return v;
@@ -69,7 +70,7 @@ public class TabMaps extends Fragment {
 
         Geocoder geoCoder = new Geocoder(getActivity(), Locale.getDefault());
         try {
-            List<Address> add = geoCoder.getFromLocationName(ville, 5);
+            List<Address> add = geoCoder.getFromLocationName(infoVoyage.getVille(), 5);
             Double lat = (double) (add.get(0).getLatitude());
             Double lon = (double) (add.get(0).getLongitude());
 
