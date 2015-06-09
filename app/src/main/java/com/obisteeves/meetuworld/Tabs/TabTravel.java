@@ -19,6 +19,7 @@ import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
+import com.obisteeves.meetuworld.Utils.Voyage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,7 @@ import java.util.Observer;
 public class TabTravel extends Fragment implements Observer{
 
     User userCurrent;
+    Voyage voyageUser;
     ImageButton FAB;
     String idVoyage, idAuteur;
     String[] fields = {"id", "idAuteur", "pays", "ville", "date_arrivee", "date_depart", "jRestant"};
@@ -145,6 +147,7 @@ public class TabTravel extends Fragment implements Observer{
                                 String dateDTosend=dateD.getText().toString();
 
 
+                                voyageUser = new Voyage(idVoyageToSend, idAuteurToSend, paysUserTosend, villeUserTosend, dateATosend, dateDTosend);
                                 Intent intent = new Intent(getActivity(), infoVoyage.class);
                                 intent.putExtra("id_voyage", idVoyageToSend);
                                 intent.putExtra("id_auteur", idAuteurToSend);
@@ -153,6 +156,7 @@ public class TabTravel extends Fragment implements Observer{
                                 intent.putExtra("ville_user", villeUserTosend);
                                 intent.putExtra("dateA",dateATosend);
                                 intent.putExtra("dateD",dateDTosend);
+                                intent.putExtra("parcelable", voyageUser);
                                 startActivity(intent);
                             }
                         }

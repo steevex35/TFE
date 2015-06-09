@@ -13,19 +13,26 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
-import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class TabMaps extends Fragment {
+public class TabMaps extends Fragment implements Observer {
     GoogleMap googleMap;
     String ville, pays;
     infoVoyage infoVoyage;
@@ -35,10 +42,27 @@ public class TabMaps extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab_maps, container, false);
         infoVoyage = (infoVoyage) getActivity();
+
+        //tabNomPoi=infoVoyage.voyageUser.getListPoi();
+        //System.out.println(infoVoyage.voyageUser.getListPoi());
         createMapView();
-        addMarker();
+        afficheVoyage(infoVoyage.getId_voyage());
+        //addMarker();
         return v;
     }
+
+    public void afficheVoyage(String id_voyage) {
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.afficheVoyages);
+        net.setUrl(address);
+        net.addParam("id_voyage", id_voyage);
+        net.send();
+
+    }
+
+
 
     private void createMapView() {
 
@@ -68,39 +92,69 @@ public class TabMaps extends Fragment {
 
     private void addMarker() {
 
-        Geocoder geoCoder = new Geocoder(getActivity(), Locale.getDefault());
-        try {
-            List<Address> add = geoCoder.getFromLocationName(infoVoyage.getVille(), 5);
-            Double lat = (double) (add.get(0).getLatitude());
-            Double lon = (double) (add.get(0).getLongitude());
+        googleMap.clear();
+        Double[] latitude = new Double[infoVoyage.voyageUser.getListPoi().size()];
+        Double[] longitude = new Double[infoVoyage.voyageUser.getListPoi().size()];
+        String[] addrs = new String[infoVoyage.voyageUser.getListPoi().size()];
+        addrs = infoVoyage.voyageUser.getListPoi().toArray(addrs);
 
-
-            /** Make sure that the map has been initialised **/
-            if (null != googleMap) {
-
-                Marker afficheInfo = googleMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(lat, lon))
-                                .title(ville)
-                                .snippet("")
-                                .draggable(true)
-
-                );
-
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(afficheInfo.getPosition(), 15));
-
-                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(30), 2000, null);
-
-                afficheInfo.showInfoWindow();
-
+        System.out.println(infoVoyage.voyageUser.getListPoi().size());
+        List<Address> addressList;
+        if (addrs != null && addrs.length > 0) {
+            for (int i = 0; i < addrs.length; i++) {
+                try {
+                    Geocoder geoCoder = new Geocoder(getActivity(), Locale.getDefault());
+                    addressList = geoCoder.getFromLocationName(addrs[i], 1);
+                    if (addressList == null || addressList.isEmpty() || addressList.equals("")) {
+                        addressList = geoCoder.getFromLocationName(infoVoyage.voyageUser.getListPoi().get(i), 1);
+                    }
+                    latitude[i] = addressList.get(0).getLatitude();
+                    longitude[i] = addressList.get(0).getLongitude();
+                    System.out.println("latitude = " + latitude[i] + " longitude = " + longitude[i]);
+                    googleMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(latitude[i], longitude[i]))
+                                    .title(infoVoyage.voyageUser.getListPoi().get(i))
+                                    .snippet(infoVoyage.voyageUser.getListPoi().get(i))
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                                    .alpha(0.7f)
+                    );
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude[i], longitude[i]), 15.0f));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
 
     }
 
+    @Override
+    public void update(Observable observable, Object data) {
+        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
+        String netReq = String.valueOf(NetworkRequestAdapter.OKlistPoi);
 
+        if (data.toString().equals(netReq)) {
+            try {
+                JSONArray poi = resultat.getResult().getJSONArray("poi");
+                for (int i = 0; i < poi.length(); i++) {
+                    HashMap<String, String> listViewMap = new HashMap<String, String>();
+                    JSONObject json = poi.getJSONObject(i);
+                    String nomPoi = json.getString("nom");
+                    String idPoi = json.getString("id");
+                    String guide = json.getString("guide");
+                    //id_current = json.getString("id_current");
+                    //id_auteur = json.getString("id_auteur");
+                    tabNomPoi.add(nomPoi);
+
+                }
+                infoVoyage.voyageUser.setListPoi(tabNomPoi);
+                System.out.println(infoVoyage.voyageUser.getListPoi().toString());
+                addMarker();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+
+            }
+        }
+    }
 }

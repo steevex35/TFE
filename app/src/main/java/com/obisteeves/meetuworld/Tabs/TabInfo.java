@@ -10,24 +10,14 @@ import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
-import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 
 
-public class TabInfo extends Fragment implements Observer {
+public class TabInfo extends Fragment {
 
     infoVoyage infoVoyage;
-    private TextView nomUser, idItemPoi, nomPoi;
+    private TextView nomUser;
     private ImageView img;
     private String id_voyage, id_current, id_auteur, nom, pays, ville, dateA, dateD;
-    private String[] fields = {"nom", "id", "guide"};
-    private int[] field_R_id = {R.id.nomPoi, R.id.idPoi, R.id.guide};
-    private ArrayList<HashMap<String, String>> listHashPoi = new ArrayList<HashMap<String, String>>();
-    private ArrayList<String> tabNomPoi = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +41,7 @@ public class TabInfo extends Fragment implements Observer {
         ((TextView) v.findViewById(R.id.villeinfo)).setText(ville);
         ((TextView) v.findViewById(R.id.dateArriveInfo)).setText(dateA);
         ((TextView) v.findViewById(R.id.dateDepartInfo)).setText(dateD);
-        infoVoyage.afficheVoyage(id_voyage);
+        //infoVoyage.afficheVoyage(id_voyage);
 
 
         if (!id_current.equals(id_auteur)) {
@@ -63,40 +53,6 @@ public class TabInfo extends Fragment implements Observer {
 
     }
 
-    private void afficheVoyage(String id_voyage) {
-        NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
-        net.addObserver(this);
-        String address = getResources().getString(R.string.serveurAdd)
-                + getResources().getString(R.string.afficheVoyages);
-        net.setUrl(address);
-        net.addParam("id_voyage", id_voyage);
-        net.send();
-
-    }
-
-    private void DevenirGuide(String id_poi, String id_current, String id_auteur) {
-        NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
-        net.addObserver(this);
-        String address = getResources().getString(R.string.serveurAdd)
-                + getResources().getString(R.string.devenirGuide);
-        net.setUrl(address);
-        net.addParam("id_poi", id_poi);
-        net.addParam("id_current", id_current);
-        net.addParam("id_auteur", id_auteur);
-        net.send();
-    }
 
 
-    @Override
-    public void update(Observable observable, Object data) {
-
-    }
-
-    public ArrayList<String> getTabNomPoi() {
-        return tabNomPoi;
-    }
-
-    public void setTabNomPoi(ArrayList<String> tabNomPoi) {
-        this.tabNomPoi = tabNomPoi;
-    }
 }

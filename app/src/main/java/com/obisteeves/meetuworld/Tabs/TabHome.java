@@ -17,6 +17,7 @@ import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
+import com.obisteeves.meetuworld.Utils.Voyage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,18 +34,23 @@ import java.util.Observer;
 public class TabHome extends Fragment implements Observer{
 
     User userCurrent;
+    Voyage voyageUser;
+
     String idVoyage, idAuteur;
     String[] fields = {"id", "idAuteur", "nom", "pays", "ville", "date_arrivee", "date_depart"};
     int[] field_R_id = {R.id.idVoyage, R.id.idAuteur, R.id.nomUser, R.id.paysHome, R.id.villeHome, R.id.dateArrivee, R.id.dateDepart};
     private ArrayList<HashMap<String, String>> listHashVoyage = new ArrayList<HashMap<String, String>>();
+    private ArrayList<String> listPoi = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.activity_tab_home,container,false);
-
         HomePage homeActivity = (HomePage) getActivity();
         userCurrent = homeActivity.getUser();
         listViewVoyage();
+
+        afficheVoyage(idVoyage);
+
         return v;
     }
 
@@ -58,12 +64,25 @@ public class TabHome extends Fragment implements Observer{
         net.send();
     }
 
+    public void afficheVoyage(String id_voyage) {
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.afficheVoyages);
+        net.setUrl(address);
+        net.addParam("id_voyage", id_voyage);
+        net.send();
+
+    }
+
 
     @Override
-    public void update(Observable observable, Object data) {
+    public void update(Observable observable, final Object data) {
 
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         String netReq = String.valueOf(NetworkRequestAdapter.OK);
+        String netReq2 = String.valueOf(NetworkRequestAdapter.OKlistPoi);
+
         if (data.toString().equals(netReq))
         {
             try
@@ -82,15 +101,13 @@ public class TabHome extends Fragment implements Observer{
                     String dateD=json.getString("date_depart");
                     idVoyage = json.getString("id");
                     idAuteur = json.getString("id_auteur");
-
-
                     listViewMap.put("id",idVoyage);
                     listViewMap.put("idAuteur", idAuteur);
                     listViewMap.put("nom",nom+" "+prenom);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
                     listViewMap.put("date_arrivee",dateA);
-                    listViewMap.put("date_depart",dateD);
+                    listViewMap.put("date_depart", dateD);
                     listHashVoyage.add(listViewMap);
 
                 }
@@ -102,17 +119,20 @@ public class TabHome extends Fragment implements Observer{
                 voyagesListView.setAdapter(voyagesAdapter);
 
                 voyagesListView.setClickable(true);
+
                 voyagesListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 TextView Id = (TextView) view.findViewById(R.id.idVoyage);
+
                                 TextView idAuteur = (TextView) view.findViewById(R.id.idAuteur);
                                 TextView Nom = (TextView) view.findViewById(R.id.nomUser);
                                 TextView Pays = (TextView) view.findViewById(R.id.paysHome);
                                 TextView Ville= (TextView) view.findViewById(R.id.villeHome);
                                 TextView dateA=(TextView) view.findViewById(R.id.dateArrivee);
                                 TextView dateD=(TextView) view.findViewById(R.id.dateDepart);
+
 
                                 String idVoyageToSend=Id.getText().toString();
                                 String idAuteurToSend = idAuteur.getText().toString();
@@ -122,6 +142,9 @@ public class TabHome extends Fragment implements Observer{
                                 String dateATosend=dateA.getText().toString();
                                 String dateDTosend=dateD.getText().toString();
 
+
+                                System.out.println(listPoi.toString() + "classe Tab Hone");
+                                voyageUser = new Voyage(idVoyageToSend, idAuteurToSend, nomUserToSend, paysUserTosend, villeUserTosend, dateATosend, dateDTosend, listPoi);
                                 Intent intent = new Intent(getActivity(), infoVoyage.class);
                                 intent.putExtra("userCurrent", userCurrent.getmId());
                                 intent.putExtra("id_voyage", idVoyageToSend);
@@ -131,14 +154,8 @@ public class TabHome extends Fragment implements Observer{
                                 intent.putExtra("ville_user", villeUserTosend);
                                 intent.putExtra("dateA",dateATosend);
                                 intent.putExtra("dateD",dateDTosend);
+                                intent.putExtra("parcelable", voyageUser);
                                startActivity(intent);
-
-
-
-
-
-
-
                             }
                         }
                 );
@@ -147,6 +164,25 @@ public class TabHome extends Fragment implements Observer{
             }
             catch (JSONException e)
             {
+                e.printStackTrace();
+            }
+        }
+        if (data.toString().equals(netReq2)) {
+            try {
+                JSONArray poi = resultat.getResult().getJSONArray("poi");
+                for (int i = 0; i < poi.length(); i++) {
+                    HashMap<String, String> listViewMap = new HashMap<String, String>();
+                    JSONObject json = poi.getJSONObject(i);
+                    String nomPoi = json.getString("nom");
+                    String idPoi = json.getString("id");
+                    String guide = json.getString("guide");
+                    listPoi.add(nomPoi);
+                    //System.out.println(tabNomPoi.size()+"classe INfo");
+                    //System.out.println(tabNomPoi.toString());
+
+
+                }
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
