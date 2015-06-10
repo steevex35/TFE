@@ -59,6 +59,8 @@
     <string name="pageProfil">/TFE/android/profil.php</string>
     <string name="pageModifierProfil">/TFE/android/modifierProfil.php</string>
     <string name="pageAjouterVoyage">/TFE/android/ajouterVoyage.php</string>
+    <string name="pageModifierVoyage">/TFE/android/modifierVoyage.php</string>
+    <string name="pageSupprimerVoyage">/TFE/android/supprimerVoyage.php</string>
     <string name="listPays">/TFE/android/Outils/listPays.php</string>
     <string name="listVoyageUser">/TFE/android/Outils/listVoyageUser.php</string>
     <string name="listGuideUser">/TFE/android/Outils/listGuideUser.php</string>

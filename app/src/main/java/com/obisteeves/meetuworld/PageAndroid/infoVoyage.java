@@ -113,6 +113,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         switch (item.getItemId()) {
             case R.id.action_edit:
                 Intent intent = new Intent(infoVoyage.this, ModifierVoyage.class);
+                intent.putExtra("parcelable", voyageUser);
                 startActivity(intent);
         }
 

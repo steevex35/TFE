@@ -113,12 +113,15 @@
             android:label="@string/title_activity_tab_guide" />
         <activity
             android:name=".PageAndroid.ResetPwd"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_reset_pwd"
             android:parentActivityName=".PageAndroid.ConnectionPage"
             android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".PageAndroid.ModifierVoyage"
-            android:label="@string/title_activity_modifier_voyage">
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_modifier_voyage"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

@@ -1,24 +1,26 @@
 <!-- bouton pour supprimer les POi dans la page AddTravel  -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <Button
         android:id="@+id/remove"
-        android:layout_alignParentRight="true"
+        style="@style/ConnexionButtonText"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_alignParentRight="true"
         android:layout_margin="20dp"
-        android:background="@drawable/button_default_bg"
-        android:text="-"/>
+        android:background="@drawable/button_inscription"
+        android:text="-"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp" />
     <TextView
         android:id="@+id/textout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:textColor="@color/ColorPrimary"
-        android:textStyle="bold"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/remove"/>
+        android:layout_margin="20dp"
+        android:layout_toLeftOf="@id/remove"
+        android:textColor="@color/ColorPrimary"
+        android:textStyle="bold" />
 </RelativeLayout>

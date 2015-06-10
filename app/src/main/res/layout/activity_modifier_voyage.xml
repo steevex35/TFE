@@ -20,12 +20,109 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="5dp"
             android:background="#FFFFFF"
             android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
             tools:context="com.obisteeves.meetuworld.PageAndroid.addTravel">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/profil_page_ville"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/button_material_dark"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/modifVoyageVille"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/addTravel_page_dateArrive"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/button_material_dark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modifDateArrivee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:hint="@string/addTravel_page_Edit_dateA"
+                android:onClick="showDatePickerDialog" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/addTravel_page_dateDepart"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/button_material_dark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modifDateDepart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:hint="@string/addTravel_page_Edit_dateD"
+                android:onClick="showDatePickerDialog2" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/modifAdd"
+                    style="@style/ConnexionButtonText"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_connection_page"
+                    android:text="+"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24dp" />
+
+                <EditText
+                    android:id="@+id/modifTextin"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="20dp"
+                    android:layout_toLeftOf="@id/add"
+                    android:hint="rajouter un Poi" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/containermodif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
 
 
         </LinearLayout>

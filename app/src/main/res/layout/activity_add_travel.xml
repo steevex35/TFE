@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="5dp"
             android:background="#FFFFFF"
             android:orientation="vertical"
             tools:context="com.obisteeves.meetuworld.PageAndroid.addTravel">
@@ -117,12 +117,14 @@
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/add"
+                    style="@style/ConnexionButtonText"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_margin="20dp"
-                    android:background="@drawable/button_default_bg"
-                    android:text="+"/>
+                    android:background="@drawable/button_connection_page"
+                    android:text="+"
+                    android:textSize="24dp" />
                 <EditText
                     android:id="@+id/textin"
                     android:layout_width="match_parent"
