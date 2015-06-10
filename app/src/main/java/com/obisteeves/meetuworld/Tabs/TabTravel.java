@@ -157,6 +157,7 @@ public class TabTravel extends Fragment implements Observer{
                                 intent.putExtra("ville_user", villeUserTosend);
                                 intent.putExtra("dateA",dateATosend);
                                 intent.putExtra("dateD",dateDTosend);
+                                intent.putExtra("fullUser", userCurrent);
                                 intent.putExtra("parcelable", voyageUser);
                                 startActivity(intent);
                             }

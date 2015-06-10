@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -41,6 +42,15 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
     private Voyage voyageUser;
     private TextView fdateA, fdateD;
     private EditText fville, textIn;
+
+    private String id_voyage;
+    private String id_auteur;
+    private String id_current;
+    private String nom;
+    private String pays;
+    private String ville;
+    private String dateA;
+    private String dateD;
     private ArrayList<String> listPoiLocal = new ArrayList<>();
 
     @Override
@@ -53,9 +63,19 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
         fdateD = (TextView) findViewById(R.id.modifDateDepart);
         fville = (EditText) findViewById(R.id.modifVoyageVille);
         container = (LinearLayout) findViewById(R.id.containermodif);
-
-
         iniActionBar();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id_voyage = extras.getString("id_voyage");
+            id_auteur = extras.getString("id_auteur");
+            id_current = extras.getString("userCurrent");
+            nom = extras.getString("nom_user");
+            pays = extras.getString("pays_user");
+            ville = extras.getString("ville_user");
+            dateA = extras.getString("dateA");
+            dateD = extras.getString("dateD");
+
+        }
         try {
             voyageUser = getIntent().getExtras().getParcelable("parcelable");
         } catch (NullPointerException e) {
@@ -112,13 +132,26 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                                     dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", ModifierVoyage.this);
 
                                 } else {
-                                    voyageUser.setListPoi(listPoiLocal);
-                                    System.out.println(listPoiLocal.size());
+                                    //voyageUser.setListPoi(listPoiLocal);
+                                    //voyageUser.setVille(fville.getText().toString());
+                                    //voyageUser.setDateA(fdateA.getText().toString());
+                                    //voyageUser.setDateD(fdateD.getText().toString());
                                     updateVoyage(
+                                            voyageUser.getId_voyage(),
                                             fville.getText().toString(),
                                             fdateA.getText().toString(),
                                             fdateD.getText().toString(),
                                             listPoiLocal.toString());
+                                    Intent intent = new Intent(ModifierVoyage.this, infoVoyage.class);
+                                    intent.putExtra("parcelable", voyageUser);
+                                    intent.putExtra("id_voyage", id_voyage);
+                                    intent.putExtra("id_auteur", id_auteur);
+                                    intent.putExtra("userCurrent", id_current);
+                                    intent.putExtra("pays_user", pays);
+                                    intent.putExtra("ville_user", fville.getText().toString());
+                                    intent.putExtra("dateA", fdateA.getText().toString());
+                                    intent.putExtra("dateD", fdateD.getText().toString());
+                                    startActivity(intent);
                                     //finish();
                                 }
 
@@ -138,29 +171,7 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                         .setNegativeButton("Non", dialogClickListener).show();
                 return true;
 
-            case R.id.action_deleteTravel:
-                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-                                //supprimer voyage
-                                deleteVoyage(voyageUser.getId_voyage());
-                                break;
 
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
-                                dialog.cancel();
-                                break;
-                        }
-                    }
-                };
-
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                builder1.setMessage("Voulez-vous supprimer ce voyage ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener1)
-                        .setNegativeButton("Non", dialogClickListener1).show();
-                return true;
 
 
             case R.id.action_settings:
@@ -239,26 +250,17 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
     }
 
 
-    private void updateVoyage(String ville, String dateA, String dateD, String listPoi) {
+    private void updateVoyage(String idVoyage, String ville, String dateA, String dateD, String listPoi) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
                 + getResources().getString(R.string.pageModifierVoyage);
         net.setUrl(address);
+        net.addParam("idVoyage", idVoyage);
         net.addParam("ville", ville);
         net.addParam("dateA", dateA);
         net.addParam("dateD", dateD);
         net.addParam("listPoi", listPoi);
-        net.send();
-    }
-
-    private void deleteVoyage(String idVoyage) {
-        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
-        net.addObserver(this);
-        String address = getResources().getString(R.string.serveurAdd)
-                + getResources().getString(R.string.pageSupprimerVoyage);
-        net.setUrl(address);
-        net.addParam("idVoyage", idVoyage);
         net.send();
     }
 

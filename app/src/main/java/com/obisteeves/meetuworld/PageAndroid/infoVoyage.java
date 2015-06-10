@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Tabs.SlidingTabLayout;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.ViewPagerAdapterInfoTravel;
 import com.obisteeves.meetuworld.Utils.Voyage;
 
@@ -39,6 +40,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
     public Voyage voyageUser;
     ListView poiListView;
+    User user;
     private Toolbar toolbar;
     private String id_voyage;
     private String nom;
@@ -49,6 +51,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     private String id_current;
     private String id_auteur;
     private MenuItem itemModif;
+    private MenuItem itemDelete;
     private ViewPager pager;
     private ViewPagerAdapterInfoTravel adapter;
     private SlidingTabLayout tabs;
@@ -65,16 +68,19 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_voyage);
 
+
         try {
             voyageUser = getIntent().getExtras().getParcelable("parcelable");
-            System.out.println(voyageUser.getListPoi().toString() + "classe inVoyage");
+            user = getIntent().getExtras().getParcelable("fullUser");
+            //System.out.println(voyageUser.getListPoi().toString() + "classe inVoyage");
         } catch (NullPointerException e) {
         }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id_voyage = extras.getString("id_voyage");
-            id_auteur = extras.getString("id_auteur");
+            //id_auteur = extras.getString("id_auteur");
+            id_auteur = voyageUser.getId_auteur();
             id_current = extras.getString("userCurrent");
             nom = extras.getString("nom_user");
             pays = extras.getString("pays_user");
@@ -85,8 +91,9 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         }
 
 
+
         iniActionBar();
-        afficheVoyage(id_voyage);
+        afficheVoyage(voyageUser.getId_voyage());
     }
 
 
@@ -95,9 +102,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_info_voyage, menu);
         itemModif = menu.findItem(R.id.action_edit);
+        itemDelete = menu.findItem(R.id.action_deleteTravel);
         itemModif.setVisible(false);
-        if (id_auteur.equals(id_current)) {
+        itemDelete.setVisible(false);
+        if (voyageUser.getId_auteur().equals(id_current)) {
             itemModif.setVisible(true);
+            itemDelete.setVisible(true);
         }
         return true;
     }
@@ -114,7 +124,42 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             case R.id.action_edit:
                 Intent intent = new Intent(infoVoyage.this, ModifierVoyage.class);
                 intent.putExtra("parcelable", voyageUser);
+                intent.putExtra("idVoyage", id_voyage);
+                intent.putExtra("userCurrent", id_current);
+                intent.putExtra("pays_user", pays);
+                intent.putExtra("ville_user", ville);
+                intent.putExtra("dateA", dateA);
+                intent.putExtra("dateD", dateD);
                 startActivity(intent);
+                break;
+
+            case R.id.action_deleteTravel:
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                //supprimer voyage
+                                deleteVoyage(voyageUser.getId_voyage());
+                                Intent intent = new Intent(infoVoyage.this, HomePage.class);
+                                intent.putExtra("user", user);
+                                startActivity(intent);
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage("Voulez-vous supprimer ce voyage ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener1)
+                        .setNegativeButton("Non", dialogClickListener1).show();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -230,7 +275,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 poiListView.setClickable(true);
 
 
-                if (!id_current.equals(id_auteur)) {
+                if (!id_current.equals(voyageUser.getId_auteur())) {
                     poiListView.setOnItemClickListener(
 
                             new AdapterView.OnItemClickListener() {
@@ -272,6 +317,17 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
         }
 
+    }
+
+
+    private void deleteVoyage(String idVoyage) {
+        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.pageSupprimerVoyage);
+        net.setUrl(address);
+        net.addParam("idVoyage", idVoyage);
+        net.send();
     }
 
     public String getId_voyage() {

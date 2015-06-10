@@ -44,7 +44,7 @@ public class TabInfo extends Fragment {
         //infoVoyage.afficheVoyage(id_voyage);
 
 
-        if (!id_current.equals(id_auteur)) {
+        if (!id_current.equals(infoVoyage.getId_auteur())) {
             img.setVisibility(View.VISIBLE);
             nomUser.setVisibility(View.VISIBLE);
         }

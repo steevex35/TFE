@@ -9,5 +9,10 @@
         android:icon="@drawable/ic_edit"
         android:title="Modifier"
         app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/action_deleteTravel"
+        android:icon="@drawable/ic_delete"
+        android:title="delete travel"
+        app:showAsAction="ifRoom|collapseActionView" />
 
 </menu>
