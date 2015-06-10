@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.DatePickerFragment;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
+import com.obisteeves.meetuworld.Utils.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,15 +50,21 @@ public class addTravel extends ActionBarActivity implements Observer {
     Button buttonAdd, buttonEnvoyerVovaye;
     LinearLayout container;
     Spinner spinner;
+    User userCurrent;
     private ArrayList<String> tabPoi = new ArrayList<String>();
     private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_travel);
+
+        try {
+            userCurrent = getIntent().getExtras().getParcelable("user");
+        } catch (NullPointerException e) {
+        }
+
         iniActionBar();
         fdateA= (TextView)findViewById(R.id.DateArrivee);
         fdateD=(TextView) findViewById(R.id.DateDepart);
@@ -317,6 +324,7 @@ public class addTravel extends ActionBarActivity implements Observer {
                     case DialogInterface.BUTTON_POSITIVE:
                         //Yes button clicked
                         Intent myIntent = new Intent(getApplicationContext(), HomePage.class);
+                        myIntent.putExtra("user", userCurrent);
                         startActivity(myIntent);
                         break;
 

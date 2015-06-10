@@ -67,6 +67,7 @@ public class TabTravel extends Fragment implements Observer{
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), addTravel.class);
+                intent.putExtra("user", userCurrent);
                 startActivity(intent);
             }
         });

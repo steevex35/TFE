@@ -106,7 +106,7 @@ public class TabMaps extends Fragment implements Observer {
                     Geocoder geoCoder = new Geocoder(getActivity(), Locale.getDefault());
                     addressList = geoCoder.getFromLocationName(addrs[i], 1);
                     if (addressList == null || addressList.isEmpty() || addressList.equals("")) {
-                        addressList = geoCoder.getFromLocationName(infoVoyage.voyageUser.getListPoi().get(i), 1);
+                        addressList = geoCoder.getFromLocationName(infoVoyage.voyageUser.getListPoi().get(i) + " " + infoVoyage.voyageUser.getVille(), 1);
                     }
                     latitude[i] = addressList.get(0).getLatitude();
                     longitude[i] = addressList.get(0).getLongitude();
