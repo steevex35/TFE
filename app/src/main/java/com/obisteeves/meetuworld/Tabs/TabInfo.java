@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.DownloadImageTask;
 
 
 public class TabInfo extends Fragment {
@@ -46,6 +47,7 @@ public class TabInfo extends Fragment {
 
         if (!id_current.equals(infoVoyage.getId_auteur())) {
             img.setVisibility(View.VISIBLE);
+            new DownloadImageTask(img).execute("http://www.l4h.be/TFE/android/Outils/avatars/" + id_auteur + ".jpg");
             nomUser.setVisibility(View.VISIBLE);
         }
 

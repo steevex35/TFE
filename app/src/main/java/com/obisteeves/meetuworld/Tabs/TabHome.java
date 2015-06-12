@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
@@ -18,6 +18,7 @@ import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.Voyage;
+import com.obisteeves.meetuworld.Utils.listViewPersoAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,10 +36,11 @@ public class TabHome extends Fragment implements Observer{
 
     User userCurrent;
     Voyage voyageUser;
+    ImageView avatarCompte;
 
     String idVoyage, idAuteur;
-    String[] fields = {"id", "idAuteur", "nom", "pays", "ville", "date_arrivee", "date_depart"};
-    int[] field_R_id = {R.id.idVoyage, R.id.idAuteur, R.id.nomUser, R.id.paysHome, R.id.villeHome, R.id.dateArrivee, R.id.dateDepart};
+    String[] fields = {"avatar", "id", "idAuteur", "nom", "pays", "ville", "date_arrivee", "date_depart"};
+    int[] field_R_id = {R.id.avatarComptePersoRow, R.id.idVoyage, R.id.idAuteur, R.id.nomUser, R.id.paysHome, R.id.villeHome, R.id.dateArrivee, R.id.dateDepart};
     private ArrayList<HashMap<String, String>> listHashVoyage = new ArrayList<HashMap<String, String>>();
     private ArrayList<String> listPoi = new ArrayList<String>();
 
@@ -47,6 +49,8 @@ public class TabHome extends Fragment implements Observer{
         View v =inflater.inflate(R.layout.activity_tab_home,container,false);
         HomePage homeActivity = (HomePage) getActivity();
         userCurrent = homeActivity.getUser();
+        avatarCompte = (ImageView) v.findViewById(R.id.avatarComptePersoRow);
+
         listViewVoyage();
 
         afficheVoyage(idVoyage);
@@ -101,8 +105,11 @@ public class TabHome extends Fragment implements Observer{
                     String dateD=json.getString("date_depart");
                     idVoyage = json.getString("id");
                     idAuteur = json.getString("id_auteur");
+
+                    //new DownloadImageTask(avatarCompte).execute("http://www.l4h.be/TFE/android/Outils/avatars/"+idAuteur+".jpg");
                     listViewMap.put("id",idVoyage);
                     listViewMap.put("idAuteur", idAuteur);
+                    listViewMap.put("avatar", idAuteur);
                     listViewMap.put("nom",nom+" "+prenom);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
@@ -112,10 +119,8 @@ public class TabHome extends Fragment implements Observer{
 
                 }
 
-
                 final ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewHome);
-                SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(),listHashVoyage,R.layout.listview_persorow,fields,field_R_id);
-
+                listViewPersoAdapter voyagesAdapter = new listViewPersoAdapter(getActivity(), R.layout.listview_persorow, listHashVoyage, getActivity());
                 voyagesListView.setAdapter(voyagesAdapter);
 
                 voyagesListView.setClickable(true);

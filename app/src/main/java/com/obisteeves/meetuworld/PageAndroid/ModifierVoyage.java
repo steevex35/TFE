@@ -132,7 +132,7 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                                     dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", ModifierVoyage.this);
 
                                 } else {
-                                    //voyageUser.setListPoi(listPoiLocal);
+                                    voyageUser.setListPoi(listPoiLocal);
                                     //voyageUser.setVille(fville.getText().toString());
                                     //voyageUser.setDateA(fdateA.getText().toString());
                                     //voyageUser.setDateD(fdateD.getText().toString());

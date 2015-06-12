@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,11 @@ import android.widget.TextView;
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
 import com.obisteeves.meetuworld.PageAndroid.modifierProfil;
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.DownloadImageTask;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -36,6 +39,8 @@ public class TabProfil extends Fragment implements Observer {
     private File photoFile = null;
     private File image;
     private User userCurrent;
+
+    private Bitmap imageBitmap;
 
 
     @Override
@@ -80,7 +85,7 @@ public class TabProfil extends Fragment implements Observer {
 
             }
         });
-
+        new DownloadImageTask(avatar).execute("http://www.l4h.be/TFE/android/Outils/avatars/" + userCurrent.getmId() + ".jpg");
 
         return v;
 
@@ -108,6 +113,7 @@ public class TabProfil extends Fragment implements Observer {
                 e.printStackTrace();
             }
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
         }
     }
 
@@ -125,6 +131,7 @@ public class TabProfil extends Fragment implements Observer {
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+
         return image;
     }
 
@@ -132,19 +139,26 @@ public class TabProfil extends Fragment implements Observer {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
             Bundle extras = data.getExtras();
-
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
             avatar.setImageBitmap(imageBitmap);
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+            byte[] image = stream.toByteArray();
+            String avatar_string = Base64.encodeToString(image, Base64.DEFAULT);
+            upload_avatar(avatar_string);
+            System.out.println(avatar_string);
         }
     }
 
 
-    public void afficheProfil(View v) {
+    public void upload_avatar(String avatar_str) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
         net.addObserver(this);
         String address = getResources().getString(R.string.serveurAdd)
-                + getResources().getString(R.string.pageProfil);
+                + getResources().getString(R.string.upload_avatar);
         net.setUrl(address);
+        net.addParam("avatarBase64", avatar_str);
         net.send();
     }
 
