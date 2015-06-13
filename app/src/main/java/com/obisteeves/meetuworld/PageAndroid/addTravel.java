@@ -114,7 +114,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Rajouter un voyage</font></center>"));
+        getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Ajouter un voyage</font></center>"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
         toolbar.setLogo(R.drawable.ic_logo);
     }
@@ -130,19 +130,76 @@ public class addTravel extends ActionBarActivity implements Observer {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //envoie du voyage
+                                idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
+                                if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString())
+                                        && testString(fdateD.getText().toString())) != true)) {
+                                    dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", addTravel.this);
+                                } else if (tabPoi.isEmpty()) {
+                                    dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", addTravel.this);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
+                                } else {
+                                    EnvoyerVoyage(idSelectionPays,
+                                            ville.getText().toString(),
+                                            fdateA.getText().toString(),
+                                            fdateD.getText().toString(),
+                                            tabPoi.toString()
+                                    );
+                                }
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage("Voulez-vous enregistrer ce voyage ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener1)
+                        .setNegativeButton("Non", dialogClickListener1).show();
+                return true;
+
+
+            case R.id.action_annule:
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                finish();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(" Voulez-vous annuler la saisie du voyage ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener)
+                        .setNegativeButton("Non", dialogClickListener).show();
+                return true;
+
+            case R.id.action_settings:
+                // Settings option clicked.
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 
     public void showDatePickerDialog(View v)
     {
@@ -209,57 +266,9 @@ public class addTravel extends ActionBarActivity implements Observer {
     }
 
 
-    /*
-    public void showInputDialog() {
-
-        // get prompts.xml view
-        LayoutInflater layoutInflater = LayoutInflater.from(addTravel.this);
-        View promptView = layoutInflater.inflate(R.layout.dialog_poi, null);
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(addTravel.this);
-        alertDialogBuilder.setView(promptView);
-
-        final EditText editText = (EditText) promptView.findViewById(R.id.edittext1);
-
-
-
-
-        // setup a dialog window
-        alertDialogBuilder.setCancelable(false)
-                .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        textIn.setText(editText.getText());
-                    }
-                })
-                .setNegativeButton("Annuler",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        // create an alert dialog
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
-    }
-
-    */
-
-
-
 
     private void ListDynamicPoi()
     {
-        /*
-        textIn.setClickable(true);
-        textIn.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                showInputDialog();
-            }
-        }); */
-
-
 
         buttonAdd.setOnClickListener(new View.OnClickListener()
         {
@@ -326,6 +335,7 @@ public class addTravel extends ActionBarActivity implements Observer {
                         Intent myIntent = new Intent(getApplicationContext(), HomePage.class);
                         myIntent.putExtra("user", userCurrent);
                         startActivity(myIntent);
+                        finish();
                         break;
 
                 }

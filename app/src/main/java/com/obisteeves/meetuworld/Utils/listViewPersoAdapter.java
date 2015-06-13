@@ -55,17 +55,19 @@ public class listViewPersoAdapter extends ArrayAdapter {
         TextView dateD = (TextView) mView.findViewById(R.id.dateDepart);
 
 
-
-        Typeface typeFace= Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
+        Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface typefaceSecond = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
 
         new DownloadImageTask(avatarCompte).execute("http://www.l4h.be/TFE/android/Outils/avatars/" + items.get(position).get("avatar") + ".jpg");
 
-        idVoyage.setText(items.get(position).get("id"));
+        idVoyage.setText(items.get(position).get("idVoyage"));
         auteur.setText(items.get(position).get("idAuteur"));
         nomCompte.setText(items.get(position).get("nom"));
         nomCompte.setTypeface(typeFace);
         pays.setText(items.get(position).get("pays"));
+        pays.setTypeface(typefaceSecond);
         ville.setText(items.get(position).get("ville"));
+        ville.setTypeface(typefaceSecond);
         dateA.setText(items.get(position).get("date_arrivee"));
         dateD.setText(items.get(position).get("date_depart"));
 

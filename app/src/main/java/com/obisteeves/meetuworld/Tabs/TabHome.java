@@ -39,8 +39,6 @@ public class TabHome extends Fragment implements Observer{
     ImageView avatarCompte;
 
     String idVoyage, idAuteur;
-    String[] fields = {"avatar", "id", "idAuteur", "nom", "pays", "ville", "date_arrivee", "date_depart"};
-    int[] field_R_id = {R.id.avatarComptePersoRow, R.id.idVoyage, R.id.idAuteur, R.id.nomUser, R.id.paysHome, R.id.villeHome, R.id.dateArrivee, R.id.dateDepart};
     private ArrayList<HashMap<String, String>> listHashVoyage = new ArrayList<HashMap<String, String>>();
     private ArrayList<String> listPoi = new ArrayList<String>();
 
@@ -106,8 +104,7 @@ public class TabHome extends Fragment implements Observer{
                     idVoyage = json.getString("id");
                     idAuteur = json.getString("id_auteur");
 
-                    //new DownloadImageTask(avatarCompte).execute("http://www.l4h.be/TFE/android/Outils/avatars/"+idAuteur+".jpg");
-                    listViewMap.put("id",idVoyage);
+                    listViewMap.put("idVoyage", idVoyage);
                     listViewMap.put("idAuteur", idAuteur);
                     listViewMap.put("avatar", idAuteur);
                     listViewMap.put("nom",nom+" "+prenom);

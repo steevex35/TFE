@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
@@ -20,6 +19,7 @@ import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.Voyage;
+import com.obisteeves.meetuworld.Utils.listViewTabTravel_Adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,8 +39,7 @@ public class TabTravel extends Fragment implements Observer{
     Voyage voyageUser;
     ImageButton FAB;
     String idVoyage, idAuteur;
-    String[] fields = {"id", "idAuteur", "pays", "ville", "date_arrivee", "date_depart", "jRestant"};
-    int[] field_R_id = {R.id.idVoyageTravel, R.id.idAuteurTravel, R.id.paysTravel, R.id.villeTravel, R.id.dateArriveeTravel, R.id.dateDepartTravel, R.id.jourRestant};
+
     private ArrayList<HashMap<String, String>> listHashVoyage =  new ArrayList<HashMap<String, String>>();
 
     @Override
@@ -111,8 +110,7 @@ public class TabTravel extends Fragment implements Observer{
                     String dateA=json.getString("date_arrivee");
                     String dateD=json.getString("date_depart");
                     String jRestant=json.getString("joursRestant");
-
-                    listViewMap.put("id",idVoyage);
+                    listViewMap.put("idVoyage", idVoyage);
                     listViewMap.put("idAuteur", idAuteur);
                     listViewMap.put("pays",pays);
                     listViewMap.put("ville",ville);
@@ -123,8 +121,8 @@ public class TabTravel extends Fragment implements Observer{
 
                 }
 
-                ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListView);
-                SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(),listHashVoyage,R.layout.listview_tab_tavel,fields,field_R_id);
+                ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewTravel);
+                listViewTabTravel_Adapter voyagesAdapter = new listViewTabTravel_Adapter(getActivity(), R.layout.listview_tab_tavel, listHashVoyage, getActivity());
                 voyagesListView.setAdapter(voyagesAdapter);
 
                 voyagesListView.setClickable(true);

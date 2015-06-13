@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E0E0E0"
     tools:context="com.obisteeves.meetuworld.Tabs.TabTravel">
 
     <ListView
-        android:id="@+id/voyageListView"
+        android:id="@+id/voyageListViewTravel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:divider="#E0E0E0"
-        android:dividerHeight="10.0sp"
+        android:dividerHeight="3.0sp"
         >
 
         </ListView>
@@ -46,7 +47,7 @@
             android:layout_gravity="right|bottom"
             android:layout_margin="15dp"
             android:background="@drawable/circle"
-            android:src="@drawable/ic_add_white_24dp"
+            android:src="@drawable/ic_add_white_18dp"
             android:textColor="#FFFFFF" />
 
     </FrameLayout>
