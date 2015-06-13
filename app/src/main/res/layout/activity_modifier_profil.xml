@@ -21,12 +21,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
                 android:background="#FFFFFF"
                 android:orientation="vertical"
-                android:paddingBottom="70dp"
+                android:paddingBottom="275dp"
                 tools:context="com.obisteeves.meetuworld.PageAndroid.modifierProfil">
 
 
@@ -74,25 +74,18 @@
                     android:inputType="text"
                     android:textColorHint="@color/ColorPrimary" />
 
+
                 <TextView
-                    android:id="@+id/error"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textColor="#FF0000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-
-                <Button
-                    android:id="@+id/envoyer_modifier_profil"
-                    style="@style/ConnexionButtonText"
+                    android:id="@+id/restorePwd"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/button_inscription"
-                    android:onClick="envoyerNouveauProfil"
-                    android:text="@string/profil_page_sendNewProfil" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="80dp"
+                    android:onClick="true"
+                    android:text="Modifier votre mot de passe"
+                    android:textColor="#FF0000"
+                    android:textSize="16sp" />
+
             </LinearLayout>
     </ScrollView>
 </LinearLayout>

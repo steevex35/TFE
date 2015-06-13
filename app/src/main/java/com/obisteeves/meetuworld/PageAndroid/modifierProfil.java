@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,8 +23,6 @@ import org.json.JSONException;
 
 import java.util.Observable;
 import java.util.Observer;
-
-
 
 
 public class modifierProfil extends ActionBarActivity implements Observer {
@@ -76,16 +73,66 @@ public class modifierProfil extends ActionBarActivity implements Observer {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //envoie du profil
+                                nouveauProfil(nom.getText().toString(), prenom.getText().toString(),
+                                        ville.getText().toString(), pays.getText().toString());
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                                //Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
+                                Intent intent = new Intent(modifierProfil.this, HomePage.class);
+                                intent.putExtra("user", user);
+                                startActivity(intent);
+                                finish();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage("Voulez-vous enregistrer ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener1)
+                        .setNegativeButton("Non", dialogClickListener1).show();
+                return true;
+
+
+            case R.id.action_annule:
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                finish();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(" Voulez-vous annuler ?").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener)
+                        .setNegativeButton("Non", dialogClickListener).show();
+                return true;
+
+            case R.id.action_settings:
+                // Settings option clicked.
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
     private void afficheProfil() {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
@@ -94,41 +141,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                 + getResources().getString(R.string.pageProfil);
         net.setUrl(address);
         net.send();
-
-
-    }
-    //rajouter dialog pour confirmer l'envoie du formulaire
-    public void envoyerNouveauProfil(View view){
-        error.setText("");
-
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        //Yes button clicked
-                        nouveauProfil(nom.getText().toString(),prenom.getText().toString(),
-                                ville.getText().toString(),pays.getText().toString());
-
-                        //Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
-                        Intent intent = new Intent(modifierProfil.this, HomePage.class);
-                        intent.putExtra("user", user);
-                        startActivity(intent);
-
-                        break;
-
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        //No button clicked
-                        dialog.cancel();
-                        break;
-                }
-            }
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("êtes-vous sûre d'envoyer ces informations ?").setTitle("!! Avertissement !!")
-                .setPositiveButton("Oui", dialogClickListener)
-                .setNegativeButton("Non", dialogClickListener).show();
 
 
     }

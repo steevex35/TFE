@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
@@ -39,6 +40,7 @@ public class TabProfil extends Fragment implements Observer {
     private File photoFile = null;
     private File image;
     private User userCurrent;
+    private RatingBar note;
 
     private Bitmap imageBitmap;
 
@@ -48,6 +50,8 @@ public class TabProfil extends Fragment implements Observer {
         View v = inflater.inflate(R.layout.activity_tab_profil, container, false);
         //afficheProfil(v);
         HomePage homeActivity = (HomePage) getActivity();
+        note = (RatingBar) v.findViewById(R.id.profil_points);
+        note.setRating(4);
         userCurrent = homeActivity.getUser();
         try {
             ((TextView) v.findViewById(R.id.profil_nomPrenom)).setText(userCurrent.getmPrenom() + " " + userCurrent.getmNom());
