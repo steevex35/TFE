@@ -148,6 +148,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                 Intent intent = new Intent(infoVoyage.this, HomePage.class);
                                 intent.putExtra("user", user);
                                 startActivity(intent);
+                                finish();
 
                                 break;
 
