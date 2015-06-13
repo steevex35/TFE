@@ -192,6 +192,14 @@ public class Utilities {
             return false;
     }
 
+    public static boolean testString(String data1, String data2, String data3) {
+        if (data1 != null && !data1.isEmpty() && (data2 != null && !data2.isEmpty()) &&
+                (data3 != null && !data3.isEmpty()))
+            return true;
+        else
+            return false;
+    }
+
     public static boolean testStringInscription(String data1, String data2, String data3, String data4) {
         if (data1 != null && !data1.isEmpty() && (data2 != null && !data2.isEmpty()) &&
                 (data3 != null && !data3.isEmpty()) && (data4 != null && !data4.isEmpty())) {

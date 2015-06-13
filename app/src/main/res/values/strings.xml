@@ -58,6 +58,7 @@
     <string name="pageInscription">/TFE/android/pageInscription.php</string>
     <string name="pageProfil">/TFE/android/profil.php</string>
     <string name="pageModifierProfil">/TFE/android/modifierProfil.php</string>
+    <string name="pageModifierMotDePasse">/TFE/android/Outils/modifierMdp.php</string>
     <string name="pageAjouterVoyage">/TFE/android/ajouterVoyage.php</string>
     <string name="pageModifierVoyage">/TFE/android/modifierVoyage.php</string>
     <string name="pageSupprimerVoyage">/TFE/android/supprimerVoyage.php</string>
@@ -79,7 +80,7 @@
     <string name="profil_page_nom">Nom :</string>
     <string name="profil_page_prenom">Prenom :</string>
     <string name="profil_page_editVille">Entrez Votre Ville</string>
-    <string name="profil_page_ediPays">Entrez Votre Pays</string>
+    <string name="profil_page_editEmail">Entrez Votre Email</string>
     <string name="profil_page_editNom">Entrez votre Nom</string>
     <string name="profil_page_editPrenom">Entrez votre Prenom</string>
     <string name="profil_page_pays">Pays :</string>

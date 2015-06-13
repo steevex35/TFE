@@ -64,13 +64,13 @@
 
 
                 <EditText
-                    android:id="@+id/hidden_edit_pays"
+                    android:id="@+id/hidden_edit_email"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:hint="@string/profil_page_ediPays"
+                    android:hint="@string/profil_page_editEmail"
                     android:inputType="text"
                     android:textColorHint="@color/ColorPrimary" />
 

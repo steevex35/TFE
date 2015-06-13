@@ -11,13 +11,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="15dip">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/pays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dip"
         android:text="Mot de passe reçu par e-mail :" />
 
     <EditText
@@ -28,18 +27,34 @@
 
 
     <TextView
-        android:id="@+id/ville"
+        android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingBottom="10dip"
         android:text="Nouveau mot de passe :" />
 
     <EditText
         android:id="@+id/pwdFinal"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ville"  />
+        android:layout_marginTop="10dp"
+        android:text="Confirmation :" />
+
+    <EditText
+        android:id="@+id/pwdFinalConf"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/errorDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000" />
 
 </LinearLayout>
     </ScrollView>

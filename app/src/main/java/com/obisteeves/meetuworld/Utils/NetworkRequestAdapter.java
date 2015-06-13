@@ -1,12 +1,8 @@
 package com.obisteeves.meetuworld.Utils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Observable;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -20,10 +16,17 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import static com.obisteeves.meetuworld.Utils.Utilities.inputStreamToString;;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Observable;
+
+import static com.obisteeves.meetuworld.Utils.Utilities.inputStreamToString;
+
+;
 
 
 /**
@@ -31,57 +34,19 @@ import static com.obisteeves.meetuworld.Utils.Utilities.inputStreamToString;;
  */
 public class NetworkRequestAdapter extends Observable{
 
-    /**
-     * Suite des parametres a envoyer en post
-     */
-    private List<BasicNameValuePair> nameValuePairs;
-    /**
-     * Url en cours de requête
-     */
-    private String url;
-
-
     public static final String NO_ERROR = "0";
-
     public static final int NEW = 0;
     public static final int WAITING = 1;
     public static final int FINISH = 2;
-
     public static final int OK  = 23;
     public static final int OKinscription = 24;
     public static final int OKlistPays = 25;
     public static final int OKlistPoi = 26;
-
-
+    public static final int OKpwd = 27;
     /**
      * Erreur, réponse correcte impossible
      */
     public final static int ERROR = 9;
-
-    /**
-     * Etat de l'adapter {@linkplain #NEW} | {@linkplain #WAITING} | {@linkplain #FINISH}}
-     */
-    private int state;
-
-    /**
-     * Présence d'une barre de chargement ou pas
-     */
-    private boolean progress = true;
-
-    /**
-     * code d'erreur renvoyé par le serveur
-     */
-    private String error ="";
-
-    /**
-     * Source demandant les services de l'adapter
-     */
-    private Activity client;
-    /**
-     * Retour de la requête
-     */
-    private JSONObject result;
-
     /**
      * Classe servant pour la gestion des cookies
      */
@@ -90,6 +55,34 @@ public class NetworkRequestAdapter extends Observable{
      * Utile pour la gestion des coockies
      */
     private static HttpContext localContext = new BasicHttpContext();
+    /**
+     * Suite des parametres a envoyer en post
+     */
+    private List<BasicNameValuePair> nameValuePairs;
+    /**
+     * Url en cours de requête
+     */
+    private String url;
+    /**
+     * Etat de l'adapter {@linkplain #NEW} | {@linkplain #WAITING} | {@linkplain #FINISH}}
+     */
+    private int state;
+    /**
+     * Présence d'une barre de chargement ou pas
+     */
+    private boolean progress = true;
+    /**
+     * code d'erreur renvoyé par le serveur
+     */
+    private String error = "";
+    /**
+     * Source demandant les services de l'adapter
+     */
+    private Activity client;
+    /**
+     * Retour de la requête
+     */
+    private JSONObject result;
 
     /**
      * Constructor
