@@ -47,7 +47,7 @@ public class addTravel extends ActionBarActivity implements Observer {
     String idSelectionPays;
     TextView fdateA, fdateD,error;
     EditText textIn,ville;
-    Button buttonAdd, buttonEnvoyerVovaye;
+    Button buttonAdd;
     LinearLayout container;
     Spinner spinner;
     User userCurrent;
@@ -71,39 +71,12 @@ public class addTravel extends ActionBarActivity implements Observer {
         ville =(EditText)findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
         buttonAdd = (Button) findViewById(R.id.add);
-        buttonEnvoyerVovaye=(Button)findViewById(R.id.boutonAddTravel);
         container = (LinearLayout) findViewById(R.id.container);
         error=((TextView)findViewById(R.id.error));
 
         ListDynamicPoi();
         ListPays();
-        buttonEnvoyerVovaye.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
-                //System.out.println(tabPoi);
-
-                if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString())
-                        && testString(fdateD.getText().toString())) != true)) {
-                    dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", addTravel.this);
-                }else if (tabPoi.isEmpty()) {
-                    dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", addTravel.this);
-
-                }else {
-                    EnvoyerVoyage(idSelectionPays,
-                            ville.getText().toString(),
-                            fdateA.getText().toString(),
-                            fdateD.getText().toString(),
-                            tabPoi.toString()
-
-                    );
-
-                }
-
-            }
-
-        });
 
 
 
