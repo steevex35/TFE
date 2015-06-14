@@ -164,7 +164,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -237,11 +236,9 @@ public class modifierProfil extends ActionBarActivity implements Observer {
 
     }
     public void update(Observable observable, Object data) {
-        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-        String netReq = String.valueOf(NetworkRequestAdapter.OK);
         String netReq2 = String.valueOf(NetworkRequestAdapter.OKpwd);
         if (data.toString().equals(netReq2)) {
-            dialogPerso(data.toString(), "info", "ok", modifierProfil.this);
+            dialogPerso("Mot de passe mise à jour", "info", "Continuer", modifierProfil.this);
 
         } else {
             dialogPerso(data.toString(), "info", "ok", modifierProfil.this);
