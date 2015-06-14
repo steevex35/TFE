@@ -9,12 +9,12 @@
         android:id="@+id/guideListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
         android:background="#FFFFFF"
         android:divider="#E0E0E0"
-        android:dividerHeight="10.0sp">
+        android:dividerHeight="2.0sp">
 
     </ListView>
 

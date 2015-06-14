@@ -1,5 +1,7 @@
 package com.obisteeves.meetuworld.Tabs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,10 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
 import com.obisteeves.meetuworld.R;
+import com.obisteeves.meetuworld.Utils.ListViewTabGuide_Adapter;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
 
@@ -26,8 +29,8 @@ import java.util.Observer;
 
 public class TabGuide extends Fragment implements Observer {
 
+    TextView idPoi, idVoyage;
     private User user;
-    private String[] fields = {"id", "nom", "ville", "dateP", "nomUser", "idVoyage"};
     private int[] field_R_id = {R.id.idGuide, R.id.nomPoiGuide, R.id.villeGuide, R.id.datePassage, R.id.nomAuteurVoyage, R.id.idVoyageGuide};
     private ArrayList<HashMap<String, String>> listHashGuide = new ArrayList<HashMap<String, String>>();
     @Override
@@ -71,7 +74,7 @@ public class TabGuide extends Fragment implements Observer {
                     listViewMap.put("id", id);
                     listViewMap.put("nom", nomPoi);
                     listViewMap.put("ville", ville);
-                    listViewMap.put("dateP", "Le : " + dateP);
+                    listViewMap.put("dateP", "Le : " + "jj-mm-aaaa");
                     listViewMap.put("nomUser", "Avec : " + nom + " " + prenom);
                     listViewMap.put("idVoyage", idVoyage);
                     listHashGuide.add(listViewMap);
@@ -79,7 +82,7 @@ public class TabGuide extends Fragment implements Observer {
                 }
 
                 ListView guidesListView = (ListView) getActivity().findViewById(R.id.guideListView);
-                SimpleAdapter voyagesAdapter = new SimpleAdapter(getActivity(), listHashGuide, R.layout.listview_tab_guide, fields, field_R_id);
+                ListViewTabGuide_Adapter voyagesAdapter = new ListViewTabGuide_Adapter(getActivity(), R.layout.listview_tab_guide, listHashGuide, getActivity());
                 guidesListView.setAdapter(voyagesAdapter);
 
                 guidesListView.setClickable(true);
@@ -87,6 +90,32 @@ public class TabGuide extends Fragment implements Observer {
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                idPoi = (TextView) view.findViewById(R.id.idGuide);
+
+                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                dialog.cancel();
+                                                break;
+                                            case DialogInterface.BUTTON_POSITIVE:
+
+                                                String id = idPoi.getText().toString();
+                                                System.out.println(id);
+                                                deleteGuide(id);
+                                                break;
+                                        }
+                                    }
+                                };
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setMessage("annulé la visite du point d'intérêt ?")
+                                        .setTitle("Info")
+                                        .setNegativeButton("Non", dialogClickListener)
+                                        .setPositiveButton("Oui", dialogClickListener)
+                                        .show();
 
                             }
                         }
@@ -97,6 +126,16 @@ public class TabGuide extends Fragment implements Observer {
             }
         }
 
+    }
+
+    private void deleteGuide(String id_poi) {
+        NetworkRequestAdapter net = new NetworkRequestAdapter(getActivity());
+        net.addObserver(this);
+        String address = getResources().getString(R.string.serveurAdd)
+                + getResources().getString(R.string.deleteGuide);
+        net.setUrl(address);
+        net.addParam("id_poi", id_poi);
+        net.send();
     }
 
 }

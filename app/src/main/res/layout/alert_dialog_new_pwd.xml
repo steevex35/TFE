@@ -17,7 +17,7 @@
         android:id="@+id/pays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mot de passe reçu par e-mail :" />
+        android:text="Mot de passe actuel:" />
 
     <EditText
         android:id="@+id/pwdEmail"
