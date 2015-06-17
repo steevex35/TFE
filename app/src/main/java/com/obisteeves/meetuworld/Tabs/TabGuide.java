@@ -103,8 +103,10 @@ public class TabGuide extends Fragment implements Observer {
                                             case DialogInterface.BUTTON_POSITIVE:
 
                                                 String id = idPoi.getText().toString();
-                                                System.out.println(id);
+                                                //System.out.println(id);
                                                 deleteGuide(id);
+                                                listHashGuide.clear();
+                                                listViewGuide();
                                                 break;
                                         }
                                     }
