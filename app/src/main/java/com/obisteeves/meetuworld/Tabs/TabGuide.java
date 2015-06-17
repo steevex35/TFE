@@ -29,9 +29,8 @@ import java.util.Observer;
 
 public class TabGuide extends Fragment implements Observer {
 
-    TextView idPoi, idVoyage;
+    private TextView idPoi;
     private User user;
-    private int[] field_R_id = {R.id.idGuide, R.id.nomPoiGuide, R.id.villeGuide, R.id.datePassage, R.id.nomAuteurVoyage, R.id.idVoyageGuide};
     private ArrayList<HashMap<String, String>> listHashGuide = new ArrayList<HashMap<String, String>>();
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -103,7 +102,6 @@ public class TabGuide extends Fragment implements Observer {
                                             case DialogInterface.BUTTON_POSITIVE:
 
                                                 String id = idPoi.getText().toString();
-                                                //System.out.println(id);
                                                 deleteGuide(id);
                                                 listHashGuide.clear();
                                                 listViewGuide();
