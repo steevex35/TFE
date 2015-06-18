@@ -46,14 +46,14 @@ import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
  * Activity qui permet à un utilisateur d'ajouter un voyage
  */
 public class addTravel extends ActionBarActivity implements Observer {
-    Toolbar toolbar;
-    String idSelectionPays;
-    TextView fdateA, fdateD,error;
-    EditText textIn,ville;
-    Button buttonAdd;
-    LinearLayout container;
-    Spinner spinner;
-    User userCurrent;
+    private Toolbar toolbar;
+    private String idSelectionPays;
+    private TextView fdateA, fdateD, error;
+    private EditText textIn, ville;
+    private Button buttonAdd;
+    private LinearLayout container;
+    private Spinner spinner;
+    private User userCurrent;
     private ArrayList<String> tabPoi = new ArrayList<String>();
     private  HashMap<String,String> spinnerMap = new HashMap<String, String>();
 

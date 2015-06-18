@@ -26,14 +26,16 @@ import java.util.Observer;
 
 import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
+/**
+ * Activity servant à modifier les informations d'un utilisateur
+ */
 
 public class modifierProfil extends ActionBarActivity implements Observer {
 
-    Toolbar toolbar;
-    EditText nom, prenom, ville, email;
-    TextView error;
-    User user;
-    TextView restorePwd;
+    private Toolbar toolbar;
+    private EditText nom, prenom, ville, email;
+    private User user;
+    private TextView restorePwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,8 @@ public class modifierProfil extends ActionBarActivity implements Observer {
             user = getIntent().getExtras().getParcelable("user");
         } catch (NullPointerException e) {
         }
-
         iniActionBar();
-        //afficheProfil();
+
         nom=(EditText) findViewById(R.id.hidden_edit_nom);
         prenom=(EditText) findViewById(R.id.hidden_edit_prenom);
         ville=(EditText) findViewById(R.id.hidden_edit_ville);
@@ -57,20 +58,14 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         ville.setText(user.getmVille());
         email.setText(user.getmEmail());
 
-
-        error = (TextView) findViewById(R.id.error);
-
         restorePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(ConnectionPage.this, ResetPwd.class);
-                // startActivity(intent);
                 LayoutInflater inflater = LayoutInflater.from(modifierProfil.this);
                 View dialog_layout = inflater.inflate(R.layout.alert_dialog_new_pwd, null);
                 AlertDialog.Builder db = new AlertDialog.Builder(modifierProfil.this);
                 db.setView(dialog_layout);
                 db.setTitle("Nouveau mot de passe");
-
                 db.setCancelable(false);
                 final EditText pwdEmail = (EditText) dialog_layout.findViewById(R.id.pwdEmail);
                 final EditText pwdFinal = (EditText) dialog_layout.findViewById(R.id.pwdFinal);
@@ -78,13 +73,11 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                 db.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         String mdpE = pwdEmail.getText().toString();
                         String mdpF = pwdFinal.getText().toString();
                         String mdpFc = pwdFinalConf.getText().toString();
                         System.out.println(mdpE + " " + mdpF + " " + mdpFc);
-                        //envoie du mot de passe
-                        envoyerMotDePasse(mdpE, mdpF, mdpFc);
+                        envoyerMotDePasse(mdpE, mdpF, mdpFc);//envoie du mot de passe
                     }
                 });
                 db.setNegativeButton("Retour", new DialogInterface.OnClickListener() {
@@ -96,12 +89,19 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                 AlertDialog dialog = db.create();
                 dialog.show();
 
-
             }
         });
 
 
     }
+
+    /**
+     * Fonction servant à envoyer le données relatif pour reset un mot de passe
+     *
+     * @param mdpEmail
+     * @param mdpFinal
+     * @param mdpFinalConf
+     */
 
     private void envoyerMotDePasse(String mdpEmail, String mdpFinal, String mdpFinalConf) {
 
@@ -117,13 +117,11 @@ public class modifierProfil extends ActionBarActivity implements Observer {
             net.addParam("mdpFc", mdpFinalConf);
             net.send();
         } else
-            // ((TextView)findViewById(R.id.errorDialog)).setText("Un ou plusieurs champs sont vides");
             dialogPerso("Champs vide", "info", "ok", modifierProfil.this);
     }
 
-
     /**
-     * permmet d'afficher l'actionBar android
+     * Permmet d'afficher l'actionBar android
      */
     private void iniActionBar(){
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
@@ -136,7 +134,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_modifier_profil, menu);
         return true;
     }
@@ -154,7 +151,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                                 nouveauProfil(nom.getText().toString(), prenom.getText().toString(),
                                         ville.getText().toString(), email.getText().toString());
 
-                                user.setmNom(nom.getText().toString());
+                                user.setmNom(nom.getText().toString()); //mise à jour de l'objet user
                                 user.setmPrenom(prenom.getText().toString());
                                 user.setmVille(ville.getText().toString());
                                 Intent intent = new Intent(modifierProfil.this, HomePage.class);
@@ -186,7 +183,6 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -205,16 +201,14 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                 return super.onOptionsItemSelected(item);
         }
     }
-    private void afficheProfil() {
-        NetworkRequestAdapter net = new NetworkRequestAdapter(this);
-        net.addObserver(this);
-        String address = getResources().getString(R.string.serveurAdd)
-                + getResources().getString(R.string.pageProfil);
-        net.setUrl(address);
-        net.send();
 
-
-    }
+    /**
+     * Envoie du nouveau profil au serveur
+     * @param nom
+     * @param prenom
+     * @param ville
+     * @param email
+     */
 
     private void nouveauProfil(String nom, String prenom, String ville, String email) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
@@ -231,19 +225,15 @@ public class modifierProfil extends ActionBarActivity implements Observer {
             net.send();
         } else
             ((TextView)findViewById(R.id.error)).setText("Un ou plusieurs champs sont vides");
-
-
-
     }
+
     public void update(Observable observable, Object data) {
         String netReq2 = String.valueOf(NetworkRequestAdapter.OKpwd);
         if (data.toString().equals(netReq2)) {
             dialogPerso("Mot de passe mise à jour", "info", "Continuer", modifierProfil.this);
-
         } else {
             dialogPerso(data.toString(), "info", "ok", modifierProfil.this);
         }
-
     }
 
 }

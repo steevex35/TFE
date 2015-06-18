@@ -23,6 +23,10 @@ import java.util.Observer;
 
 import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
+/**
+ * Activity permettant de restaurer le mot de passe utilisateur
+ */
+
 public class ResetPwd extends ActionBarActivity implements Observer {
 
     private Toolbar toolbar;
@@ -60,6 +64,11 @@ public class ResetPwd extends ActionBarActivity implements Observer {
         }
     }
 
+    /**
+     * envoie de l'email au serveur pour la reception du mot de passe temporaire
+     *
+     * @param email
+     */
     public void sendResetPwd(String email) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
@@ -78,7 +87,6 @@ public class ResetPwd extends ActionBarActivity implements Observer {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
-                            //Yes button clicked
                             Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
                             startActivity(myIntent);
                             break;

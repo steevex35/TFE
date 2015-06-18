@@ -18,24 +18,18 @@ import com.obisteeves.meetuworld.Tabs.SlidingTabLayout;
 import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.ViewPagerAdapter;
 
+/**
+ * Activity principale qui regroupe les différents fragments
+ */
 public class HomePage extends ActionBarActivity {
 
-    Toolbar toolbar;
-    ViewPager pager;
-    ViewPagerAdapter adapter;
-    SlidingTabLayout tabs;
-    CharSequence titles[];
-    int nbTabs;
+    private Toolbar toolbar;
+    private ViewPager pager;
+    private ViewPagerAdapter adapter;
+    private SlidingTabLayout tabs;
+    private CharSequence titles[];
+    private int nbTabs;
     private User user;
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 
     @Override
@@ -47,11 +41,14 @@ public class HomePage extends ActionBarActivity {
             user = getIntent().getExtras().getParcelable("user");
         } catch (NullPointerException e) {
         }
-
     }
 
+    /**
+     * initialisation de l'ActionBar
+     * et du SlideBar menu
+     */
+
     private void ini(){
-        // Set the Settings of the tabs
         nbTabs = 4;
         titles = new CharSequence[]{"Home", "Ur Trips", "Profil", "Guide"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
@@ -59,12 +56,10 @@ public class HomePage extends ActionBarActivity {
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
         getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Meet Your World</font></center>"));
         toolbar.setLogo(R.drawable.ic_logo);
-
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager)findViewById(R.id.pager);
         pager.setAdapter(adapter);
         tabs = (SlidingTabLayout)findViewById(R.id.tabs);
-        // Enable the differents tabs to be evenly distributed on the screen's width.
         tabs.setDistributeEvenly(true);
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
@@ -73,23 +68,17 @@ public class HomePage extends ActionBarActivity {
             }
         });
         tabs.setViewPager(pager);
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home_page, menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_filtre:
                 DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
@@ -97,13 +86,10 @@ public class HomePage extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
                                 //filtre sur la Localisation
-
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -115,21 +101,16 @@ public class HomePage extends ActionBarActivity {
                         .setNegativeButton("Non", dialogClickListener1).show();
                 return true;
 
-
             case R.id.action_deco:
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-                             //Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
                                 finish();
-
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -149,5 +130,13 @@ public class HomePage extends ActionBarActivity {
         }
     }
 
+    //Getter and Setter
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }

@@ -25,11 +25,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Activity de test pour la google Maps
+ */
 public class ItinerairePage extends ActionBarActivity {
 
-    Toolbar toolbar;
-    GoogleMap googleMap;
-    String ville;
+    private Toolbar toolbar;
+    private GoogleMap googleMap;
+    private String ville;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,7 @@ public class ItinerairePage extends ActionBarActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ville = extras.getString("ville");
-
         }
-
-
 
         createMapView();
         addMarker();

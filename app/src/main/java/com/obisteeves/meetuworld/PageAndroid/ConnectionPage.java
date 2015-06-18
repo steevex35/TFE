@@ -25,6 +25,9 @@ import java.util.Observer;
 
 import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
+/**
+ * Activity permettant de se connecter à l'application
+ */
 public class ConnectionPage extends ActionBarActivity implements Observer{
 
     private Toolbar toolbar;

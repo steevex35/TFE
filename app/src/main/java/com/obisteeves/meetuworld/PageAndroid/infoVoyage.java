@@ -36,13 +36,16 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * Activity regroupant les information relatif d'un voyage et une carte GoogleMaps
+ * Elle est composée de deux Fragment, TabInfo et TabMaps
+ */
 public class infoVoyage extends ActionBarActivity implements Observer {
 
     public Voyage voyageUser;
-    ListView poiListView;
-    User user;
-    ImageView avatar;
+    private ListView poiListView;
+    private User user;
+    private ImageView avatar;
     private Toolbar toolbar;
     private String id_voyage;
     private String nom;
@@ -60,7 +63,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     private CharSequence titles[];
     private int nbTabs;
     private ArrayList<String> tabNomPoi = new ArrayList<String>();
-    private TextView nomUser, idItemPoi, nomPoi;
+    private TextView idItemPoi, nomPoi;
     private String[] fields = {"nom", "id", "guide"};
     private int[] field_R_id = {R.id.nomPoi, R.id.idPoi, R.id.guide};
     private ArrayList<HashMap<String, String>> listHashPoi = new ArrayList<HashMap<String, String>>();
@@ -75,14 +78,12 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         try {
             voyageUser = getIntent().getExtras().getParcelable("parcelable");
             user = getIntent().getExtras().getParcelable("fullUser");
-            //System.out.println(voyageUser.getListPoi().toString() + "classe inVoyage");
         } catch (NullPointerException e) {
         }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id_voyage = extras.getString("id_voyage");
-            //id_auteur = extras.getString("id_auteur");
             id_auteur = voyageUser.getId_auteur();
             id_current = extras.getString("userCurrent");
             nom = extras.getString("nom_user");
@@ -90,10 +91,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             ville = extras.getString("ville_user");
             dateA = extras.getString("dateA");
             dateD = extras.getString("dateD");
-
         }
-
-
 
         iniActionBar();
         afficheVoyage(voyageUser.getId_voyage());
@@ -102,7 +100,6 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_info_voyage, menu);
         itemModif = menu.findItem(R.id.action_edit);
         itemDelete = menu.findItem(R.id.action_deleteTravel);
@@ -117,14 +114,8 @@ public class infoVoyage extends ActionBarActivity implements Observer {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         switch (item.getItemId()) {
-            case R.id.action_edit:
+            case R.id.action_edit: //modification d'un voyage
                 Intent intent = new Intent(infoVoyage.this, ModifierVoyage.class);
                 intent.putExtra("parcelable", voyageUser);
                 intent.putExtra("idVoyage", id_voyage);
@@ -136,24 +127,20 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 startActivity(intent);
                 break;
 
-            case R.id.action_deleteTravel:
+            case R.id.action_deleteTravel: // suppréssion d'un voyage
                 DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-                                //supprimer voyage
                                 deleteVoyage(voyageUser.getId_voyage());
                                 Intent intent = new Intent(infoVoyage.this, HomePage.class);
                                 intent.putExtra("user", user);
                                 startActivity(intent);
                                 finish();
-
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -169,21 +156,22 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Initialisation du SlideBar menu
+     */
+
     private void iniActionBar(){
         nbTabs = 2;
-        titles = new CharSequence[]{"Information", "Carte"};
+        titles = new CharSequence[]{"Info", "Maps"};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Info voyage</font></center>"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
         toolbar.setLogo(R.drawable.ic_logo);
-
         adapter = new ViewPagerAdapterInfoTravel(getSupportFragmentManager(), titles, nbTabs);
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
-        // Enable the differents tabs to be evenly distributed on the screen's width.
         tabs.setDistributeEvenly(true);
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
@@ -192,9 +180,13 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             }
         });
         tabs.setViewPager(pager);
-
     }
 
+    /**
+     * Récupération du voyage depuis la base de données
+     *
+     * @param id_voyage
+     */
 
     public void afficheVoyage(String id_voyage) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
@@ -206,6 +198,13 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         net.send();
 
     }
+
+    /**
+     * Permet à un utilisateur de devenir guide pour un Poi
+     * @param id_poi
+     * @param id_current
+     * @param id_auteur
+     */
 
     private void DevenirGuide(String id_poi, String id_current, String id_auteur) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
@@ -231,21 +230,18 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
-                            listHashPoi.clear();
+                            listHashPoi.clear();     //rafraichissment de la listView
                             poiListView.setAdapter(null);
                             afficheVoyage(id_voyage);
                             break;
-
                     }
                 }
             };
-
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Merci d'avoir choisi d'être mon guide pour ce lieu")
                     .setTitle("Info")
                     .setPositiveButton("Retour", dialogClickListener)
                     .show();
-
         }
 
 
@@ -261,23 +257,16 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                     id_current = json.getString("id_current");
                     id_auteur = json.getString("id_auteur");
                     tabNomPoi.add(nomPoi);
-                    //System.out.println(tabNomPoi.size()+"classe INfo");
-                    //System.out.println(tabNomPoi.toString());
                     listViewMap.put("nom", nomPoi);
                     listViewMap.put("id", idPoi);
                     listViewMap.put("guide", guide);
                     listHashPoi.add(listViewMap);
 
                 }
-                //voyageUser.setListPoi(tabNomPoi);
-                //System.out.println(voyageUser.getListPoi().toString());
-
                 poiListView = (ListView) findViewById(R.id.listViewPoi);
                 SimpleAdapter poiAdapter = new SimpleAdapter(this, listHashPoi, R.layout.listview_poi, fields, field_R_id);
                 poiListView.setAdapter(poiAdapter);
-
                 poiListView.setClickable(true);
-
 
                 if (!id_current.equals(voyageUser.getId_auteur())) {
                     poiListView.setOnItemClickListener(
@@ -296,7 +285,6 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                                     dialog.cancel();
                                                     break;
                                                 case DialogInterface.BUTTON_POSITIVE:
-                                                    //Yes button clicked
                                                     String id = idItemPoi.getText().toString();
                                                     DevenirGuide(id, id_current, id_auteur);
                                                     break;
@@ -318,12 +306,13 @@ public class infoVoyage extends ActionBarActivity implements Observer {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
-
+    /**
+     * Fonction qui permet à un guide de supprimer le fait qu'il soit guide pour un Poi
+     * @param idVoyage
+     */
     private void deleteVoyage(String idVoyage) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
@@ -333,6 +322,10 @@ public class infoVoyage extends ActionBarActivity implements Observer {
         net.addParam("idVoyage", idVoyage);
         net.send();
     }
+
+    /**
+     * Getters and Setters
+     */
 
     public String getId_voyage() {
         return id_voyage;

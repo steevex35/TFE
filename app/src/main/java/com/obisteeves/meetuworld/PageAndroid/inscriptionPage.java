@@ -34,15 +34,16 @@ import java.util.Observer;
 
 import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 
+/**
+ * Activity d'inscription
+ */
 public class inscriptionPage extends ActionBarActivity implements Observer {
 
-    EditText nom, prenom, email, pwd, ville;
-        TextView error,fdateDob;
-        Spinner spinner;
-        String idSelectionPays;
-
          Toolbar toolbar;
-
+    private EditText nom, prenom, email, pwd, ville;
+    private TextView error, fdateDob;
+    private Spinner spinner;
+    private String idSelectionPays;
     private HashMap<String,String> spinnerMap = new java.util.HashMap<String, String>();
 
 

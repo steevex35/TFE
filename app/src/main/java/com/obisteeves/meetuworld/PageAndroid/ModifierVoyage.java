@@ -34,15 +34,17 @@ import static com.obisteeves.meetuworld.Utils.Utilities.getPosition;
 import static com.obisteeves.meetuworld.Utils.Utilities.testString;
 import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
 
+/**
+ * Activity de modification de voyage
+ */
 public class ModifierVoyage extends ActionBarActivity implements Observer {
 
-    Button buttonAdd;
-    LinearLayout container;
+    private Button buttonAdd;
+    private LinearLayout container;
     private Toolbar toolbar;
     private Voyage voyageUser;
     private TextView fdateA, fdateD;
     private EditText fville, textIn;
-
     private String id_voyage;
     private String id_auteur;
     private String id_current;
@@ -63,7 +65,9 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
         fdateD = (TextView) findViewById(R.id.modifDateDepart);
         fville = (EditText) findViewById(R.id.modifVoyageVille);
         container = (LinearLayout) findViewById(R.id.containermodif);
+
         iniActionBar();
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id_voyage = extras.getString("id_voyage");
@@ -74,8 +78,8 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
             ville = extras.getString("ville_user");
             dateA = extras.getString("dateA");
             dateD = extras.getString("dateD");
-
         }
+
         try {
             voyageUser = getIntent().getExtras().getParcelable("parcelable");
         } catch (NullPointerException e) {
@@ -85,8 +89,8 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
         ((TextView) findViewById(R.id.modifDateArrivee)).setText(voyageUser.getDateA());
         ((TextView) findViewById(R.id.modifDateDepart)).setText(voyageUser.getDateD());
         listPoiLocal = voyageUser.getListPoi();
-
         ListDynamicPoi();
+
         for (int i = 0; i < listPoiLocal.size(); i++) {
             LayoutInflater layoutInflater =
                     (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -104,7 +108,6 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
             });
             container.addView(addView);
         }
-
     }
 
     @Override
@@ -133,9 +136,6 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
 
                                 } else {
                                     voyageUser.setListPoi(listPoiLocal);
-                                    //voyageUser.setVille(fville.getText().toString());
-                                    //voyageUser.setDateA(fdateA.getText().toString());
-                                    //voyageUser.setDateD(fdateD.getText().toString());
                                     updateVoyage(
                                             voyageUser.getId_voyage(),
                                             fville.getText().toString(),
@@ -154,12 +154,9 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                                     startActivity(intent);
                                     finish();
                                 }
-
-
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -170,9 +167,6 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                 builder.setMessage("Confirmation les modifications").setTitle("Avertissement").setPositiveButton("Oui", dialogClickListener)
                         .setNegativeButton("Non", dialogClickListener).show();
                 return true;
-
-
-
 
             case R.id.action_settings:
                 // Settings option clicked.
@@ -185,20 +179,27 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
     private void iniActionBar() {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Modifier voyage</font></center>"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
         toolbar.setLogo(R.drawable.ic_logo);
-
     }
 
-
+    /**
+     * DatePicker servant à récupérer la date d'arrivée
+     *
+     * @param v
+     */
     public void showDatePickerDialog(View v) {
         TextView dateA = ((TextView) findViewById(R.id.modifDateArrivee));
         DialogFragment newFragment = new DatePickerFragment(dateA);
         newFragment.show(getFragmentManager(), "datePicker");
         fdateA = dateA;
     }
+
+    /**
+     *DatePicker servant à récupérer la date de départ
+     * @param v
+     */
 
     public void showDatePickerDialog2(View v) {
         TextView dateD = ((TextView) findViewById(R.id.modifDateDepart));
@@ -207,6 +208,10 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
         fdateD = dateD;
     }
 
+    /**
+     *Fonction qui permet de rajouter un EditText de manière dynamique pour rajouter des points
+     * d'intérêts à un voyage
+     */
     private void ListDynamicPoi() {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
 
@@ -249,7 +254,14 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
 
     }
 
-
+    /**
+     * Fonction d'envoie de la mise à jour du voyage
+     * @param idVoyage
+     * @param ville
+     * @param dateA
+     * @param dateD
+     * @param listPoi
+     */
     private void updateVoyage(String idVoyage, String ville, String dateA, String dateD, String listPoi) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
