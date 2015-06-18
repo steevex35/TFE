@@ -1,4 +1,4 @@
-<!-- bouton pour supprimer les POi dans la page AddTravel  -->
+<!-- bouton pour supprimer les POi dans la page addTravel  -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

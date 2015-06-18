@@ -42,6 +42,9 @@ import static com.obisteeves.meetuworld.Utils.Utilities.getPosition;
 import static com.obisteeves.meetuworld.Utils.Utilities.testString;
 import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
 
+/**
+ * Activity qui permet à un utilisateur d'ajouter un voyage
+ */
 public class addTravel extends ActionBarActivity implements Observer {
     Toolbar toolbar;
     String idSelectionPays;
@@ -61,32 +64,30 @@ public class addTravel extends ActionBarActivity implements Observer {
         setContentView(R.layout.activity_add_travel);
 
         try {
-            userCurrent = getIntent().getExtras().getParcelable("user");
+            userCurrent = getIntent().getExtras().getParcelable("user"); // récupération de l'utisateur en cours par Parcelable
         } catch (NullPointerException e) {
         }
-
-        iniActionBar();
-        fdateA= (TextView)findViewById(R.id.DateArrivee);
-        fdateD=(TextView) findViewById(R.id.DateDepart);
-        ville =(EditText)findViewById(R.id.addVoyageVille);
+        fdateA = (TextView) findViewById(R.id.DateArrivee);
+        fdateD = (TextView) findViewById(R.id.DateDepart);
+        ville = (EditText) findViewById(R.id.addVoyageVille);
         textIn = (EditText) findViewById(R.id.textin);
         buttonAdd = (Button) findViewById(R.id.add);
         container = (LinearLayout) findViewById(R.id.container);
-        error=((TextView)findViewById(R.id.error));
+        error = ((TextView) findViewById(R.id.error));
 
+        iniActionBar();
         ListDynamicPoi();
         ListPays();
 
-
-
-
     }
 
+    /**
+     * initialisation de la l'ActionBar
+     */
     private void iniActionBar()
     {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<center><font color='#ffffff'>Ajouter un voyage</font></center>"));
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00796B")));
         toolbar.setLogo(R.drawable.ic_logo);
@@ -95,11 +96,16 @@ public class addTravel extends ActionBarActivity implements Observer {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add_travel, menu);
         return true;
     }
 
+    /**
+     * Action sur les boutons de l'ActionBar
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -110,7 +116,6 @@ public class addTravel extends ActionBarActivity implements Observer {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
-                                //envoie du voyage
                                 idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
                                 if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString())
                                         && testString(fdateD.getText().toString())) != true)) {
@@ -130,7 +135,6 @@ public class addTravel extends ActionBarActivity implements Observer {
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -153,7 +157,6 @@ public class addTravel extends ActionBarActivity implements Observer {
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
                                 dialog.cancel();
                                 break;
                         }
@@ -173,6 +176,11 @@ public class addTravel extends ActionBarActivity implements Observer {
         }
     }
 
+    /**
+     * DatePicker servant à récupérer la date d'arrivée
+     *
+     * @param v
+     */
 
     public void showDatePickerDialog(View v)
     {
@@ -181,6 +189,12 @@ public class addTravel extends ActionBarActivity implements Observer {
         newFragment.show(getFragmentManager(), "datePicker");
         fdateA=dateA;
     }
+
+    /**
+     * DatePicker servant à récupérer la date de départ
+     *
+     * @param v
+     */
 
     public void showDatePickerDialog2(View v)
     {
@@ -191,7 +205,9 @@ public class addTravel extends ActionBarActivity implements Observer {
     }
 
 
-
+    /**
+     * Fonction servant à récupérer la liste des pays depuis la Base de données
+     */
     public void ListPays()
     {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
@@ -200,10 +216,10 @@ public class addTravel extends ActionBarActivity implements Observer {
                 + getResources().getString(R.string.listPays);
         net.setUrl(address);
         net.send();
-
     }
 
     /**
+     * Fonction qui écoute les réponses du serveur pour mettre à jour l'objet Observer
      * @param observable
      * @param data
      */
@@ -239,18 +255,17 @@ public class addTravel extends ActionBarActivity implements Observer {
     }
 
 
-
+    /**
+     * Fonction qui permet de rajouter un EditText de manière dynamique pour rajouter des points
+     * d'intérêts à un voyage
+     */
     private void ListDynamicPoi()
     {
-
         buttonAdd.setOnClickListener(new View.OnClickListener()
         {
-
             @Override
             public void onClick(View arg0) {
-
-
-                if (valeurString(textIn.getText().toString(),addTravel.this)==true) {
+                if (valeurString(textIn.getText().toString(), addTravel.this) ==true) {
 
                     boolean element = tabPoi.contains(textIn.getText().toString());
                     if (element == true) {
@@ -258,16 +273,14 @@ public class addTravel extends ActionBarActivity implements Observer {
                         message="POi déjà présent";
                         titre="Avertissement";
                         bouton="Retour";
-                        dialogPerso(message,titre,bouton,addTravel.this);
-
+                        dialogPerso(message, titre, bouton, addTravel.this);
                     } else {
-                        LayoutInflater layoutInflater =
-                                (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         final View addView = layoutInflater.inflate(R.layout.row, null);
                         final TextView textOut = (TextView) addView.findViewById(R.id.textout);
                         textOut.setText(textIn.getText().toString());
-
                         Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+
                         buttonRemove.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -284,6 +297,15 @@ public class addTravel extends ActionBarActivity implements Observer {
         });
 
     }
+
+    /**
+     * Fonction qui permet d'enregistrer un voyage dans la base de données
+     * @param idPays
+     * @param ville
+     * @param dateA
+     * @param dateD
+     * @param listPoi
+     */
 
     private void EnvoyerVoyage(String idPays, String ville, String dateA, String dateD,String listPoi)
     {
@@ -304,21 +326,18 @@ public class addTravel extends ActionBarActivity implements Observer {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        //Yes button clicked
                         Intent myIntent = new Intent(getApplicationContext(), HomePage.class);
                         myIntent.putExtra("user", userCurrent);
                         startActivity(myIntent);
                         finish();
                         break;
-
                 }
             }
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Votre voyage est bien  enregistré").setTitle("Avertissement").setPositiveButton("Continuer", dialogClickListener).show();
+        builder.setMessage("Votre voyage est bien  enregistr").setTitle("Info").setPositiveButton("Continuer", dialogClickListener).show();
     }
-
 
 }
 

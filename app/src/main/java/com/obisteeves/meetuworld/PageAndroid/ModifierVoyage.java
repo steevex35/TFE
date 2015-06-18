@@ -152,7 +152,7 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                                     intent.putExtra("dateA", fdateA.getText().toString());
                                     intent.putExtra("dateD", fdateD.getText().toString());
                                     startActivity(intent);
-                                    //finish();
+                                    finish();
                                 }
 
 

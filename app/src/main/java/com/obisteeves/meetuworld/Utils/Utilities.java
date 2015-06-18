@@ -6,9 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.SparseArray;
 
-import com.obisteeves.meetuworld.R;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,19 +52,6 @@ public class Utilities {
         return answer;
     }
 
-    public static HashMap<String, Integer> getAdvertTypes() {
-        return ADVERT_TYPES;
-    }
-
-    public static String[] getAdvertTypesString(){
-        String[] result = new String[ADVERT_TYPES.size()];
-        int i = 0;
-        for(String s : ADVERT_TYPES.keySet()){
-            result[i] = s;
-            i++;
-        }
-        return result;
-    }
 
     public static void fillAdvertTable(JSONObject object) {
         try {
@@ -124,27 +108,7 @@ public class Utilities {
                 , source);
     }
 
-    /**
-     * Affiche un un dialog avec les erreurs contenue dans l'adapter
-     * @param net un {@linkplain NetworkRequestAdapter} ayant reçu une réponse
-     */
-    public static void showErrorMessages(NetworkRequestAdapter net, Activity source){
-        try {
-            if(net.getResult().get("return") instanceof JSONArray){
-                JSONArray o = (JSONArray)net.getResult().get("return");
 
-                StringBuilder str = new StringBuilder();
-                for(int i = 0; i<o.length(); i++)
-                    str.append(Utilities.getErrorMsgs().get(o.getInt(i)) + '\n');
-                Utilities.agreed(source.getResources().getString(R.string.failed)
-                        , str.toString()
-                        , source);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static boolean valeurString(String data,Activity classe) {
         if (data != null && !data.isEmpty())

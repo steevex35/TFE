@@ -17,10 +17,8 @@ import android.widget.TextView;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
-import com.obisteeves.meetuworld.Utils.Utilities;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -58,14 +56,13 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_connection_page, menu);
         return true;
 
     }
 
     /**
-     * permmet d'afficher l'actionBar android
+     * Permmet d'afficher l'actionBar
      */
     private void iniActionBar(){
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
@@ -78,12 +75,7 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -92,19 +84,15 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
     }
     public void connection(View view){
         connect(fEmail.getText().toString(), fMdp.getText().toString());
-        //Utilities.enter(HomePage.class, this);
     }
 
     private void connect (String email, String mdp){
         NetworkRequestAdapter net = new NetworkRequestAdapter(this);
         net.addObserver(this);
-
-
         String address= getResources().getString(R.string.serveurAdd)+ getResources().getString(R.string.connexionAdd);
         net.setUrl(address);
         net.addParam("email",email);
         net.addParam("mdp",mdp);
-
         net.send();
 
     }
@@ -113,8 +101,8 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
         if(msg==null) return ;
         NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
         if(msg.toString().equals(NetworkRequestAdapter.NO_ERROR)){
-
             try {
+                //récupération des données depuis le serveur
                 id = resultat.getResult().get("id").toString();
                 nom = resultat.getResult().get("nom").toString();
                 prenom = resultat.getResult().get("prenom").toString();
@@ -125,38 +113,18 @@ public class ConnectionPage extends ActionBarActivity implements Observer{
                 inscription = resultat.getResult().get("inscrit").toString();
                 nbVoyage = resultat.getResult().get("nbVoyage").toString();
                 nbGuides = resultat.getResult().get("nbGuide").toString();
-
-                userCurrent = new User(id, nom, prenom, age, email, ville, pays, inscription, nbVoyage, nbGuides);
+                userCurrent = new User(id, nom, prenom, age, email, ville, pays, inscription, nbVoyage, nbGuides);//initialisation de l'utilisateur en cours
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            //Utilities.enter(HomePage.class, this);
             Intent intent = new Intent(ConnectionPage.this, HomePage.class);
-            intent.putExtra("user", userCurrent);
+            intent.putExtra("user", userCurrent);// envoie de l'utilisteur dans l'Activity suivante
             startActivity(intent);
-            initAdvertTypesTable(observable);
 
         }
         else
             dialogPerso(msg.toString(),"Avertissement","retour",ConnectionPage.this);
-
     }
 
-    private void initAdvertTypesTable(final Observable observable){
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Utilities.fillAdvertTable((JSONObject) ((NetworkRequestAdapter)observable).getResult().get("types"));
-                    Utilities.fillErrorsTable((JSONObject) ((NetworkRequestAdapter)observable).getResult().get("errors"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        t.start();
-
-    }
 }
