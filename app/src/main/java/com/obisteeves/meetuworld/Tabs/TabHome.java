@@ -13,12 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
-import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
+import com.obisteeves.meetuworld.PageAndroid.InfoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.Voyage;
-import com.obisteeves.meetuworld.Utils.listViewPersoAdapter;
+import com.obisteeves.meetuworld.Utils.ListViewPersoAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +30,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by hp1 on 21-01-2015.
+ * Fragment qui regroupe tous les voyages contenu en base de données et qui sont encore valide
+ *
  */
 public class TabHome extends Fragment implements Observer{
 
@@ -50,7 +51,6 @@ public class TabHome extends Fragment implements Observer{
         avatarCompte = (ImageView) v.findViewById(R.id.avatarComptePersoRow);
 
         listViewVoyage();
-
         afficheVoyage(idVoyage);
 
         return v;
@@ -117,7 +117,7 @@ public class TabHome extends Fragment implements Observer{
                 }
 
                 final ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewHome);
-                listViewPersoAdapter voyagesAdapter = new listViewPersoAdapter(getActivity(), R.layout.listview_persorow, listHashVoyage, getActivity());
+                ListViewPersoAdapter voyagesAdapter = new ListViewPersoAdapter(getActivity(), R.layout.listview_persorow, listHashVoyage, getActivity());
                 voyagesListView.setAdapter(voyagesAdapter);
 
                 voyagesListView.setClickable(true);
@@ -145,9 +145,8 @@ public class TabHome extends Fragment implements Observer{
                                 String dateDTosend=dateD.getText().toString();
 
 
-                                System.out.println(listPoi.toString() + "classe Tab Hone");
                                 voyageUser = new Voyage(idVoyageToSend, idAuteurToSend, nomUserToSend, paysUserTosend, villeUserTosend, dateATosend, dateDTosend, listPoi);
-                                Intent intent = new Intent(getActivity(), infoVoyage.class);
+                                Intent intent = new Intent(getActivity(), InfoVoyage.class);
                                 intent.putExtra("userCurrent", userCurrent.getmId());
                                 intent.putExtra("id_voyage", idVoyageToSend);
                                 intent.putExtra("id_auteur", idAuteurToSend);
@@ -179,10 +178,6 @@ public class TabHome extends Fragment implements Observer{
                     String idPoi = json.getString("id");
                     String guide = json.getString("guide");
                     listPoi.add(nomPoi);
-                    //System.out.println(tabNomPoi.size()+"classe INfo");
-                    //System.out.println(tabNomPoi.toString());
-
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

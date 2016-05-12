@@ -16,7 +16,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
+import com.obisteeves.meetuworld.PageAndroid.InfoVoyage;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 
@@ -31,23 +31,22 @@ import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Fragment qui permet d'afficher une carte GoogleMaps
+ */
 
 public class TabMaps extends Fragment implements Observer {
     GoogleMap googleMap;
-    String ville, pays;
-    infoVoyage infoVoyage;
+    InfoVoyage InfoVoyage;
     private ArrayList<String> tabNomPoi = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab_maps, container, false);
-        infoVoyage = (infoVoyage) getActivity();
-
-        //tabNomPoi=infoVoyage.voyageUser.getListPoi();
-        //System.out.println(infoVoyage.voyageUser.getListPoi());
+        InfoVoyage = (InfoVoyage) getActivity();
         createMapView();
-        afficheVoyage(infoVoyage.getId_voyage());
-        //addMarker();
+        afficheVoyage(InfoVoyage.getId_voyage());
+
         return v;
     }
 
@@ -74,31 +73,30 @@ public class TabMaps extends Fragment implements Observer {
                 googleMap.setMyLocationEnabled(true);
 
 
-                /**
-                 * If the map is still null after attempted initialisation,
-                 * show an error to the user
-                 */
                 if (null == googleMap) {
                     Toast.makeText(getActivity().getApplicationContext(),
-                            "Error creating map", Toast.LENGTH_SHORT).show();
+                            "Erreur lors de la création de la carte", Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (NullPointerException exception) {
             Log.e("mapApp", exception.toString());
         }
-
-
     }
+
+    /**
+     * fonction qui permet de mettre plusieurs Marker sur la map
+     * crée une latitude et une longitude depuis le nom du POI
+     */
 
     private void addMarker() {
 
         googleMap.clear();
-        Double[] latitude = new Double[infoVoyage.voyageUser.getListPoi().size()];
-        Double[] longitude = new Double[infoVoyage.voyageUser.getListPoi().size()];
-        String[] addrs = new String[infoVoyage.voyageUser.getListPoi().size()];
-        addrs = infoVoyage.voyageUser.getListPoi().toArray(addrs);
+        Double[] latitude = new Double[InfoVoyage.voyageUser.getListPoi().size()];
+        Double[] longitude = new Double[InfoVoyage.voyageUser.getListPoi().size()];
+        String[] addrs = new String[InfoVoyage.voyageUser.getListPoi().size()];
+        addrs = InfoVoyage.voyageUser.getListPoi().toArray(addrs);
 
-        System.out.println(infoVoyage.voyageUser.getListPoi().size());
+        //System.out.println(InfoVoyage.voyageUser.getListPoi().size());
         List<Address> addressList;
         if (addrs != null && addrs.length > 0) {
             for (int i = 0; i < addrs.length; i++) {
@@ -106,15 +104,15 @@ public class TabMaps extends Fragment implements Observer {
                     Geocoder geoCoder = new Geocoder(getActivity(), Locale.getDefault());
                     addressList = geoCoder.getFromLocationName(addrs[i], 1);
                     if (addressList == null || addressList.isEmpty() || addressList.equals("")) {
-                        addressList = geoCoder.getFromLocationName(infoVoyage.voyageUser.getListPoi().get(i), 1);
+                        addressList = geoCoder.getFromLocationName(InfoVoyage.voyageUser.getListPoi().get(i), 1);
                     }
                     latitude[i] = addressList.get(0).getLatitude();
                     longitude[i] = addressList.get(0).getLongitude();
-                    System.out.println("latitude = " + latitude[i] + " longitude = " + longitude[i]);
+                    //System.out.println("latitude = " + latitude[i] + " longitude = " + longitude[i]);
                     googleMap.addMarker(new MarkerOptions()
                                     .position(new LatLng(latitude[i], longitude[i]))
-                                    .title(infoVoyage.voyageUser.getListPoi().get(i))
-                                    .snippet(infoVoyage.voyageUser.getListPoi().get(i))
+                                    .title(InfoVoyage.voyageUser.getListPoi().get(i))
+                                    .snippet(InfoVoyage.voyageUser.getListPoi().get(i))
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                                     .alpha(0.7f)
                     );
@@ -142,13 +140,10 @@ public class TabMaps extends Fragment implements Observer {
                     String nomPoi = json.getString("nom");
                     String idPoi = json.getString("id");
                     String guide = json.getString("guide");
-                    //id_current = json.getString("id_current");
-                    //id_auteur = json.getString("id_auteur");
                     tabNomPoi.add(nomPoi);
-
                 }
-                infoVoyage.voyageUser.setListPoi(tabNomPoi);
-                System.out.println(infoVoyage.voyageUser.getListPoi().toString());
+                InfoVoyage.voyageUser.setListPoi(tabNomPoi);
+                //System.out.println(InfoVoyage.voyageUser.getListPoi().toString());
                 addMarker();
 
             } catch (JSONException e) {

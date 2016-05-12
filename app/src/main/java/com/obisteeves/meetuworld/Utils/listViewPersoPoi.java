@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.R;
@@ -13,9 +12,9 @@ import com.obisteeves.meetuworld.R;
 /**
  * Created by Steeves on 27-04-15.
  */
-public class listViewPersoPoi extends ArrayAdapter<String> {
+public class ListViewPersoPoi extends ArrayAdapter<String> {
 
-    public listViewPersoPoi(Context context, String[] voyages) {
+    public ListViewPersoPoi(Context context, String[] voyages) {
         super(context, R.layout.listview_poi, voyages);
     }
 

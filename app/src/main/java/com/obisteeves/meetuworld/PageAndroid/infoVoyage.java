@@ -40,7 +40,7 @@ import java.util.Observer;
  * Activity regroupant les information relatif d'un voyage et une carte GoogleMaps
  * Elle est composée de deux Fragment, TabInfo et TabMaps
  */
-public class infoVoyage extends ActionBarActivity implements Observer {
+public class InfoVoyage extends ActionBarActivity implements Observer {
 
     public Voyage voyageUser;
     private ListView poiListView;
@@ -116,7 +116,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit: //modification d'un voyage
-                Intent intent = new Intent(infoVoyage.this, ModifierVoyage.class);
+                Intent intent = new Intent(InfoVoyage.this, ModifierVoyage.class);
                 intent.putExtra("parcelable", voyageUser);
                 intent.putExtra("idVoyage", id_voyage);
                 intent.putExtra("userCurrent", id_current);
@@ -134,7 +134,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
                                 deleteVoyage(voyageUser.getId_voyage());
-                                Intent intent = new Intent(infoVoyage.this, HomePage.class);
+                                Intent intent = new Intent(InfoVoyage.this, HomePage.class);
                                 intent.putExtra("user", user);
                                 startActivity(intent);
                                 finish();
@@ -292,7 +292,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
                                         }
                                     };
 
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(infoVoyage.this);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(InfoVoyage.this);
                                     builder.setMessage("Devenir l'accompagnateur pour " + nom + " ? ")
                                             .setTitle("Info")
                                             .setNegativeButton("Non", dialogClickListener)
@@ -310,7 +310,7 @@ public class infoVoyage extends ActionBarActivity implements Observer {
     }
 
     /**
-     * Fonction qui permet à un guide de supprimer le fait qu'il soit guide pour un Poi
+     * Fonction qui permet à un utilisateur de supprimer son voyage
      * @param idVoyage
      */
     private void deleteVoyage(String idVoyage) {

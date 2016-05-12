@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 /**
- * Created by Steeves on 09-06-15.
+ * Class regroupant les informations sur un voyage
  */
 public class Voyage implements Parcelable {
     public static final Creator<Voyage> CREATOR = new Creator<Voyage>() {

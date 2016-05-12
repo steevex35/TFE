@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Steeves on 04-06-15.
+ * Class servant à personnaliser la ListView du Fragment TabGuide
  */
 public class ListViewTabGuide_Adapter extends ArrayAdapter {
     private Context mContext;

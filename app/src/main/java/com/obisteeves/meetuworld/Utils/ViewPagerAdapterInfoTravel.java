@@ -1,9 +1,5 @@
 package com.obisteeves.meetuworld.Utils;
 
-/**
- * Created by Steeves on 06-06-15.
- */
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -11,9 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.obisteeves.meetuworld.Tabs.TabInfo;
 import com.obisteeves.meetuworld.Tabs.TabMaps;
 
-/**
- * Created by hp1 on 21-01-2015.
- */
 public class ViewPagerAdapterInfoTravel extends FragmentStatePagerAdapter {
 
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created

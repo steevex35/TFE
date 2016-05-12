@@ -37,7 +37,7 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
 /**
  * Activity d'inscription
  */
-public class inscriptionPage extends ActionBarActivity implements Observer {
+public class InscriptionPage extends ActionBarActivity implements Observer {
 
          Toolbar toolbar;
     private EditText nom, prenom, email, pwd, ville;
@@ -183,7 +183,7 @@ public class inscriptionPage extends ActionBarActivity implements Observer {
             net.send();
             return true;
         } else
-            dialogPerso("Un ou plusieurs champs sont vides", "Avertissement", "Retour", inscriptionPage.this);
+            dialogPerso("Un ou plusieurs champs sont vides", "Avertissement", "Retour", InscriptionPage.this);
         return false;
     }
 
@@ -229,16 +229,17 @@ public class inscriptionPage extends ActionBarActivity implements Observer {
                             //Yes button clicked
                             Intent myIntent = new Intent(getApplicationContext(), ConnectionPage.class);
                             startActivity(myIntent);
+                            finish();
                             break;
                     }
                 }
             };
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Inscription Confirmée").setTitle(" Avertissement").setPositiveButton("Continuer", dialogClickListener).show();
+            builder.setMessage("Inscription Ok").setTitle(" Info").setPositiveButton("Continuer", dialogClickListener).show();
             initAdvertTypesTable(observable);
         }else
-            dialogPerso(data.toString(), "Avertissement", "Retour", inscriptionPage.this);
+            dialogPerso(data.toString(), "Avertissement", "Retour", InscriptionPage.this);
     }
 
     private void initAdvertTypesTable(final Observable observable){

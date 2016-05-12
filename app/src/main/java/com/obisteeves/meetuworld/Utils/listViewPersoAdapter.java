@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Steeves on 02-04-15.
+ * Class servant à personnaliser la ListView du Fragment TabHome
  */
-public class listViewPersoAdapter extends ArrayAdapter {
+public class ListViewPersoAdapter extends ArrayAdapter {
     private Context mContext;
     private int id;
     private ArrayList<HashMap<String, String>> items;
@@ -27,7 +27,7 @@ public class listViewPersoAdapter extends ArrayAdapter {
     private FragmentActivity myContext;
 
 
-    public listViewPersoAdapter(Context context, int textViewResourceId, ArrayList<HashMap<String, String>> list, FragmentActivity c) {
+    public ListViewPersoAdapter(Context context, int textViewResourceId, ArrayList<HashMap<String, String>> list, FragmentActivity c) {
         super(context, textViewResourceId, list);
         mContext = context;
         id = textViewResourceId;

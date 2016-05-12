@@ -30,7 +30,7 @@ import static com.obisteeves.meetuworld.Utils.Utilities.dialogPerso;
  * Activity servant à modifier les informations d'un utilisateur
  */
 
-public class modifierProfil extends ActionBarActivity implements Observer {
+public class ModifierProfil extends ActionBarActivity implements Observer {
 
     private Toolbar toolbar;
     private EditText nom, prenom, ville, email;
@@ -61,9 +61,9 @@ public class modifierProfil extends ActionBarActivity implements Observer {
         restorePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LayoutInflater inflater = LayoutInflater.from(modifierProfil.this);
+                LayoutInflater inflater = LayoutInflater.from(ModifierProfil.this);
                 View dialog_layout = inflater.inflate(R.layout.alert_dialog_new_pwd, null);
-                AlertDialog.Builder db = new AlertDialog.Builder(modifierProfil.this);
+                AlertDialog.Builder db = new AlertDialog.Builder(ModifierProfil.this);
                 db.setView(dialog_layout);
                 db.setTitle("Nouveau mot de passe");
                 db.setCancelable(false);
@@ -117,7 +117,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
             net.addParam("mdpFc", mdpFinalConf);
             net.send();
         } else
-            dialogPerso("Champs vide", "info", "ok", modifierProfil.this);
+            dialogPerso("Champs vide", "info", "ok", ModifierProfil.this);
     }
 
     /**
@@ -154,7 +154,7 @@ public class modifierProfil extends ActionBarActivity implements Observer {
                                 user.setmNom(nom.getText().toString()); //mise à jour de l'objet user
                                 user.setmPrenom(prenom.getText().toString());
                                 user.setmVille(ville.getText().toString());
-                                Intent intent = new Intent(modifierProfil.this, HomePage.class);
+                                Intent intent = new Intent(ModifierProfil.this, HomePage.class);
                                 intent.putExtra("user", user);
                                 startActivity(intent);
                                 finish();
@@ -230,9 +230,9 @@ public class modifierProfil extends ActionBarActivity implements Observer {
     public void update(Observable observable, Object data) {
         String netReq2 = String.valueOf(NetworkRequestAdapter.OKpwd);
         if (data.toString().equals(netReq2)) {
-            dialogPerso("Mot de passe mise à jour", "info", "Continuer", modifierProfil.this);
+            dialogPerso("Mot de passe mise à jour", "info", "Continuer", ModifierProfil.this);
         } else {
-            dialogPerso(data.toString(), "info", "ok", modifierProfil.this);
+            dialogPerso(data.toString(), "info", "ok", ModifierProfil.this);
         }
     }
 

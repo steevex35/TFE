@@ -30,7 +30,7 @@ import static com.obisteeves.meetuworld.Utils.Utilities.inputStreamToString;
 
 
 /**
- * Created by Steeves on 15-02-15.
+ * Class permettant d'envoyer des données en Json Object au serveur
  */
 public class NetworkRequestAdapter extends Observable{
 

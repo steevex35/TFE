@@ -18,7 +18,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
-import com.obisteeves.meetuworld.PageAndroid.modifierProfil;
+import com.obisteeves.meetuworld.PageAndroid.ModifierProfil;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.DownloadImageTask;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
@@ -32,6 +32,9 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Fragment servant à afficher le profil utilisateur
+ */
 public class TabProfil extends Fragment implements Observer {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView avatar;
@@ -41,14 +44,12 @@ public class TabProfil extends Fragment implements Observer {
     private File image;
     private User userCurrent;
     private RatingBar note;
-
     private Bitmap imageBitmap;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_tab_profil, container, false);
-        //afficheProfil(v);
         HomePage homeActivity = (HomePage) getActivity();
         note = (RatingBar) v.findViewById(R.id.profil_points);
         note.setRating(4);
@@ -73,7 +74,7 @@ public class TabProfil extends Fragment implements Observer {
             @Override
             public void onClick(View v) {
                 //page de modif du profil
-                Intent intent = new Intent(getActivity(), modifierProfil.class);
+                Intent intent = new Intent(getActivity(), ModifierProfil.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("user", userCurrent);
                 intent.putExtras(bundle);
@@ -122,7 +123,6 @@ public class TabProfil extends Fragment implements Observer {
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(
@@ -132,8 +132,6 @@ public class TabProfil extends Fragment implements Observer {
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-
-        // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
 
         return image;
@@ -151,11 +149,14 @@ public class TabProfil extends Fragment implements Observer {
             byte[] image = stream.toByteArray();
             String avatar_string = Base64.encodeToString(image, Base64.DEFAULT);
             upload_avatar(avatar_string);
-            System.out.println(avatar_string);
+            //System.out.println(avatar_string);
         }
     }
 
-
+    /**
+     * Function qui envoie l'image capturé en base64 au serveur PHP
+     * @param avatar_str
+     */
     public void upload_avatar(String avatar_str) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(this.getActivity());
         net.addObserver(this);
@@ -173,31 +174,7 @@ public class TabProfil extends Fragment implements Observer {
      */
 
     public void update(Observable observable, Object data) {
-        NetworkRequestAdapter resultat = ((NetworkRequestAdapter) observable);
-        String netReq = String.valueOf(NetworkRequestAdapter.OK);
-        if (data.toString().equals(netReq)) {
-
-            //try {
-            //String nom = resultat.getResult().get("nom").toString();
-            //String prenom = resultat.getResult().get("prenom").toString();
-            //String ville = resultat.getResult().get("ville").toString();
-            //String pays = resultat.getResult().get("pays").toString();
-            //((TextView) getActivity().findViewById(R.id.profil_nomPrenom)).setText(prenom + " " + nom);
-            //((TextView) getActivity().findViewById(R.id.profil_villePays)).setText(pays + ", " + ville);
-            //((TextView) getActivity().findViewById(R.id.profil_Email)).setText(resultat.getResult().get("email").toString());
-
-            //} catch (JSONException e) {
-            //e.printStackTrace();
-            //}
-        }
 
     }
-
-
-
-
-
-
-
 
 }

@@ -27,6 +27,10 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Fragment qui permet d'afficher via une ListView les Poi que l'utilisateur doit visiter avec les voyageurs
+ */
+
 public class TabGuide extends Fragment implements Observer {
 
     private TextView idPoi;
@@ -65,7 +69,7 @@ public class TabGuide extends Fragment implements Observer {
                     String id = json.getString("id");
                     String nomPoi = json.getString("nom");
                     String ville = json.getString("ville");
-                    String dateP = json.getString("date_passage");
+                    //String dateP = json.getString("date_passage");
                     String nom = json.getString("nomUser");
                     String prenom = json.getString("prenom");
                     String idVoyage = json.getString("voyages_id");
@@ -127,6 +131,11 @@ public class TabGuide extends Fragment implements Observer {
         }
 
     }
+
+    /**
+     * Fonction qui permet à un guide de supprimer le fait qu'il soit guide pour un Poi
+     * @param id_poi
+     */
 
     private void deleteGuide(String id_poi) {
         NetworkRequestAdapter net = new NetworkRequestAdapter(getActivity());

@@ -13,13 +13,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.obisteeves.meetuworld.PageAndroid.HomePage;
-import com.obisteeves.meetuworld.PageAndroid.addTravel;
-import com.obisteeves.meetuworld.PageAndroid.infoVoyage;
+import com.obisteeves.meetuworld.PageAndroid.InfoVoyage;
+import com.obisteeves.meetuworld.PageAndroid.AddTravel;
 import com.obisteeves.meetuworld.R;
 import com.obisteeves.meetuworld.Utils.NetworkRequestAdapter;
 import com.obisteeves.meetuworld.Utils.User;
 import com.obisteeves.meetuworld.Utils.Voyage;
-import com.obisteeves.meetuworld.Utils.listViewTabTravel_Adapter;
+import com.obisteeves.meetuworld.Utils.ListViewTabTravel_Adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +65,7 @@ public class TabTravel extends Fragment implements Observer{
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), addTravel.class);
+                Intent intent = new Intent(getActivity(), AddTravel.class);
                 intent.putExtra("user", userCurrent);
                 startActivity(intent);
             }
@@ -122,7 +122,7 @@ public class TabTravel extends Fragment implements Observer{
                 }
 
                 ListView voyagesListView = (ListView) getActivity().findViewById(R.id.voyageListViewTravel);
-                listViewTabTravel_Adapter voyagesAdapter = new listViewTabTravel_Adapter(getActivity(), R.layout.listview_tab_tavel, listHashVoyage, getActivity());
+                ListViewTabTravel_Adapter voyagesAdapter = new ListViewTabTravel_Adapter(getActivity(), R.layout.listview_tab_tavel, listHashVoyage, getActivity());
                 voyagesListView.setAdapter(voyagesAdapter);
 
                 voyagesListView.setClickable(true);
@@ -147,7 +147,7 @@ public class TabTravel extends Fragment implements Observer{
 
 
                                 voyageUser = new Voyage(idVoyageToSend, idAuteurToSend, paysUserTosend, villeUserTosend, dateATosend, dateDTosend);
-                                Intent intent = new Intent(getActivity(), infoVoyage.class);
+                                Intent intent = new Intent(getActivity(), InfoVoyage.class);
                                 intent.putExtra("id_voyage", idVoyageToSend);
                                 intent.putExtra("id_auteur", idAuteurToSend);
                                 intent.putExtra("userCurrent", userCurrent.getmId());

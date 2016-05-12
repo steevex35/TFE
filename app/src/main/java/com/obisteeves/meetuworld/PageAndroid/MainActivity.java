@@ -45,6 +45,6 @@ public class MainActivity extends Activity {
     }
 
     public void inscription(View view) {
-        Utilities.enter(inscriptionPage.class, this);
+        Utilities.enter(InscriptionPage.class, this);
     }
 }

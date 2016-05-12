@@ -17,16 +17,16 @@ import java.util.HashMap;
 
 
 /**
- * Created by Steeves on 25-04-15.
+ * Class servant à personnaliser la ListView du Fragment TabTravel
  */
-public class listViewTabTravel_Adapter extends ArrayAdapter {
+public class ListViewTabTravel_Adapter extends ArrayAdapter {
     private Context mContext;
     private int id;
     private ArrayList<HashMap<String, String>> items;
     private Activity activity;
     private FragmentActivity myContext;
 
-    public listViewTabTravel_Adapter(Context context, int textViewResourceId, ArrayList<HashMap<String, String>> list, FragmentActivity c) {
+    public ListViewTabTravel_Adapter(Context context, int textViewResourceId, ArrayList<HashMap<String, String>> list, FragmentActivity c) {
         super(context, textViewResourceId, list);
         mContext = context;
         id = textViewResourceId;

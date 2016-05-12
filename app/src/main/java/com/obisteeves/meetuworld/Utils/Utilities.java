@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * Created by Steeves on 07-02-15.
+ * Class regroupant les fonctions outils
  */
 
 

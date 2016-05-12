@@ -27,7 +27,7 @@
             android:orientation="vertical"
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
-            tools:context="com.obisteeves.meetuworld.PageAndroid.addTravel">
+            tools:context="com.obisteeves.meetuworld.PageAndroid.AddTravel">
 
             <TextView
                 android:id="@+id/textView2"

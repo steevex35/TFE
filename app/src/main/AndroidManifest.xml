@@ -25,6 +25,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo240px"
@@ -34,95 +35,103 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyABHd4gr-KK-uPXUsNTFFpfEIfF3AQdZcg" />
 
+        <activity android:name=".PageAndroid.SplashScreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".PageAndroid.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.obisteeves.meetuworld.MAINACTIVITY" />
+                 <category android:name="android.intent.category.DEFAULT" />
+             </intent-filter>
+         </activity>
+         <activity
+             android:name=".PageAndroid.HomePage"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_home_page"
+             android:parentActivityName=".PageAndroid.ConnectionPage" >
+         </activity>
+         <activity
+             android:name=".PageAndroid.InscriptionPage"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_inscription_page"
+             android:parentActivityName=".PageAndroid.MainActivity"
+             android:windowSoftInputMode="stateHidden" >
+         </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".PageAndroid.HomePage"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_home_page"
-            android:parentActivityName=".PageAndroid.ConnectionPage" >
-        </activity>
-        <activity
-            android:name=".PageAndroid.inscriptionPage"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_inscription_page"
-            android:parentActivityName=".PageAndroid.MainActivity"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
+         <meta-data
+             android:name="com.google.android.gms.version"
+             android:value="@integer/google_play_services_version" />
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+         <activity
+             android:name=".PageAndroid.ConnectionPage"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_connection_page"
+             android:parentActivityName=".PageAndroid.MainActivity"
+             android:windowSoftInputMode="stateHidden" >
+         </activity>
+         <activity
+             android:name=".Tabs.TabProfil"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_tab_profil" >
+         </activity>
+         <activity
+             android:name=".Tabs.TabHome"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_tab_home" >
+         </activity>
+         <activity
+             android:name=".Tabs.TabNewTravel"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_tab_new_travel" >
+         </activity>
+         <activity
+             android:name=".PageAndroid.ModifierProfil"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_modifier_profil"
+             android:parentActivityName=".PageAndroid.HomePage"
+             android:windowSoftInputMode="stateHidden" >
+         </activity>
+         <activity
+             android:name=".PageAndroid.AddTravel"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_add_travel"
+             android:parentActivityName=".PageAndroid.HomePage"
+             android:windowSoftInputMode="stateHidden" >
+         </activity>
+         <activity
+             android:name=".PageAndroid.InfoVoyage"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_info_voyage"
+             android:parentActivityName=".PageAndroid.HomePage"
+             android:windowSoftInputMode="stateHidden" >
+         </activity>
+         <activity
+             android:name=".PageAndroid.ItinerairePage"
+             android:label="@string/title_activity_itineraire_page"
+             android:parentActivityName=".PageAndroid.InfoVoyage" />
+         <activity
+             android:name=".Tabs.TabGuide"
+             android:label="@string/title_activity_tab_guide" />
+         <activity
+             android:name=".PageAndroid.ResetPwd"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_reset_pwd"
+             android:parentActivityName=".PageAndroid.ConnectionPage"
+             android:windowSoftInputMode="stateHidden"></activity>
+         <activity
+             android:name=".PageAndroid.ModifierVoyage"
+             android:configChanges="orientation|screenSize"
+             android:label="@string/title_activity_modifier_voyage"
+             android:windowSoftInputMode="stateHidden">
+         </activity>
 
-        <activity
-            android:name=".PageAndroid.ConnectionPage"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_connection_page"
-            android:parentActivityName=".PageAndroid.MainActivity"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
-        <activity
-            android:name=".Tabs.TabProfil"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_tab_profil" >
-        </activity>
-        <activity
-            android:name=".Tabs.TabHome"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_tab_home" >
-        </activity>
-        <activity
-            android:name=".Tabs.TabNewTravel"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_tab_new_travel" >
-        </activity>
-        <activity
-            android:name=".PageAndroid.modifierProfil"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_modifier_profil"
-            android:parentActivityName=".PageAndroid.HomePage"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
-        <activity
-            android:name=".PageAndroid.addTravel"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_add_travel"
-            android:parentActivityName=".PageAndroid.HomePage"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
-        <activity
-            android:name=".PageAndroid.infoVoyage"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_info_voyage"
-            android:parentActivityName=".PageAndroid.HomePage"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
-        <activity
-            android:name=".PageAndroid.ItinerairePage"
-            android:label="@string/title_activity_itineraire_page"
-            android:parentActivityName=".PageAndroid.infoVoyage" />
-        <activity
-            android:name=".Tabs.TabGuide"
-            android:label="@string/title_activity_tab_guide" />
-        <activity
-            android:name=".PageAndroid.ResetPwd"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_reset_pwd"
-            android:parentActivityName=".PageAndroid.ConnectionPage"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name=".PageAndroid.ModifierVoyage"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_modifier_voyage"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-    </application>
+     </application>
 
-</manifest>
+ </manifest>

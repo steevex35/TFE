@@ -27,7 +27,7 @@
                 android:background="#FFFFFF"
                 android:orientation="vertical"
                 android:paddingBottom="275dp"
-                tools:context="com.obisteeves.meetuworld.PageAndroid.modifierProfil">
+                tools:context="com.obisteeves.meetuworld.PageAndroid.ModifierProfil">
 
 
                 <EditText

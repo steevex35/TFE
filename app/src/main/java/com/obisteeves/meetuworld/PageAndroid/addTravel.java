@@ -45,7 +45,7 @@ import static com.obisteeves.meetuworld.Utils.Utilities.valeurString;
 /**
  * Activity qui permet à un utilisateur d'ajouter un voyage
  */
-public class addTravel extends ActionBarActivity implements Observer {
+public class AddTravel extends ActionBarActivity implements Observer {
     private Toolbar toolbar;
     private String idSelectionPays;
     private TextView fdateA, fdateD, error;
@@ -119,11 +119,12 @@ public class addTravel extends ActionBarActivity implements Observer {
                                 idSelectionPays = spinnerMap.get(spinner.getSelectedItem().toString());
                                 if (((testString(ville.getText().toString()) && testString(fdateA.getText().toString())
                                         && testString(fdateD.getText().toString())) != true)) {
-                                    dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", addTravel.this);
+                                    dialogPerso("veuillez remplir tous les champs", "Avertissement", "Retour", AddTravel.this);
                                 } else if (tabPoi.isEmpty()) {
-                                    dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", addTravel.this);
+                                    dialogPerso("veuillez rentrer des POi", "Avertissement", "Retour", AddTravel.this);
 
                                 } else {
+
                                     EnvoyerVoyage(idSelectionPays,
                                             ville.getText().toString(),
                                             fdateA.getText().toString(),
@@ -265,7 +266,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         {
             @Override
             public void onClick(View arg0) {
-                if (valeurString(textIn.getText().toString(), addTravel.this) ==true) {
+                if (valeurString(textIn.getText().toString(), AddTravel.this) ==true) {
 
                     boolean element = tabPoi.contains(textIn.getText().toString());
                     if (element == true) {
@@ -273,7 +274,7 @@ public class addTravel extends ActionBarActivity implements Observer {
                         message="POi déjà présent";
                         titre="Avertissement";
                         bouton="Retour";
-                        dialogPerso(message, titre, bouton, addTravel.this);
+                        dialogPerso(message, titre, bouton, AddTravel.this);
                     } else {
                         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         final View addView = layoutInflater.inflate(R.layout.row, null);
@@ -336,7 +337,7 @@ public class addTravel extends ActionBarActivity implements Observer {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Votre voyage est bien  enregistr").setTitle("Info").setPositiveButton("Continuer", dialogClickListener).show();
+        builder.setMessage("Votre voyage est bien  enregistre").setTitle("Info").setPositiveButton("Continuer", dialogClickListener).show();
     }
 
 }

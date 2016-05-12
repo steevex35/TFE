@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.obisteeves.meetuworld.R;
 
 /**
- * Created by Steeves on 06-05-15.
+ * Class servant à personnaliser un marker sur Google Maps
  */
 public abstract class InfoMarkerAdapter implements GoogleMap.InfoWindowAdapter {
     LayoutInflater inflater=null;

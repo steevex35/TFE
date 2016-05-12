@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 /**
  * Classe servant a afficher un dialog permetant de choisir une date
- * @author Peri
+ *
  *
  */
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -43,7 +43,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        o.setText(year+"-"+ (month+1) +"-"+ day); //bizarre, si tu mets pas le +1 ca met un mois en retard...
+        o.setText(year+"-"+ (month+1) +"-"+ day);
 
 
     }

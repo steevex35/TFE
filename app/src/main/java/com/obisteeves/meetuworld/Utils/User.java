@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Steeves.
+ * Class qui regroupe toutes les informations de l'utilisateur qui se connecte
  */
 public class User implements Parcelable {
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {

@@ -11,7 +11,7 @@ import com.obisteeves.meetuworld.R;
 import java.io.InputStream;
 
 /**
- * Created by Steeves on 12-06-15.
+ * upload de l'avatar de manière Async
  */
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 

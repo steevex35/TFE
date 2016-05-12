@@ -1,9 +1,5 @@
 package com.obisteeves.meetuworld.Tabs;
 
-/**
- * Created by Steeves on 06-03-15.
- */
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;

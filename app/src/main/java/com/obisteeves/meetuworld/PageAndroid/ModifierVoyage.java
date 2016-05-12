@@ -142,7 +142,7 @@ public class ModifierVoyage extends ActionBarActivity implements Observer {
                                             fdateA.getText().toString(),
                                             fdateD.getText().toString(),
                                             listPoiLocal.toString());
-                                    Intent intent = new Intent(ModifierVoyage.this, infoVoyage.class);
+                                    Intent intent = new Intent(ModifierVoyage.this, InfoVoyage.class);
                                     intent.putExtra("parcelable", voyageUser);
                                     intent.putExtra("id_voyage", id_voyage);
                                     intent.putExtra("id_auteur", id_auteur);
